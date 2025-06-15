@@ -1,3 +1,4 @@
+
 import { useState, useEffect, useRef } from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -674,7 +675,7 @@ const Index = () => {
                           <h4 className="font-medium mb-2">Skills Developed:</h4>
                           <div className="flex flex-wrap gap-2">
                             {job.skills.map((skill) => (
-                              <Badge key={skill} variant="outline">{skill}</Badge>
+                              <Badge key={skill} variant="outline" className="text-sm px-3 py-1">{skill}</Badge>
                             ))}
                           </div>
                         </div>
