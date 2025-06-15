@@ -1,3 +1,4 @@
+
 import { useState, useEffect, useRef } from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -8,11 +9,14 @@ import Typed from 'typed.js';
 
 const Index = () => {
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const [navbarScrolled, setNavbarScrolled] = useState(false);
   const nameRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
-      setShowScrollTop(window.scrollY > 400);
+      const scrollY = window.scrollY;
+      setShowScrollTop(scrollY > 400);
+      setNavbarScrolled(scrollY > 50);
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -171,17 +175,35 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
-      {/* Sticky Navigation Bar */}
-      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-white/20 shadow-sm">
+      {/* Sticky Navigation Bar with scroll effect */}
+      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
+        navbarScrolled 
+          ? 'bg-white/90 backdrop-blur-md border-b border-white/20 shadow-sm' 
+          : 'bg-transparent'
+      }`}>
         <div className="max-w-6xl mx-auto px-4 py-3">
           <div className="flex justify-between items-center">
-            <div className="font-semibold text-gray-800">Nikash Shanbhag</div>
+            <div className={`font-semibold transition-colors duration-300 ${
+              navbarScrolled ? 'text-gray-800' : 'text-white'
+            }`}>
+              Nikash Shanbhag
+            </div>
             <div className="hidden md:flex space-x-6">
-              <a href="#education" className="text-gray-600 hover:text-blue-600 transition-colors">Education</a>
-              <a href="#skills" className="text-gray-600 hover:text-blue-600 transition-colors">Skills</a>
-              <a href="#projects" className="text-gray-600 hover:text-blue-600 transition-colors">Projects</a>
-              <a href="#experience" className="text-gray-600 hover:text-blue-600 transition-colors">Experience</a>
-              <a href="#contact" className="text-gray-600 hover:text-blue-600 transition-colors">Contact</a>
+              <a href="#education" className={`transition-colors duration-300 ${
+                navbarScrolled ? 'text-gray-600 hover:text-blue-600' : 'text-white/80 hover:text-white'
+              }`}>Education</a>
+              <a href="#skills" className={`transition-colors duration-300 ${
+                navbarScrolled ? 'text-gray-600 hover:text-blue-600' : 'text-white/80 hover:text-white'
+              }`}>Skills</a>
+              <a href="#projects" className={`transition-colors duration-300 ${
+                navbarScrolled ? 'text-gray-600 hover:text-blue-600' : 'text-white/80 hover:text-white'
+              }`}>Projects</a>
+              <a href="#experience" className={`transition-colors duration-300 ${
+                navbarScrolled ? 'text-gray-600 hover:text-blue-600' : 'text-white/80 hover:text-white'
+              }`}>Experience</a>
+              <a href="#contact" className={`transition-colors duration-300 ${
+                navbarScrolled ? 'text-gray-600 hover:text-blue-600' : 'text-white/80 hover:text-white'
+              }`}>Contact</a>
             </div>
           </div>
         </div>
@@ -200,11 +222,11 @@ const Index = () => {
           <div className="absolute inset-0 bg-black/15"></div>
         </div>
 
-        {/* Mouse Scroll Indicator */}
-        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 animate-bounce">
-          <div className="flex flex-col items-center text-white/80">
+        {/* Side Mouse Scroll Indicator */}
+        <div className="fixed left-6 top-1/2 transform -translate-y-1/2 z-20 animate-bounce">
+          <div className="flex flex-col items-center text-white/80 writing-mode-vertical">
             <Mouse className="w-6 h-6 mb-2" />
-            <div className="text-xs font-medium">Scroll Down</div>
+            <div className="text-xs font-medium [writing-mode:vertical-lr] rotate-180">Scroll Down</div>
           </div>
         </div>
 
