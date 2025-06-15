@@ -1,13 +1,151 @@
 
-import { useState } from 'react';
+import { useState, useEffect } from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
-import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger } from "@/components/ui/dialog";
-import { ExternalLink, Github, Linkedin, Mail, Phone, MapPin, ChevronUp, Calendar, Users, Award } from 'lucide-react';
+import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogDescription } from "@/components/ui/dialog";
+import { ExternalLink, Github, Linkedin, Mail, Phone, MapPin, ChevronUp, Calendar, Users, Award, Star, Code, Briefcase } from 'lucide-react';
 
 const Index = () => {
   const [showScrollTop, setShowScrollTop] = useState(false);
+
+  useEffect(() => {
+    const handleScroll = () => {
+      setShowScrollTop(window.scrollY > 400);
+    };
+
+    window.addEventListener('scroll', handleScroll);
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  const projects = [
+    {
+      title: "Better Bulk",
+      description: "Full-stack recipe-finder web application with user authentication and recipe management",
+      tech: ["TypeScript", "Python", "React", "TailwindCSS", "Flask", "Lovable", "Supabase"],
+      github: "https://github.com/nikashs26/full-stack-recipe",
+      live: "https://better-bulk.vercel.app/",
+      details: "Designed a comprehensive full-stack recipe-finder web application featuring robust user authentication, recipe creation/editing capabilities, advanced search functionality, and favorite marking system. Successfully integrated the React-based frontend with a Flask backend, utilizing Supabase for secure data storage and retrieval for user sign-ups/sign-ins, user reviews, and manually written recipes. Implemented RESTful API endpoints for diverse recipe generation and data management. Leveraged Lovable AI Copilot extensively for debugging, automated test generation, and code optimization, resulting in improved development efficiency and code quality.",
+      features: [
+        "User authentication and profile management",
+        "Recipe creation with rich text editor",
+        "Advanced search and filtering",
+        "Favorite recipes system",
+        "User reviews and ratings",
+        "Responsive design for all devices"
+      ]
+    },
+    {
+      title: "Simba's Surveillance",
+      description: "Real-time Lion King-themed wildlife trespasser detection system",
+      tech: ["HTML", "CSS", "React", "Python", "AI/ML", "Computer Vision"],
+      github: "https://github.com/NickelR22/simbassurveillance",
+      devpost: "https://devpost.com/software/bobs-consulting?ref_content=my-projects-tab&ref_feature=my_projects",
+      live: "https://simbassurveillance.vercel.app/",
+      details: "Developed the complete frontend for a real-time, Lion King-themed wildlife trespasser detection system that uses advanced AI to identify human figures in live-streamed video from protected territories. Created a responsive homepage using React and CSS, structured the comprehensive About page, and implemented dynamic data visualization. Successfully connected the Python-based backend by retrieving and displaying JSON data in the React frontend, including precise timestamps and images of detected trespassers. Enhanced real-time data visualization to improve accessibility and responsiveness, directly supporting wildlife protection efforts.",
+      features: [
+        "Real-time video stream processing",
+        "AI-powered human detection",
+        "Live alerts and notifications",
+        "Wildlife protection dashboard",
+        "Historical data visualization",
+        "Mobile-responsive interface"
+      ]
+    },
+    {
+      title: "Peter Parks",
+      description: "AWS/INRIX Hack 2024 Finalist - Real-time parking detection system",
+      tech: ["React", "CSS", "AWS", "INRIX API", "Real-time Data"],
+      github: "https://github.com/nikashs26/AI-Hack-2024",
+      devpost: "https://devpost.com/software/parking-kjx41u",
+      award: "Finalist AWS/INRIX Hack 2024",
+      details: "Led the frontend development team for an innovative web application that detects available parking spaces in real-time using AWS cloud services and INRIX traffic data APIs. Implemented a sophisticated user interface using JavaScript and CSS, with a primary focus on optimal user experience and accessibility. Coordinated extensively with the backend development team to seamlessly integrate frontend components with real-time parking data streams. The project achieved finalist status in the competitive AWS/INRIX Hack 2024, demonstrating technical excellence and practical application.",
+      features: [
+        "Real-time parking availability",
+        "Interactive city maps",
+        "Predictive parking analytics",
+        "Mobile-first design",
+        "AWS cloud integration",
+        "INRIX data visualization"
+      ]
+    },
+    {
+      title: "Math 13 Course Page",
+      description: "Modern redesign of Santa Clara University math professor's course webpage",
+      tech: ["HTML", "CSS", "JavaScript", "Responsive Design"],
+      github: "https://github.com/nikashs26/Math-13-Smolarski-Page",
+      live: "https://math-13-smolarski-page.vercel.app/static/index.html",
+      details: "Conceptualized and led a collaborative team to completely recreate an SCU math professor's course webpage using modern HTML, CSS, and JavaScript technologies. Designed a contemporary, fully responsive interface with significantly improved functionality and enhanced user engagement features. Personally developed the Home and About Professor pages, while contributing innovative ideas for mockups and implementation strategies for all site sections. Focused extensively on enhancing accessibility standards, visual aesthetics, and interactive elements to dramatically improve the overall student learning experience.",
+      features: [
+        "Responsive course layout",
+        "Interactive assignment calendar",
+        "Student resource hub",
+        "Modern UI/UX design",
+        "Accessible navigation",
+        "Mobile optimization"
+      ]
+    }
+  ];
+
+  const experiences = [
+    {
+      company: "Camp Galileo",
+      role: "Summer Operations Intern",
+      period: "June 2024 - Aug 2024",
+      location: "Palo Alto, CA",
+      responsibilities: [
+        "Managed comprehensive hands-on office operations including creative poster design and systematic organization of camper shirts, name-tags, and lanyards for 200+ campers",
+        "Supervised diverse groups of children ages 5-13 in engaging STEAM classes and structured morning extended care sessions, ensuring educational value and safety",
+        "Assisted and directly oversaw counselors-in-training, helping them complete assigned tasks while teaching essential mentorship and leadership skills",
+        "Handled camper injuries through certified first-aid treatment protocols, ensuring campers remained safe while continuing to enjoy their camp experience"
+      ],
+      skills: ["Leadership", "Child Safety", "Event Management", "Team Coordination", "First Aid"]
+    },
+    {
+      company: "TechKnowHow",
+      role: "Assistant Instructor",
+      period: "May 2022 - Aug 2022, May 2023 - Aug 2023",
+      location: "Los Gatos, CA",
+      responsibilities: [
+        "Guided classes of 18-20 elementary and middle school students in comprehensive technology programs including Minecraft modding, Blockbench 3D modeling, LEGO robot-building, Roblox game development, and Scratch programming",
+        "Provided individualized assistance to students through their projects, answering technical questions and troubleshooting coding challenges",
+        "Directed extended care groups in diverse indoor and outdoor activities including strategic board games, educational videos, and supervised play structure activities",
+        "Maintained clean and organized classroom environments at the end of each day to ensure smooth camp operations and prompt daily startup"
+      ],
+      skills: ["Teaching", "Programming Instruction", "Classroom Management", "Technical Support", "Youth Development"]
+    }
+  ];
+
+  const skillCategories = [
+    {
+      title: "Programming Languages",
+      skills: ["Python", "Java", "C", "HTML5", "CSS3", "JavaScript (ES6+)", "TypeScript", "SQL"]
+    },
+    {
+      title: "Frameworks & Libraries",
+      skills: ["React", "Flask", "TailwindCSS", "Node.js", "Express.js", "Bootstrap", "jQuery"]
+    },
+    {
+      title: "DevOps & Tools",
+      skills: ["Git", "GitHub", "VS Code", "PyCharm", "Chrome DevTools", "Postman", "Figma", "Adobe Creative Suite"]
+    },
+    {
+      title: "Databases & Cloud",
+      skills: ["Supabase", "PostgreSQL", "MySQL", "AWS", "Vercel", "Firebase", "RESTful APIs"]
+    },
+    {
+      title: "Design & Creative",
+      skills: ["UI/UX Design", "Adobe Illustrator", "Adobe Photoshop", "Procreate", "Figma", "Responsive Design"]
+    },
+    {
+      title: "AI & Development Tools",
+      skills: ["Lovable AI", "Bolt.new", "Cursor", "GitHub Copilot", "Machine Learning Basics"]
+    },
+    {
+      title: "Soft Skills",
+      skills: ["Problem-solving", "Creative Thinking", "Team Leadership", "Project Management", "Communication", "Mentoring"]
+    }
+  ];
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
@@ -22,7 +160,7 @@ const Index = () => {
               Web Design & Engineering Student
             </p>
             <p className="text-lg text-gray-500 max-w-2xl mx-auto mb-8">
-              Passionate about creating user-friendly websites and applications by blending technical proficiency with creative design and aesthetics.
+              Passionate about creating user-friendly websites and applications by blending technical proficiency with creative design and aesthetics. Experienced in full-stack development, AI integration, and modern web technologies.
             </p>
           </div>
           
@@ -86,7 +224,9 @@ const Index = () => {
                           "Abstract Data Types and Data Structures",
                           "Computer Networks",
                           "Probability and Statistics",
-                          "Calculus and Analytical Geometry III & IV"
+                          "Calculus and Analytical Geometry III & IV",
+                          "Software Engineering",
+                          "Database Systems"
                         ].map((course) => (
                           <Badge key={course} variant="secondary">{course}</Badge>
                         ))}
@@ -111,37 +251,15 @@ const Index = () => {
       {/* Skills Section */}
       <section className="py-20 px-4 bg-white">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-12">Skills</h2>
+          <h2 className="text-3xl font-bold text-center mb-12">Technical Skills</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {[
-              {
-                title: "Languages",
-                skills: ["Python", "Java", "C", "HTML", "CSS", "JavaScript", "TypeScript"]
-              },
-              {
-                title: "DevOps & Tools",
-                skills: ["Git", "GitHub", "Chrome DevTools", "VS Code", "PyCharm", "Pygame", "Google Suite", "Microsoft Office"]
-              },
-              {
-                title: "Design Tools",
-                skills: ["Figma", "Adobe Illustrator", "Adobe Photoshop", "Notability", "Procreate"]
-              },
-              {
-                title: "AI Tools",
-                skills: ["Lovable", "Bolt.new", "Cursor"]
-              },
-              {
-                title: "Interests",
-                skills: ["Graphic Design", "Full-stack Development", "AI", "Cartooning", "Music Composition", "Game Design"]
-              },
-              {
-                title: "Soft Skills",
-                skills: ["Problem-solving", "Creativity & Design Thinking", "Teamwork", "Leadership", "Communication", "Team-building"]
-              }
-            ].map((category) => (
+            {skillCategories.map((category) => (
               <Card key={category.title}>
                 <CardContent className="p-6">
-                  <h3 className="text-lg font-semibold mb-4">{category.title}</h3>
+                  <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
+                    <Code className="w-5 h-5 text-blue-600" />
+                    {category.title}
+                  </h3>
                   <div className="flex flex-wrap gap-2">
                     {category.skills.map((skill) => (
                       <Badge key={skill} variant="outline">{skill}</Badge>
@@ -159,42 +277,7 @@ const Index = () => {
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl font-bold text-center mb-12">Featured Projects</h2>
           <div className="grid md:grid-cols-2 gap-8">
-            {[
-              {
-                title: "Better Bulk",
-                description: "Full-stack recipe-finder web application with user authentication and recipe management",
-                tech: ["TypeScript", "Python", "React", "TailwindCSS", "Flask", "Lovable"],
-                github: "https://github.com/nikashs26/full-stack-recipe",
-                live: "https://better-bulk.vercel.app/",
-                details: "Designed a full-stack recipe-finder web application with features including user authentication, recipe creation/editing, search, and marking as favorite. Integrated the front-end with the Flask backend and used Supabase for secure data storage and retrieval for user sign-ups/sign-ins, user reviews, and manually written recipes. Used RESTful API endpoints for diverse recipe generation. Leveraged Lovable AI Copilot for debugging, test generation, and code optimization."
-              },
-              {
-                title: "Simba's Surveillance",
-                description: "Real-time Lion King-themed wildlife trespasser detection system",
-                tech: ["HTML", "CSS", "React"],
-                github: "https://github.com/NickelR22/simbassurveillance",
-                devpost: "https://devpost.com/software/bobs-consulting?ref_content=my-projects-tab&ref_feature=my_projects",
-                live: "https://simbassurveillance.vercel.app/",
-                details: "Developed the frontend for a real-time, Lion King-themed wildlife trespasser detection system that uses AI to identify human figures in live-streamed video from protected territories. Used React and CSS to create a responsive homepage and structure the About page. Connected the Python-based backend by retrieving and displaying JSON data in the React frontend, including timestamps and images of detected trespassers. Enhanced real-time data visualization to improve accessibility and responsiveness, supporting wildlife protection efforts."
-              },
-              {
-                title: "Peter Parks",
-                description: "AWS/INRIX Hack 2024 Finalist - Real-time parking detection",
-                tech: ["React", "CSS"],
-                github: "https://github.com/nikashs26/AI-Hack-2024",
-                devpost: "https://devpost.com/software/parking-kjx41u",
-                award: "Finalist AWS/INRIX Hack 2024",
-                details: "Led team's frontend development for a web application that detects available parking spaces in real-time using AWS and INRIX services. Implemented the interface using JavaScript and CSS, focusing on user experience. Coordinated with the backend team to integrate frontend components with real-time data. The project was a finalist in the hackathon."
-              },
-              {
-                title: "Math 13 Course Page",
-                description: "Modern redesign of SCU math professor's course webpage",
-                tech: ["HTML", "CSS", "JavaScript"],
-                github: "https://github.com/nikashs26/Math-13-Smolarski-Page",
-                live: "https://math-13-smolarski-page.vercel.app/static/index.html",
-                details: "Conceptualized and led a team to recreate an SCU math professor's course webpage using HTML, CSS, and JavaScript. Designed a modern, responsive interface with improved functionality and user engagement. Developed the Home and About Professor pages, and contributed ideas for mockups and implementation of all site sections. Focused on enhancing accessibility, aesthetics, and interactivity to improve student experience."
-              }
-            ].map((project, index) => (
+            {projects.map((project, index) => (
               <Card key={index} className="group hover:shadow-lg transition-shadow">
                 <CardContent className="p-6">
                   <div className="flex items-start justify-between mb-4">
@@ -223,7 +306,7 @@ const Index = () => {
                         View Details
                       </Button>
                     </DialogTrigger>
-                    <DialogContent className="max-w-2xl">
+                    <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
                       <DialogHeader>
                         <DialogTitle className="flex items-center gap-2">
                           {project.title}
@@ -234,9 +317,29 @@ const Index = () => {
                             </Badge>
                           )}
                         </DialogTitle>
+                        <DialogDescription>
+                          Detailed project information and features
+                        </DialogDescription>
                       </DialogHeader>
-                      <div className="space-y-4">
-                        <p className="text-gray-600">{project.details}</p>
+                      <div className="space-y-6">
+                        <div>
+                          <h4 className="font-medium mb-2">Project Description:</h4>
+                          <p className="text-gray-600">{project.details}</p>
+                        </div>
+                        
+                        {project.features && (
+                          <div>
+                            <h4 className="font-medium mb-2">Key Features:</h4>
+                            <ul className="space-y-1">
+                              {project.features.map((feature, idx) => (
+                                <li key={idx} className="flex items-start gap-2">
+                                  <Star className="w-4 h-4 text-yellow-500 mt-0.5 flex-shrink-0" />
+                                  <span className="text-gray-600">{feature}</span>
+                                </li>
+                              ))}
+                            </ul>
+                          </div>
+                        )}
                         
                         <div>
                           <h4 className="font-medium mb-2">Technologies Used:</h4>
@@ -286,52 +389,43 @@ const Index = () => {
       {/* Experience Section */}
       <section className="py-20 px-4 bg-white">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-12">Experience</h2>
+          <h2 className="text-3xl font-bold text-center mb-12">Professional Experience</h2>
           <div className="space-y-8">
-            {[
-              {
-                company: "Camp Galileo",
-                role: "Summer Operations Intern",
-                period: "June 2024 - Aug 2024",
-                responsibilities: [
-                  "Managed hands-on office work including poster creation and camper shirt, name-tag, and lanyard organization",
-                  "Supervised groups of children of ages 5-13 in STEAM classes and morning extended care sessions", 
-                  "Assisted and oversaw counselors-in-training, helping them complete tasks and teaching them mentorship skills",
-                  "Handled camper injuries through first-aid treatment, ensuring they remained safe while enjoying camp"
-                ]
-              },
-              {
-                company: "TechKnowHow",
-                role: "Assistant Instructor",
-                period: "May 2022 - Aug 2022, May 2023 - Aug 2023",
-                responsibilities: [
-                  "Guided classes of 18-20 elementary/middle school kids in Minecraft, Blockbench, LEGO robot-building, Roblox, and Scratch programming, assisting them through their projects and answering questions",
-                  "Directed extended care group in indoor and outdoor activities like board games, watching videos, and playing on the site's play structure, ensuring camper safety and enjoyment",
-                  "Cleaned up classrooms at the end of each day to allow camp to start promptly the following day"
-                ]
-              }
-            ].map((job, index) => (
+            {experiences.map((job, index) => (
               <Card key={index}>
                 <CardContent className="p-8">
                   <div className="flex items-start gap-4">
                     <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center text-white font-bold">
-                      {job.company.split(' ').map(word => word[0]).join('')}
+                      <Briefcase className="w-6 h-6" />
                     </div>
                     <div className="flex-1">
                       <h3 className="text-xl font-semibold">{job.company}</h3>
-                      <p className="text-lg text-blue-600 mb-2">{job.role}</p>
+                      <p className="text-lg text-blue-600 mb-1">{job.role}</p>
+                      <p className="text-sm text-gray-500 mb-2">{job.location}</p>
                       <div className="flex items-center gap-2 text-gray-500 mb-4">
                         <Calendar className="w-4 h-4" />
                         {job.period}
                       </div>
-                      <ul className="space-y-2">
-                        {job.responsibilities.map((responsibility, idx) => (
-                          <li key={idx} className="flex items-start gap-2">
-                            <div className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                            <span className="text-gray-600">{responsibility}</span>
-                          </li>
-                        ))}
-                      </ul>
+                      
+                      <div className="space-y-4">
+                        <ul className="space-y-2">
+                          {job.responsibilities.map((responsibility, idx) => (
+                            <li key={idx} className="flex items-start gap-2">
+                              <div className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                              <span className="text-gray-600">{responsibility}</span>
+                            </li>
+                          ))}
+                        </ul>
+                        
+                        <div>
+                          <h4 className="font-medium mb-2">Skills Developed:</h4>
+                          <div className="flex flex-wrap gap-2">
+                            {job.skills.map((skill) => (
+                              <Badge key={skill} variant="outline">{skill}</Badge>
+                            ))}
+                          </div>
+                        </div>
+                      </div>
                     </div>
                   </div>
                 </CardContent>
@@ -346,7 +440,7 @@ const Index = () => {
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl font-bold mb-8">Let's Connect</h2>
           <p className="text-lg text-gray-600 mb-8">
-            I'm always interested in new opportunities and collaborations!
+            I'm always interested in new opportunities, collaborations, and innovative projects!
           </p>
           
           <div className="flex flex-wrap justify-center gap-4">
@@ -375,7 +469,7 @@ const Index = () => {
       {/* Scroll to top button */}
       {showScrollTop && (
         <Button
-          className="fixed bottom-6 right-6 rounded-full w-12 h-12 shadow-lg"
+          className="fixed bottom-6 right-6 rounded-full w-12 h-12 shadow-lg z-50"
           onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
         >
           <ChevronUp className="w-5 h-5" />
