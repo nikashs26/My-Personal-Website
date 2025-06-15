@@ -507,6 +507,16 @@ const Index = () => {
           <div className="grid md:grid-cols-2 gap-8">
             {projects.map((project, index) => (
               <Card key={index} className="group hover:shadow-lg transition-shadow relative overflow-hidden h-full bg-white/95 backdrop-blur-sm">
+                {/* Finalist Badge for Peter Parks */}
+                {project.title === "Peter Parks" && (
+                  <div className="absolute top-4 right-4 z-10">
+                    <Badge variant="default" className="gap-1 bg-yellow-500 hover:bg-yellow-600 text-yellow-900 font-semibold">
+                      <Award className="w-3 h-3" />
+                      Finalist
+                    </Badge>
+                  </div>
+                )}
+                
                 <CardContent className="p-6 h-full flex flex-col">
                   {/* Project Icon */}
                   {project.icon && (
@@ -526,12 +536,6 @@ const Index = () => {
                       <h3 className="text-xl font-semibold group-hover:text-blue-600 transition-colors text-center">
                         {project.title}
                       </h3>
-                      {project.award && (
-                        <Badge variant="default" className="gap-1">
-                          <Award className="w-3 h-3" />
-                          Finalist
-                        </Badge>
-                      )}
                     </div>
                     
                     <p className="text-gray-600 mb-4 text-center">{project.description}</p>
