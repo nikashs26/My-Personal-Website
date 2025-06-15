@@ -3,7 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogDescription } from "@/components/ui/dialog";
-import { ExternalLink, Github, Linkedin, Mail, Phone, MapPin, ChevronUp, Calendar, Users, Award, Star, Code, Briefcase } from 'lucide-react';
+import { ExternalLink, Github, Linkedin, Mail, Phone, MapPin, ChevronUp, Calendar, Users, Award, Star, Code, Briefcase, Mouse } from 'lucide-react';
 import Typed from 'typed.js';
 
 const Index = () => {
@@ -171,8 +171,24 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
+      {/* Sticky Navigation Bar */}
+      <nav className="fixed top-0 left-0 right-0 z-50 bg-white/90 backdrop-blur-md border-b border-white/20 shadow-sm">
+        <div className="max-w-6xl mx-auto px-4 py-3">
+          <div className="flex justify-between items-center">
+            <div className="font-semibold text-gray-800">Nikash Shanbhag</div>
+            <div className="hidden md:flex space-x-6">
+              <a href="#education" className="text-gray-600 hover:text-blue-600 transition-colors">Education</a>
+              <a href="#skills" className="text-gray-600 hover:text-blue-600 transition-colors">Skills</a>
+              <a href="#projects" className="text-gray-600 hover:text-blue-600 transition-colors">Projects</a>
+              <a href="#experience" className="text-gray-600 hover:text-blue-600 transition-colors">Experience</a>
+              <a href="#contact" className="text-gray-600 hover:text-blue-600 transition-colors">Contact</a>
+            </div>
+          </div>
+        </div>
+      </nav>
+
       {/* Hero Section with Custom Backdrop */}
-      <section className="relative min-h-screen flex items-center justify-center px-4 overflow-hidden">
+      <section className="relative min-h-screen flex items-center justify-center px-4 overflow-hidden pt-16">
         {/* Custom Image Backdrop */}
         <div className="absolute inset-0 z-0">
           <img 
@@ -182,6 +198,14 @@ const Index = () => {
           />
           {/* Reduced overlay opacity for less dimness */}
           <div className="absolute inset-0 bg-black/15"></div>
+        </div>
+
+        {/* Mouse Scroll Indicator */}
+        <div className="absolute bottom-8 left-1/2 transform -translate-x-1/2 z-20 animate-bounce">
+          <div className="flex flex-col items-center text-white/80">
+            <Mouse className="w-6 h-6 mb-2" />
+            <div className="text-xs font-medium">Scroll Down</div>
+          </div>
         </div>
 
         <div className="text-center max-w-4xl mx-auto relative z-10">
@@ -198,30 +222,30 @@ const Index = () => {
           </div>
           
           <div className="flex flex-wrap justify-center gap-4 mb-8">
-            <Button variant="outline" className="gap-2 bg-white/20 border-white/30 text-white hover:bg-white/30 backdrop-blur-sm">
-              <Phone className="w-4 h-4" />
+            <Button variant="outline" className="gap-3 bg-white/30 border-white/40 text-white hover:bg-white/40 backdrop-blur-sm shadow-lg text-base px-6 py-3">
+              <Phone className="w-5 h-5" />
               (408) 656-8424
             </Button>
-            <Button variant="outline" className="gap-2 bg-white/20 border-white/30 text-white hover:bg-white/30 backdrop-blur-sm">
-              <Mail className="w-4 h-4" />
+            <Button variant="outline" className="gap-3 bg-white/30 border-white/40 text-white hover:bg-white/40 backdrop-blur-sm shadow-lg text-base px-6 py-3">
+              <Mail className="w-5 h-5" />
               ngshanbhag@scu.edu
             </Button>
-            <Button variant="outline" className="gap-2 bg-white/20 border-white/30 text-white hover:bg-white/30 backdrop-blur-sm">
-              <MapPin className="w-4 h-4" />
+            <Button variant="outline" className="gap-3 bg-white/30 border-white/40 text-white hover:bg-white/40 backdrop-blur-sm shadow-lg text-base px-6 py-3">
+              <MapPin className="w-5 h-5" />
               U.S. Citizen
             </Button>
           </div>
           
           <div className="flex justify-center gap-4">
-            <Button asChild className="gap-2 bg-blue-600/80 hover:bg-blue-700/80 backdrop-blur-sm border border-white/20">
+            <Button asChild className="gap-3 bg-blue-600/90 hover:bg-blue-700/90 backdrop-blur-sm border border-white/20 shadow-lg text-base px-6 py-3">
               <a href="https://www.linkedin.com/in/nikash-shanbhag-a05931250/" target="_blank" rel="noopener noreferrer">
-                <Linkedin className="w-4 h-4" />
+                <Linkedin className="w-5 h-5" />
                 LinkedIn
               </a>
             </Button>
-            <Button asChild variant="outline" className="gap-2 bg-white/20 border-white/30 text-white hover:bg-white/30 backdrop-blur-sm">
+            <Button asChild variant="outline" className="gap-3 bg-white/30 border-white/40 text-white hover:bg-white/40 backdrop-blur-sm shadow-lg text-base px-6 py-3">
               <a href="https://github.com/nikashs26" target="_blank" rel="noopener noreferrer">
-                <Github className="w-4 h-4" />
+                <Github className="w-5 h-5" />
                 GitHub
               </a>
             </Button>
@@ -230,7 +254,7 @@ const Index = () => {
       </section>
 
       {/* Education Section */}
-      <section className="py-20 px-4">
+      <section id="education" className="py-20 px-4">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl font-bold text-center mb-12">Education</h2>
           <Card className="max-w-4xl mx-auto">
@@ -282,7 +306,7 @@ const Index = () => {
       </section>
 
       {/* Skills Section */}
-      <section className="py-20 px-4 bg-white">
+      <section id="skills" className="py-20 px-4 bg-white">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl font-bold text-center mb-12">Technical Skills</h2>
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
@@ -306,7 +330,7 @@ const Index = () => {
       </section>
 
       {/* Projects Section */}
-      <section className="py-20 px-4">
+      <section id="projects" className="py-20 px-4">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl font-bold text-center mb-12">Featured Projects</h2>
           <div className="grid md:grid-cols-2 gap-8">
@@ -433,7 +457,7 @@ const Index = () => {
       </section>
 
       {/* Experience Section */}
-      <section className="py-20 px-4 bg-white">
+      <section id="experience" className="py-20 px-4 bg-white">
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl font-bold text-center mb-12">Professional Experience</h2>
           <div className="space-y-8">
