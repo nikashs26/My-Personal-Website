@@ -3,7 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogDescription } from "@/components/ui/dialog";
-import { ExternalLink, Github, Linkedin, Mail, Phone, MapPin, ChevronUp, Calendar, Users, Award, Star, Code, Briefcase } from 'lucide-react';
+import { ExternalLink, Github, Linkedin, Mail, Phone, MapPin, ChevronUp, Calendar, Users, Award, Star, Code, Briefcase, User } from 'lucide-react';
 import Typed from 'typed.js';
 
 const Index = () => {
@@ -548,6 +548,14 @@ const Index = () => {
       <section id="contact" className="py-20 px-4">
         <div className="max-w-4xl mx-auto text-center">
           <h2 className="text-3xl font-bold mb-8">Let's Connect</h2>
+          
+          {/* Profile Image Placeholder */}
+          <div className="mb-8 flex justify-center">
+            <div className="w-32 h-32 bg-gray-200 rounded-full flex items-center justify-center border-4 border-white shadow-lg">
+              <User className="w-16 h-16 text-gray-400" />
+            </div>
+          </div>
+          
           <p className="text-lg text-gray-600 mb-8">
             I'm always interested in new opportunities, collaborations, and innovative projects!
           </p>
