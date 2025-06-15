@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef } from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -725,6 +724,14 @@ const Index = () => {
           </div>
         </div>
       </section>
+
+      {/* Floating Phone Button */}
+      <Button
+        className="fixed bottom-20 right-6 rounded-full w-12 h-12 shadow-lg z-50 bg-green-600 hover:bg-green-700"
+        onClick={() => window.open('tel:+14086568424')}
+      >
+        <Phone className="w-5 h-5" />
+      </Button>
 
       {/* Scroll to top button */}
       {showScrollTop && (
