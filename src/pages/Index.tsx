@@ -444,45 +444,39 @@ const Index = () => {
       </section>
 
       {/* Skills Section - Simplified */}
-      <section id="skills" className="py-20 px-4 bg-gradient-to-br from-gray-900 to-slate-900">
+      <section id="skills" className="py-20 px-4 bg-gray-50">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-5xl font-bold bg-gradient-to-r from-white via-blue-200 to-purple-200 bg-clip-text text-transparent mb-6">
-              Skills Arsenal
+            <h2 className="text-4xl font-bold text-gray-800 mb-6">
+              Skills
             </h2>
-            <p className="text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed">
+            <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
               A comprehensive toolkit of technologies and skills I use to build modern, scalable applications
             </p>
           </div>
           
           <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {skillCategories.map((category, index) => (
-              <Card key={category.title} className="group relative overflow-hidden bg-white/5 backdrop-blur-sm border-white/10 hover:bg-white/10 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/25">
-                <CardContent className="p-6 relative">
-                  <div className="flex items-center gap-4 mb-8 relative z-10">
-                    <div className={`w-14 h-14 bg-gradient-to-r ${category.gradient} rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
-                      <Code className="w-7 h-7 text-white" />
+              <Card key={category.title} className="group hover:shadow-lg transition-all duration-300 hover:scale-105">
+                <CardContent className="p-6">
+                  <div className="flex items-center gap-4 mb-6">
+                    <div className={`w-12 h-12 bg-gradient-to-r ${category.gradient} rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
+                      <Code className="w-6 h-6 text-white" />
                     </div>
-                    <h3 className="text-xl font-bold text-white group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-gray-200 group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300">
+                    <h3 className="text-lg font-bold text-gray-800">
                       {category.title}
                     </h3>
                   </div>
                   
-                  <div className="flex flex-wrap gap-3">
+                  <div className="flex flex-wrap gap-2">
                     {category.skills.map((skill, skillIndex) => (
-                      <div
+                      <Badge 
                         key={skill}
-                        className="group/skill relative"
-                        style={{ animationDelay: `${skillIndex * 100}ms` }}
+                        variant="secondary" 
+                        className="text-sm hover:bg-gray-200 transition-colors cursor-default"
                       >
-                        <Badge 
-                          variant="outline" 
-                          className="relative bg-white/10 border-white/20 text-white hover:bg-white/20 hover:border-white/40 hover:text-white transition-all duration-300 cursor-default text-sm py-2 px-4 font-medium backdrop-blur-sm group-hover/skill:scale-110 group-hover/skill:shadow-lg"
-                        >
-                          <span className="relative z-10">{skill}</span>
-                          <div className={`absolute inset-0 bg-gradient-to-r ${category.gradient} opacity-0 group-hover/skill:opacity-30 transition-opacity duration-300 rounded-full`}></div>
-                        </Badge>
-                      </div>
+                        {skill}
+                      </Badge>
                     ))}
                   </div>
                 </CardContent>
