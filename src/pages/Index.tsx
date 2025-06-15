@@ -1,3 +1,4 @@
+
 import { useState, useEffect, useRef } from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -713,16 +714,19 @@ const Index = () => {
           <div className="flex flex-wrap justify-center gap-4">
             <Button asChild size="lg" className="gap-2 bg-black text-white hover:bg-gray-800">
               <a href="mailto:ngshanbhag@scu.edu">
+                <Mail className="w-5 h-5" />
                 Email Me
               </a>
             </Button>
             <Button asChild size="lg" className="gap-2 bg-black text-white hover:bg-gray-800">
               <a href="https://www.linkedin.com/in/nikash-shanbhag-a05931250/" target="_blank" rel="noopener noreferrer">
+                <Linkedin className="w-5 h-5" />
                 LinkedIn
               </a>
             </Button>
             <Button asChild size="lg" className="gap-2 bg-black text-white hover:bg-gray-800">
               <a href="https://github.com/nikashs26" target="_blank" rel="noopener noreferrer">
+                <Github className="w-5 h-5" />
                 GitHub
               </a>
             </Button>
