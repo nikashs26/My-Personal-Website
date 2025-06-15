@@ -395,8 +395,8 @@ const Index = () => {
           <h2 className="text-3xl font-bold text-center mb-12">Featured Projects</h2>
           <div className="grid md:grid-cols-2 gap-8">
             {projects.map((project, index) => (
-              <Card key={index} className="group hover:shadow-lg transition-shadow relative overflow-hidden">
-                <CardContent className="p-6 relative">
+              <Card key={index} className="group hover:shadow-lg transition-shadow relative overflow-hidden flex flex-col">
+                <CardContent className="p-6 relative flex flex-col h-full">
                   {/* Project Icon - Bigger and centered at top of card without white border */}
                   {project.icon && (
                     <div className="flex justify-center mb-6">
@@ -410,7 +410,7 @@ const Index = () => {
                     </div>
                   )}
                   
-                  <div className="text-center">
+                  <div className="text-center flex-1 flex flex-col">
                     <div className="flex items-center justify-center gap-2 mb-4">
                       <h3 className="text-xl font-semibold group-hover:text-blue-600 transition-colors">
                         {project.title}
@@ -425,91 +425,93 @@ const Index = () => {
                     
                     <p className="text-gray-600 mb-4">{project.description}</p>
                     
-                    <div className="flex flex-wrap justify-center gap-2 mb-4">
+                    <div className="flex flex-wrap justify-center gap-2 mb-6 flex-1">
                       {project.tech.map((tech) => (
                         <Badge key={tech} variant="secondary">{tech}</Badge>
                       ))}
                     </div>
                     
-                    <Dialog>
-                      <DialogTrigger asChild>
-                        <Button variant="outline" className="w-full mb-4">
-                          View Details
-                        </Button>
-                      </DialogTrigger>
-                      <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
-                        <DialogHeader>
-                          <DialogTitle className="flex items-center gap-2">
-                            {project.title}
-                            {project.award && (
-                              <Badge variant="default" className="gap-1">
-                                <Award className="w-3 h-3" />
-                                Finalist
-                              </Badge>
-                            )}
-                          </DialogTitle>
-                          <DialogDescription>
-                            Detailed project information and features
-                          </DialogDescription>
-                        </DialogHeader>
-                        <div className="space-y-6">
-                          <div>
-                            <h4 className="font-medium mb-2">Project Description:</h4>
-                            <p className="text-gray-600">{project.details}</p>
-                          </div>
-                          
-                          {project.features && (
+                    <div className="mt-auto">
+                      <Dialog>
+                        <DialogTrigger asChild>
+                          <Button variant="outline" className="w-full mb-4">
+                            View Details
+                          </Button>
+                        </DialogTrigger>
+                        <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+                          <DialogHeader>
+                            <DialogTitle className="flex items-center gap-2">
+                              {project.title}
+                              {project.award && (
+                                <Badge variant="default" className="gap-1">
+                                  <Award className="w-3 h-3" />
+                                  Finalist
+                                </Badge>
+                              )}
+                            </DialogTitle>
+                            <DialogDescription>
+                              Detailed project information and features
+                            </DialogDescription>
+                          </DialogHeader>
+                          <div className="space-y-6">
                             <div>
-                              <h4 className="font-medium mb-2">Key Features:</h4>
-                              <ul className="space-y-1">
-                                {project.features.map((feature, idx) => (
-                                  <li key={idx} className="flex items-start gap-2">
-                                    <Star className="w-4 h-4 text-yellow-500 mt-0.5 flex-shrink-0" />
-                                    <span className="text-gray-600">{feature}</span>
-                                  </li>
+                              <h4 className="font-medium mb-2">Project Description:</h4>
+                              <p className="text-gray-600">{project.details}</p>
+                            </div>
+                            
+                            {project.features && (
+                              <div>
+                                <h4 className="font-medium mb-2">Key Features:</h4>
+                                <ul className="space-y-1">
+                                  {project.features.map((feature, idx) => (
+                                    <li key={idx} className="flex items-start gap-2">
+                                      <Star className="w-4 h-4 text-yellow-500 mt-0.5 flex-shrink-0" />
+                                      <span className="text-gray-600">{feature}</span>
+                                    </li>
+                                  ))}
+                                </ul>
+                              </div>
+                            )}
+                            
+                            <div>
+                              <h4 className="font-medium mb-2">Technologies Used:</h4>
+                              <div className="flex flex-wrap gap-2">
+                                {project.tech.map((tech) => (
+                                  <Badge key={tech} variant="secondary">{tech}</Badge>
                                 ))}
-                              </ul>
+                              </div>
                             </div>
-                          )}
-                          
-                          <div>
-                            <h4 className="font-medium mb-2">Technologies Used:</h4>
+                            
                             <div className="flex flex-wrap gap-2">
-                              {project.tech.map((tech) => (
-                                <Badge key={tech} variant="secondary">{tech}</Badge>
-                              ))}
+                              {project.github && (
+                                <Button asChild variant="outline" size="sm" className="gap-2">
+                                  <a href={project.github} target="_blank" rel="noopener noreferrer">
+                                    <Github className="w-4 h-4" />
+                                    GitHub
+                                  </a>
+                                </Button>
+                              )}
+                              {project.live && (
+                                <Button asChild size="sm" className="gap-2">
+                                  <a href={project.live} target="_blank" rel="noopener noreferrer">
+                                    <ExternalLink className="w-4 h-4" />
+                                    Live Demo
+                                  </a>
+                                </Button>
+                              )}
+                              {project.devpost && (
+                                <Button asChild variant="outline" size="sm" className="gap-2">
+                                  <a href={project.devpost} target="_blank" rel="noopener noreferrer">
+                                    <ExternalLink className="w-4 h-4" />
+                                    DevPost
+                                  </a>
+                                </Button>
+                              )}
                             </div>
                           </div>
-                          
-                          <div className="flex flex-wrap gap-2">
-                            {project.github && (
-                              <Button asChild variant="outline" size="sm" className="gap-2">
-                                <a href={project.github} target="_blank" rel="noopener noreferrer">
-                                  <Github className="w-4 h-4" />
-                                  GitHub
-                                </a>
-                              </Button>
-                            )}
-                            {project.live && (
-                              <Button asChild size="sm" className="gap-2">
-                                <a href={project.live} target="_blank" rel="noopener noreferrer">
-                                  <ExternalLink className="w-4 h-4" />
-                                  Live Demo
-                                </a>
-                              </Button>
-                            )}
-                            {project.devpost && (
-                              <Button asChild variant="outline" size="sm" className="gap-2">
-                                <a href={project.devpost} target="_blank" rel="noopener noreferrer">
-                                  <ExternalLink className="w-4 h-4" />
-                                  DevPost
-                                </a>
-                              </Button>
-                            )}
-                          </div>
-                        </div>
-                      </DialogContent>
-                    </Dialog>
+                        </DialogContent>
+                      </Dialog>
+                    </div>
                   </div>
                 </CardContent>
               </Card>
