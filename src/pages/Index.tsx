@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef } from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -639,55 +638,94 @@ const Index = () => {
       </section>
 
       {/* Experience Section */}
-      <section id="experience" className="py-20 px-4 bg-white">
-        <div className="max-w-6xl mx-auto">
+      <section id="experience" className="py-20 px-4 bg-white relative overflow-visible">
+        {/* Timeline vertical bar */}
+        <div className="absolute hidden md:block left-1/2 top-24 bottom-8 w-1 bg-gradient-to-b from-blue-200 via-blue-400 to-blue-200 rounded-full z-0 pointer-events-none"></div>
+        <div className="max-w-6xl mx-auto relative z-10">
           <h2 className="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-indigo-600 to-blue-600 bg-clip-text text-transparent">
             Professional Experience
           </h2>
-          <div className="space-y-8">
+          <div className="flex flex-col gap-14 relative">
             {experiences.map((job, index) => (
-              <Card key={index}>
-                <CardContent className="p-8">
-                  <div className="flex items-start gap-4">
-                    <div className="w-16 h-16 rounded-lg flex items-center justify-center overflow-hidden bg-white border border-gray-200 shadow-sm">
-                      <img 
-                        src={job.logo} 
+              <div
+                key={index}
+                className={`
+                  flex flex-col md:flex-row items-center md:items-stretch gap-6 
+                  group relative transition-all duration-300
+                  md:even:flex-row-reverse
+                `}
+              >
+                {/* Timeline dot & connector */}
+                <div className="hidden md:flex flex-col items-center z-10">
+                  <div className={`
+                    w-8 h-8 rounded-full flex items-center justify-center bg-gradient-to-br 
+                    from-blue-400 to-blue-700 border-4 border-white shadow-xl
+                    group-hover:scale-110 transition-transform duration-300
+                    ${index === 0 ? 'mt-4' : ''}
+                  `}>
+                    {/* Animated logo */}
+                    <img
+                      src={job.logo}
+                      alt={`${job.company} logo`}
+                      className="w-6 h-6 object-contain animate-fade-in"
+                    />
+                  </div>
+                  {/* Vertical connector bar */}
+                  {index < experiences.length - 1 && (
+                    <div className="w-1 h-full bg-gradient-to-b from-blue-200 via-blue-400 to-blue-200 my-1"></div>
+                  )}
+                </div>
+                {/* Card */}
+                <div className={`
+                  shadow-md bg-gradient-to-br from-white via-blue-50 to-blue-100 rounded-2xl
+                  px-6 py-8 max-w-3xl w-full
+                  hover:scale-[1.03] hover:shadow-xl hover:bg-gradient-to-br hover:from-white hover:via-blue-100 hover:to-blue-200 hover:ring-4 hover:ring-blue-100/70 transition-transform group
+                  relative z-10
+                `}>
+                  <div className="flex items-center gap-4 mb-2">
+                    {/* Prominent logo for mobile */}
+                    <div className="md:hidden w-12 h-12 rounded-lg bg-white shadow flex items-center justify-center mr-2 border border-blue-100">
+                      <img
+                        src={job.logo}
                         alt={`${job.company} logo`}
-                        className="w-full h-full object-contain rounded-lg"
+                        className="w-9 h-9 object-contain"
                       />
                     </div>
-                    <div className="flex-1">
-                      <h3 className="text-xl font-semibold">{job.company}</h3>
-                      <p className="text-lg text-blue-600 mb-1">{job.role}</p>
-                      <p className="text-sm text-gray-500 mb-2">{job.location}</p>
-                      <div className="flex items-center gap-2 text-gray-500 mb-4">
-                        <Calendar className="w-4 h-4" />
-                        {job.period}
-                      </div>
-                      
-                      <div className="space-y-4">
-                        <ul className="space-y-2">
-                          {job.responsibilities.map((responsibility, idx) => (
-                            <li key={idx} className="flex items-start gap-2">
-                              <div className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                              <span className="text-gray-600">{responsibility}</span>
-                            </li>
-                          ))}
-                        </ul>
-                        
-                        <div>
-                          <h4 className="font-medium mb-2">Skills Developed:</h4>
-                          <div className="flex flex-wrap gap-2">
-                            {job.skills.map((skill) => (
-                              <Badge key={skill} variant="outline" className="text-sm px-3 py-1">{skill}</Badge>
-                            ))}
-                          </div>
-                        </div>
+                    <div>
+                      <h3 className="text-2xl font-bold text-blue-700">{job.company}</h3>
+                      <div className="flex flex-wrap items-center gap-2">
+                        <span className="text-lg font-semibold text-blue-500">{job.role}</span>
+                        <span className="hidden md:inline">&bull;</span>
+                        <span className="text-sm text-gray-500">{job.location}</span>
                       </div>
                     </div>
                   </div>
-                </CardContent>
-              </Card>
+                  <div className="flex flex-wrap items-center gap-2 text-sm text-gray-500 mb-5">
+                    <Calendar className="w-4 h-4 text-indigo-400" />
+                    {job.period}
+                  </div>
+                  <ul className="space-y-2 mb-5 ml-1">
+                    {job.responsibilities.map((responsibility, idx) => (
+                      <li key={idx} className="flex items-start gap-2">
+                        <span className="inline-block mt-2 rounded-full bg-blue-400/70 w-2 h-2"></span>
+                        <span className="text-gray-700">{responsibility}</span>
+                      </li>
+                    ))}
+                  </ul>
+                  <div>
+                    <h4 className="font-medium mb-2 text-blue-600">Skills Developed:</h4>
+                    <div className="flex flex-wrap gap-2">
+                      {job.skills.map((skill) => (
+                        <Badge key={skill} variant="outline" className="text-xs px-3 py-1 bg-white/70 border-blue-200 hover:bg-blue-100 cursor-default font-medium">{skill}</Badge>
+                      ))}
+                    </div>
+                  </div>
+                </div>
+                {/* Timeline connector bar on mobile */}
+                {index < experiences.length - 1 && (
+                  <div className="md:hidden w-1 h-8 mx-auto bg-gradient-to-b from-blue-200 via-blue-400 to-blue-200 my-2 rounded-full" />
+                )}
+              </div>
             ))}
           </div>
         </div>
@@ -758,4 +796,3 @@ const Index = () => {
 };
 
 export default Index;
-
