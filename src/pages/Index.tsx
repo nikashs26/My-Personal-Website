@@ -725,18 +725,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Floating Mobile Phone Decoration */}
-      <div className="fixed left-4 top-1/2 transform -translate-y-1/2 z-30 hidden lg:block">
-        <div className="w-20 h-32 opacity-30 hover:opacity-60 transition-all duration-300 hover:scale-110">
-          <img 
-            src="https://images.unsplash.com/photo-1511707171634-5f897ff02aa9?auto=format&fit=crop&w=400&q=80" 
-            alt="Decorative mobile phone"
-            className="w-full h-full object-contain drop-shadow-lg"
-            style={{ filter: 'sepia(1) hue-rotate(200deg) saturate(0.8)' }}
-          />
-        </div>
-      </div>
-
       {/* Floating Phone Button */}
       <Button
         className="fixed bottom-20 right-6 rounded-full w-12 h-12 shadow-lg z-50 bg-green-600 hover:bg-green-700"
