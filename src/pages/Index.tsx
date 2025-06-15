@@ -1,12 +1,14 @@
-import { useState, useEffect } from 'react';
+import { useState, useEffect, useRef } from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogDescription } from "@/components/ui/dialog";
 import { ExternalLink, Github, Linkedin, Mail, Phone, MapPin, ChevronUp, Calendar, Users, Award, Star, Code, Briefcase } from 'lucide-react';
+import Typed from 'typed.js';
 
 const Index = () => {
   const [showScrollTop, setShowScrollTop] = useState(false);
+  const nameRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -15,6 +17,23 @@ const Index = () => {
 
     window.addEventListener('scroll', handleScroll);
     return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  useEffect(() => {
+    if (nameRef.current) {
+      const typed = new Typed(nameRef.current, {
+        strings: ['Nikash Shanbhag'],
+        typeSpeed: 100,
+        showCursor: false,
+        onComplete: () => {
+          // Optional: add any completion logic here
+        }
+      });
+
+      return () => {
+        typed.destroy();
+      };
+    }
   }, []);
 
   const projects = [
@@ -161,14 +180,14 @@ const Index = () => {
             alt="Beautiful cityscape backdrop"
             className="w-full h-full object-cover"
           />
-          {/* Overlay for better text readability */}
-          <div className="absolute inset-0 bg-black/30"></div>
+          {/* Reduced overlay opacity for less dimness */}
+          <div className="absolute inset-0 bg-black/15"></div>
         </div>
 
         <div className="text-center max-w-4xl mx-auto relative z-10">
           <div className="mb-8 backdrop-blur-sm bg-white/10 rounded-2xl p-8 border border-white/20">
-            <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-white via-blue-100 to-white bg-clip-text text-transparent mb-4 drop-shadow-2xl">
-              Nikash Shanbhag
+            <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-white via-blue-100 to-white bg-clip-text text-transparent mb-4 drop-shadow-2xl leading-tight py-4">
+              <span ref={nameRef}></span>
             </h1>
             <p className="text-xl md:text-2xl text-white/90 mb-6 drop-shadow-lg">
               Web Design & Engineering Student
