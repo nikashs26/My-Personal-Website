@@ -1,3 +1,4 @@
+
 import { useState, useEffect, useRef } from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -134,6 +135,7 @@ const Index = () => {
       role: "Summer Operations Intern",
       period: "June 2024 - Aug 2024",
       location: "Saratoga, CA",
+      logo: "/lovable-uploads/97a1a8f8-7f4e-45b3-b7f5-2c3d1e9f4a6b.png",
       responsibilities: [
         "Managed comprehensive hands-on office operations including creative poster design and systematic organization of camper shirts, name-tags, and lanyards for 200+ campers",
         "Supervised diverse groups of children ages 5-13 in engaging STEAM classes and structured morning extended care sessions, ensuring educational value and safety",
@@ -147,6 +149,7 @@ const Index = () => {
       role: "Assistant Instructor",
       period: "May 2022 - Aug 2022, May 2023 - Aug 2023",
       location: "Campbell/Saratoga, CA",
+      logo: "/lovable-uploads/8c2d4e1f-9a3b-4c5d-8e7f-1a2b3c4d5e6f.png",
       responsibilities: [
         "Guided classes of 18-20 elementary and middle school students in comprehensive technology programs including Minecraft modding, Blockbench 3D modeling, LEGO robot-building, Roblox game development, and Scratch programming",
         "Provided individualized assistance to students through their projects, answering technical questions and troubleshooting coding challenges",
@@ -640,8 +643,12 @@ const Index = () => {
               <Card key={index}>
                 <CardContent className="p-8">
                   <div className="flex items-start gap-4">
-                    <div className="w-12 h-12 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center text-white font-bold">
-                      <Briefcase className="w-6 h-6" />
+                    <div className="w-16 h-16 rounded-lg flex items-center justify-center overflow-hidden bg-white border border-gray-200">
+                      <img 
+                        src={job.logo} 
+                        alt={`${job.company} logo`}
+                        className="w-full h-full object-contain p-2"
+                      />
                     </div>
                     <div className="flex-1">
                       <h3 className="text-xl font-semibold">{job.company}</h3>
