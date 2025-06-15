@@ -152,53 +152,17 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
-      {/* Hero Section with Minecraft Shaders Backdrop */}
+      {/* Hero Section with Custom Backdrop */}
       <section className="relative min-h-screen flex items-center justify-center px-4 overflow-hidden">
-        {/* Minecraft Shaders Inspired Backdrop */}
+        {/* Custom Image Backdrop */}
         <div className="absolute inset-0 z-0">
-          {/* Sky gradient with volumetric lighting */}
-          <div className="absolute inset-0 bg-gradient-to-b from-blue-400 via-blue-300 to-orange-200"></div>
-          
-          {/* Animated clouds */}
-          <div className="absolute inset-0">
-            <div className="absolute top-10 left-10 w-32 h-16 bg-white/30 rounded-full blur-sm animate-[float_6s_ease-in-out_infinite]"></div>
-            <div className="absolute top-16 right-20 w-24 h-12 bg-white/20 rounded-full blur-sm animate-[float_8s_ease-in-out_infinite_reverse]"></div>
-            <div className="absolute top-8 left-1/3 w-40 h-20 bg-white/25 rounded-full blur-sm animate-[float_10s_ease-in-out_infinite]"></div>
-          </div>
-          
-          {/* Volumetric god rays */}
-          <div className="absolute inset-0 opacity-30">
-            <div className="absolute top-0 left-1/4 w-2 h-full bg-gradient-to-b from-yellow-200/50 to-transparent transform rotate-12 animate-pulse"></div>
-            <div className="absolute top-0 left-1/2 w-3 h-full bg-gradient-to-b from-yellow-300/40 to-transparent transform -rotate-6 animate-pulse"></div>
-            <div className="absolute top-0 right-1/3 w-2 h-full bg-gradient-to-b from-yellow-200/50 to-transparent transform rotate-6 animate-pulse"></div>
-          </div>
-          
-          {/* Atmospheric perspective layers */}
-          <div className="absolute inset-0 bg-gradient-to-t from-green-200/40 via-transparent to-transparent"></div>
-          <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-green-300/50 via-green-200/30 to-transparent"></div>
-          
-          {/* Distant mountains silhouette */}
-          <div className="absolute bottom-0 left-0 right-0 h-1/4">
-            <svg viewBox="0 0 1200 300" className="w-full h-full opacity-40">
-              <polygon points="0,300 200,100 400,150 600,80 800,120 1000,90 1200,140 1200,300" fill="url(#mountainGradient)" />
-              <defs>
-                <linearGradient id="mountainGradient" x1="0%" y1="0%" x2="0%" y2="100%">
-                  <stop offset="0%" stopColor="#4ade80" stopOpacity="0.8" />
-                  <stop offset="100%" stopColor="#16a34a" stopOpacity="0.6" />
-                </linearGradient>
-              </defs>
-            </svg>
-          </div>
-          
-          {/* Depth of field blur overlay */}
-          <div className="absolute inset-0 bg-gradient-radial from-transparent via-transparent to-blue-100/20"></div>
-          
-          {/* Animated light particles */}
-          <div className="absolute inset-0">
-            <div className="absolute top-1/4 left-1/4 w-1 h-1 bg-yellow-300 rounded-full animate-ping opacity-60"></div>
-            <div className="absolute top-1/3 right-1/3 w-1 h-1 bg-yellow-200 rounded-full animate-ping opacity-40" style={{animationDelay: '1s'}}></div>
-            <div className="absolute top-1/2 left-1/2 w-1 h-1 bg-yellow-400 rounded-full animate-ping opacity-50" style={{animationDelay: '2s'}}></div>
-          </div>
+          <img 
+            src="/lovable-uploads/63ac8832-661a-4ccc-ae0a-847202e073e9.png" 
+            alt="Beautiful cityscape backdrop"
+            className="w-full h-full object-cover"
+          />
+          {/* Overlay for better text readability */}
+          <div className="absolute inset-0 bg-black/30"></div>
         </div>
 
         <div className="text-center max-w-4xl mx-auto relative z-10">
@@ -330,13 +294,13 @@ const Index = () => {
             {projects.map((project, index) => (
               <Card key={index} className="group hover:shadow-lg transition-shadow relative overflow-hidden">
                 <CardContent className="p-6 relative">
-                  {/* Background Icon */}
+                  {/* Larger, clearer background icon */}
                   {project.icon && (
-                    <div className="absolute top-4 right-4 w-24 h-24 opacity-20 group-hover:opacity-30 transition-opacity">
+                    <div className="absolute top-4 right-4 w-32 h-32 opacity-40 group-hover:opacity-60 transition-opacity">
                       <img 
                         src={project.icon} 
                         alt={`${project.title} icon`}
-                        className="w-full h-full object-cover rounded-lg"
+                        className="w-full h-full object-contain rounded-lg filter drop-shadow-lg"
                       />
                     </div>
                   )}
