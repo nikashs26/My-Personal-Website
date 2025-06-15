@@ -376,24 +376,26 @@ const Index = () => {
             {projects.map((project, index) => (
               <Card key={index} className="group hover:shadow-lg transition-shadow relative overflow-hidden">
                 <CardContent className="p-6 relative">
-                  {/* Clear, visible project icons */}
+                  {/* Project Icon - Centered at top of card */}
                   {project.icon && (
-                    <div className="absolute top-4 right-4 w-16 h-16 group-hover:scale-110 transition-transform">
-                      <img 
-                        src={project.icon} 
-                        alt={`${project.title} icon`}
-                        className="w-full h-full object-contain rounded-lg shadow-md"
-                      />
+                    <div className="flex justify-center mb-6">
+                      <div className="w-20 h-20 bg-white rounded-xl shadow-lg p-3 group-hover:scale-110 transition-transform duration-300">
+                        <img 
+                          src={project.icon} 
+                          alt={`${project.title} icon`}
+                          className="w-full h-full object-contain"
+                        />
+                      </div>
                     </div>
                   )}
                   
-                  <div className="relative z-10">
-                    <div className="flex items-start justify-between mb-4">
-                      <h3 className="text-xl font-semibold group-hover:text-blue-600 transition-colors pr-20">
+                  <div className="text-center">
+                    <div className="flex items-center justify-center gap-2 mb-4">
+                      <h3 className="text-xl font-semibold group-hover:text-blue-600 transition-colors">
                         {project.title}
                       </h3>
                       {project.award && (
-                        <Badge variant="default" className="gap-1 ml-2">
+                        <Badge variant="default" className="gap-1">
                           <Award className="w-3 h-3" />
                           Finalist
                         </Badge>
@@ -402,7 +404,7 @@ const Index = () => {
                     
                     <p className="text-gray-600 mb-4">{project.description}</p>
                     
-                    <div className="flex flex-wrap gap-2 mb-4">
+                    <div className="flex flex-wrap justify-center gap-2 mb-4">
                       {project.tech.map((tech) => (
                         <Badge key={tech} variant="secondary">{tech}</Badge>
                       ))}
