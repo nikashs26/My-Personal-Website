@@ -712,13 +712,13 @@ const Index = () => {
           </p>
           
           <div className="flex flex-wrap justify-center gap-4">
-            <Button asChild size="lg" className="gap-2">
+            <Button asChild size="lg" className="gap-2 bg-black text-white hover:bg-gray-800">
               <a href="mailto:ngshanbhag@scu.edu">
                 <Mail className="w-5 h-5" />
                 Email Me
               </a>
             </Button>
-            <Button asChild variant="outline" size="lg" className="gap-2">
+            <Button asChild size="lg" className="gap-2 bg-black text-white hover:bg-gray-800">
               <a href="https://www.linkedin.com/in/nikash-shanbhag-a05931250/" target="_blank" rel="noopener noreferrer">
                 <Linkedin className="w-5 h-5" />
                 LinkedIn
