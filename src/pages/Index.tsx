@@ -1,3 +1,4 @@
+
 import { useState, useEffect, useRef } from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -160,31 +161,38 @@ const Index = () => {
   const skillCategories = [
     {
       title: "Programming Languages",
-      skills: ["Python", "Java", "C", "HTML5", "CSS3", "JavaScript (ES6+)", "TypeScript", "SQL"]
+      skills: ["Python", "Java", "C", "HTML5", "CSS3", "JavaScript (ES6+)", "TypeScript", "SQL"],
+      gradient: "from-blue-500 to-cyan-500"
     },
     {
       title: "Frameworks & Libraries",
-      skills: ["React", "Flask", "TailwindCSS", "Node.js", "Express.js", "Bootstrap", "jQuery"]
+      skills: ["React", "Flask", "TailwindCSS", "Node.js", "Express.js", "Bootstrap", "jQuery"],
+      gradient: "from-purple-500 to-pink-500"
     },
     {
       title: "DevOps & Tools",
-      skills: ["Git", "GitHub", "VS Code", "PyCharm", "Chrome DevTools", "Postman", "Figma", "Adobe Creative Suite"]
+      skills: ["Git", "GitHub", "VS Code", "PyCharm", "Chrome DevTools", "Postman", "Figma", "Adobe Creative Suite"],
+      gradient: "from-green-500 to-emerald-500"
     },
     {
       title: "Databases & Cloud",
-      skills: ["Supabase", "PostgreSQL", "MySQL", "AWS", "Vercel", "Firebase", "RESTful APIs"]
+      skills: ["Supabase", "PostgreSQL", "MySQL", "AWS", "Vercel", "Firebase", "RESTful APIs"],
+      gradient: "from-orange-500 to-red-500"
     },
     {
       title: "Design & Creative",
-      skills: ["UI/UX Design", "Adobe Illustrator", "Adobe Photoshop", "Procreate", "Figma", "Responsive Design"]
+      skills: ["UI/UX Design", "Adobe Illustrator", "Adobe Photoshop", "Procreate", "Figma", "Responsive Design"],
+      gradient: "from-indigo-500 to-blue-500"
     },
     {
       title: "AI & Development Tools",
-      skills: ["Lovable AI", "Bolt.new", "Cursor", "GitHub Copilot", "Machine Learning Basics"]
+      skills: ["Lovable AI", "Bolt.new", "Cursor", "GitHub Copilot", "Machine Learning Basics"],
+      gradient: "from-violet-500 to-purple-500"
     },
     {
       title: "Soft Skills",
-      skills: ["Problem-solving", "Creative Thinking", "Team Leadership", "Project Management", "Communication", "Mentoring"]
+      skills: ["Problem-solving", "Creative Thinking", "Team Leadership", "Project Management", "Communication", "Mentoring"],
+      gradient: "from-pink-500 to-rose-500"
     }
   ];
 
@@ -346,38 +354,56 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Skills Section */}
-      <section id="skills" className="py-20 px-4 bg-white">
-        <div className="max-w-6xl mx-auto">
+      {/* Skills Section - Redesigned */}
+      <section id="skills" className="py-20 px-4 bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 relative overflow-hidden">
+        {/* Animated Background Elements */}
+        <div className="absolute inset-0 overflow-hidden">
+          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
+          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
+          <div className="absolute top-3/4 left-1/2 w-64 h-64 bg-cyan-500/10 rounded-full blur-2xl animate-pulse delay-500"></div>
+        </div>
+        
+        <div className="max-w-6xl mx-auto relative z-10">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-4">
-              Skills
+            <h2 className="text-5xl font-bold bg-gradient-to-r from-white via-blue-200 to-purple-200 bg-clip-text text-transparent mb-6 drop-shadow-2xl">
+              Skills Arsenal
             </h2>
-            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+            <p className="text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed">
               A comprehensive toolkit of technologies and skills I use to build modern, scalable applications
             </p>
           </div>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {skillCategories.map((category, index) => (
-              <Card key={category.title} className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-0 bg-gradient-to-br from-white to-slate-50">
-                <CardContent className="p-6">
-                  <div className="flex items-center gap-3 mb-6">
-                    <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
-                      <Code className="w-5 h-5 text-white" />
+              <Card key={category.title} className="group relative overflow-hidden bg-white/5 backdrop-blur-sm border-white/10 hover:bg-white/10 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/25">
+                <CardContent className="p-6 relative">
+                  {/* Gradient Border Effect */}
+                  <div className={`absolute inset-0 bg-gradient-to-r ${category.gradient} opacity-0 group-hover:opacity-20 transition-opacity duration-500 rounded-lg`}></div>
+                  
+                  <div className="flex items-center gap-4 mb-8 relative z-10">
+                    <div className={`w-14 h-14 bg-gradient-to-r ${category.gradient} rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
+                      <Code className="w-7 h-7 text-white" />
                     </div>
-                    <h3 className="text-lg font-semibold text-gray-800 group-hover:text-blue-600 transition-colors">
+                    <h3 className="text-xl font-bold text-white group-hover:bg-gradient-to-r group-hover:from-white group-hover:to-gray-200 group-hover:bg-clip-text group-hover:text-transparent transition-all duration-300">
                       {category.title}
                     </h3>
                   </div>
-                  <div className="flex flex-wrap gap-2">
-                    {category.skills.map((skill) => (
-                      <Badge 
-                        key={skill} 
-                        variant="outline" 
-                        className="hover:bg-blue-50 hover:border-blue-300 hover:text-blue-700 transition-colors cursor-default text-sm py-1.5 px-3 font-medium"
+                  
+                  <div className="flex flex-wrap gap-3">
+                    {category.skills.map((skill, skillIndex) => (
+                      <div
+                        key={skill}
+                        className="group/skill relative"
+                        style={{ animationDelay: `${skillIndex * 100}ms` }}
                       >
-                        {skill}
-                      </Badge>
+                        <Badge 
+                          variant="outline" 
+                          className="relative bg-white/10 border-white/20 text-white hover:bg-white/20 hover:border-white/40 hover:text-white transition-all duration-300 cursor-default text-sm py-2 px-4 font-medium backdrop-blur-sm group-hover/skill:scale-110 group-hover/skill:shadow-lg"
+                        >
+                          <span className="relative z-10">{skill}</span>
+                          <div className={`absolute inset-0 bg-gradient-to-r ${category.gradient} opacity-0 group-hover/skill:opacity-30 transition-opacity duration-300 rounded-full`}></div>
+                        </Badge>
+                      </div>
                     ))}
                   </div>
                 </CardContent>
@@ -393,9 +419,9 @@ const Index = () => {
           <h2 className="text-3xl font-bold text-center mb-12">Featured Projects</h2>
           <div className="grid md:grid-cols-2 gap-8">
             {projects.map((project, index) => (
-              <Card key={index} className="group hover:shadow-lg transition-shadow relative overflow-hidden">
-                <CardContent className="p-6 relative h-full flex flex-col">
-                  {/* Project Icon - Bigger and centered at top of card without white border */}
+              <Card key={index} className="group hover:shadow-lg transition-shadow relative overflow-hidden h-full">
+                <CardContent className="p-6 h-full flex flex-col">
+                  {/* Project Icon */}
                   {project.icon && (
                     <div className="flex justify-center mb-6">
                       <div className="w-28 h-28 group-hover:scale-110 transition-transform duration-300">
@@ -408,9 +434,9 @@ const Index = () => {
                     </div>
                   )}
                   
-                  <div className="text-center flex-1 flex flex-col">
+                  <div className="flex-1 flex flex-col">
                     <div className="flex items-center justify-center gap-2 mb-4">
-                      <h3 className="text-xl font-semibold group-hover:text-blue-600 transition-colors">
+                      <h3 className="text-xl font-semibold group-hover:text-blue-600 transition-colors text-center">
                         {project.title}
                       </h3>
                       {project.award && (
@@ -421,7 +447,7 @@ const Index = () => {
                       )}
                     </div>
                     
-                    <p className="text-gray-600 mb-4">{project.description}</p>
+                    <p className="text-gray-600 mb-4 text-center">{project.description}</p>
                     
                     <div className="flex flex-wrap justify-center gap-2 mb-6">
                       {project.tech.map((tech) => (
@@ -429,10 +455,13 @@ const Index = () => {
                       ))}
                     </div>
                     
-                    <div className="mt-auto">
+                    {/* Spacer to push button to bottom */}
+                    <div className="flex-1"></div>
+                    
+                    <div className="mt-4">
                       <Dialog>
                         <DialogTrigger asChild>
-                          <Button variant="outline" className="w-full mb-4">
+                          <Button variant="outline" className="w-full">
                             View Details
                           </Button>
                         </DialogTrigger>
