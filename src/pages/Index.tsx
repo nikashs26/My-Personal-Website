@@ -152,44 +152,91 @@ const Index = () => {
 
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
-      {/* Hero Section */}
-      <section className="relative min-h-screen flex items-center justify-center px-4">
-        <div className="text-center max-w-4xl mx-auto">
-          <div className="mb-8">
-            <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-4">
+      {/* Hero Section with Minecraft Shaders Backdrop */}
+      <section className="relative min-h-screen flex items-center justify-center px-4 overflow-hidden">
+        {/* Minecraft Shaders Inspired Backdrop */}
+        <div className="absolute inset-0 z-0">
+          {/* Sky gradient with volumetric lighting */}
+          <div className="absolute inset-0 bg-gradient-to-b from-blue-400 via-blue-300 to-orange-200"></div>
+          
+          {/* Animated clouds */}
+          <div className="absolute inset-0">
+            <div className="absolute top-10 left-10 w-32 h-16 bg-white/30 rounded-full blur-sm animate-[float_6s_ease-in-out_infinite]"></div>
+            <div className="absolute top-16 right-20 w-24 h-12 bg-white/20 rounded-full blur-sm animate-[float_8s_ease-in-out_infinite_reverse]"></div>
+            <div className="absolute top-8 left-1/3 w-40 h-20 bg-white/25 rounded-full blur-sm animate-[float_10s_ease-in-out_infinite]"></div>
+          </div>
+          
+          {/* Volumetric god rays */}
+          <div className="absolute inset-0 opacity-30">
+            <div className="absolute top-0 left-1/4 w-2 h-full bg-gradient-to-b from-yellow-200/50 to-transparent transform rotate-12 animate-pulse"></div>
+            <div className="absolute top-0 left-1/2 w-3 h-full bg-gradient-to-b from-yellow-300/40 to-transparent transform -rotate-6 animate-pulse"></div>
+            <div className="absolute top-0 right-1/3 w-2 h-full bg-gradient-to-b from-yellow-200/50 to-transparent transform rotate-6 animate-pulse"></div>
+          </div>
+          
+          {/* Atmospheric perspective layers */}
+          <div className="absolute inset-0 bg-gradient-to-t from-green-200/40 via-transparent to-transparent"></div>
+          <div className="absolute bottom-0 left-0 right-0 h-1/3 bg-gradient-to-t from-green-300/50 via-green-200/30 to-transparent"></div>
+          
+          {/* Distant mountains silhouette */}
+          <div className="absolute bottom-0 left-0 right-0 h-1/4">
+            <svg viewBox="0 0 1200 300" className="w-full h-full opacity-40">
+              <polygon points="0,300 200,100 400,150 600,80 800,120 1000,90 1200,140 1200,300" fill="url(#mountainGradient)" />
+              <defs>
+                <linearGradient id="mountainGradient" x1="0%" y1="0%" x2="0%" y2="100%">
+                  <stop offset="0%" stopColor="#4ade80" stopOpacity="0.8" />
+                  <stop offset="100%" stopColor="#16a34a" stopOpacity="0.6" />
+                </linearGradient>
+              </defs>
+            </svg>
+          </div>
+          
+          {/* Depth of field blur overlay */}
+          <div className="absolute inset-0 bg-gradient-radial from-transparent via-transparent to-blue-100/20"></div>
+          
+          {/* Animated light particles */}
+          <div className="absolute inset-0">
+            <div className="absolute top-1/4 left-1/4 w-1 h-1 bg-yellow-300 rounded-full animate-ping opacity-60"></div>
+            <div className="absolute top-1/3 right-1/3 w-1 h-1 bg-yellow-200 rounded-full animate-ping opacity-40" style={{animationDelay: '1s'}}></div>
+            <div className="absolute top-1/2 left-1/2 w-1 h-1 bg-yellow-400 rounded-full animate-ping opacity-50" style={{animationDelay: '2s'}}></div>
+          </div>
+        </div>
+
+        <div className="text-center max-w-4xl mx-auto relative z-10">
+          <div className="mb-8 backdrop-blur-sm bg-white/10 rounded-2xl p-8 border border-white/20">
+            <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-white via-blue-100 to-white bg-clip-text text-transparent mb-4 drop-shadow-2xl">
               Nikash Shanbhag
             </h1>
-            <p className="text-xl md:text-2xl text-gray-600 mb-6">
+            <p className="text-xl md:text-2xl text-white/90 mb-6 drop-shadow-lg">
               Web Design & Engineering Student
             </p>
-            <p className="text-lg text-gray-500 max-w-2xl mx-auto mb-8">
+            <p className="text-lg text-white/80 max-w-2xl mx-auto mb-8 drop-shadow-md">
               Passionate about creating user-friendly websites and applications by blending technical proficiency with creative design and aesthetics. Experienced in full-stack development, AI integration, and modern web technologies.
             </p>
           </div>
           
           <div className="flex flex-wrap justify-center gap-4 mb-8">
-            <Button variant="outline" className="gap-2">
+            <Button variant="outline" className="gap-2 bg-white/20 border-white/30 text-white hover:bg-white/30 backdrop-blur-sm">
               <Phone className="w-4 h-4" />
               (408) 656-8424
             </Button>
-            <Button variant="outline" className="gap-2">
+            <Button variant="outline" className="gap-2 bg-white/20 border-white/30 text-white hover:bg-white/30 backdrop-blur-sm">
               <Mail className="w-4 h-4" />
               ngshanbhag@scu.edu
             </Button>
-            <Button variant="outline" className="gap-2">
+            <Button variant="outline" className="gap-2 bg-white/20 border-white/30 text-white hover:bg-white/30 backdrop-blur-sm">
               <MapPin className="w-4 h-4" />
               U.S. Citizen
             </Button>
           </div>
           
           <div className="flex justify-center gap-4">
-            <Button asChild className="gap-2">
+            <Button asChild className="gap-2 bg-blue-600/80 hover:bg-blue-700/80 backdrop-blur-sm border border-white/20">
               <a href="https://www.linkedin.com/in/nikash-shanbhag-a05931250/" target="_blank" rel="noopener noreferrer">
                 <Linkedin className="w-4 h-4" />
                 LinkedIn
               </a>
             </Button>
-            <Button asChild variant="outline" className="gap-2">
+            <Button asChild variant="outline" className="gap-2 bg-white/20 border-white/30 text-white hover:bg-white/30 backdrop-blur-sm">
               <a href="https://github.com/nikashs26" target="_blank" rel="noopener noreferrer">
                 <Github className="w-4 h-4" />
                 GitHub
