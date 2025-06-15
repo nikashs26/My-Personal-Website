@@ -396,7 +396,7 @@ const Index = () => {
           <Card className="max-w-4xl mx-auto">
             <CardContent className="p-8">
               <div className="flex items-start gap-4">
-                <div className="w-16 h-16 bg-white rounded-lg flex items-center justify-center shadow-lg">
+                <div className="w-16 h-16 bg-transparent rounded-lg flex items-center justify-center">
                   <img 
                     src="/lovable-uploads/97a30479-ded2-4573-a26c-0a29d4c523ea.png" 
                     alt="Santa Clara University Logo"
@@ -715,7 +715,7 @@ const Index = () => {
                 LinkedIn
               </a>
             </Button>
-            <Button asChild variant="outline" size="lg" className="gap-2">
+            <Button asChild size="lg" className="gap-2 bg-black text-white hover:bg-gray-800">
               <a href="https://github.com/nikashs26" target="_blank" rel="noopener noreferrer">
                 <Github className="w-5 h-5" />
                 GitHub
