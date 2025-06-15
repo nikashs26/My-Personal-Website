@@ -1,4 +1,3 @@
-
 import { useState, useEffect } from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -25,6 +24,7 @@ const Index = () => {
       tech: ["TypeScript", "Python", "React", "TailwindCSS", "Flask", "Lovable", "Supabase"],
       github: "https://github.com/nikashs26/full-stack-recipe",
       live: "https://better-bulk.vercel.app/",
+      icon: "/lovable-uploads/618148c4-936d-47a3-8c77-35a7bdcf0843.png",
       details: "Designed a comprehensive full-stack recipe-finder web application featuring robust user authentication, recipe creation/editing capabilities, advanced search functionality, and favorite marking system. Successfully integrated the React-based frontend with a Flask backend, utilizing Supabase for secure data storage and retrieval for user sign-ups/sign-ins, user reviews, and manually written recipes. Implemented RESTful API endpoints for diverse recipe generation and data management. Leveraged Lovable AI Copilot extensively for debugging, automated test generation, and code optimization, resulting in improved development efficiency and code quality.",
       features: [
         "User authentication and profile management",
@@ -42,6 +42,7 @@ const Index = () => {
       github: "https://github.com/NickelR22/simbassurveillance",
       devpost: "https://devpost.com/software/bobs-consulting?ref_content=my-projects-tab&ref_feature=my_projects",
       live: "https://simbassurveillance.vercel.app/",
+      icon: "/lovable-uploads/1df91ec5-47e3-43bb-b6e9-77df008d698a.png",
       details: "Developed the complete frontend for a real-time, Lion King-themed wildlife trespasser detection system that uses advanced AI to identify human figures in live-streamed video from protected territories. Created a responsive homepage using React and CSS, structured the comprehensive About page, and implemented dynamic data visualization. Successfully connected the Python-based backend by retrieving and displaying JSON data in the React frontend, including precise timestamps and images of detected trespassers. Enhanced real-time data visualization to improve accessibility and responsiveness, directly supporting wildlife protection efforts.",
       features: [
         "Real-time video stream processing",
@@ -59,6 +60,7 @@ const Index = () => {
       github: "https://github.com/nikashs26/AI-Hack-2024",
       devpost: "https://devpost.com/software/parking-kjx41u",
       award: "Finalist AWS/INRIX Hack 2024",
+      icon: "/lovable-uploads/e0ea65b7-32bb-4430-a0d5-ffc1fd9eb25e.png",
       details: "Led the frontend development team for an innovative web application that detects available parking spaces in real-time using AWS cloud services and INRIX traffic data APIs. Implemented a sophisticated user interface using JavaScript and CSS, with a primary focus on optimal user experience and accessibility. Coordinated extensively with the backend development team to seamlessly integrate frontend components with real-time parking data streams. The project achieved finalist status in the competitive AWS/INRIX Hack 2024, demonstrating technical excellence and practical application.",
       features: [
         "Real-time parking availability",
@@ -75,6 +77,7 @@ const Index = () => {
       tech: ["HTML", "CSS", "JavaScript", "Responsive Design"],
       github: "https://github.com/nikashs26/Math-13-Smolarski-Page",
       live: "https://math-13-smolarski-page.vercel.app/static/index.html",
+      icon: "/lovable-uploads/9f95cbc2-ef86-4ca7-962d-81a3231913a2.png",
       details: "Conceptualized and led a collaborative team to completely recreate an SCU math professor's course webpage using modern HTML, CSS, and JavaScript technologies. Designed a contemporary, fully responsive interface with significantly improved functionality and enhanced user engagement features. Personally developed the Home and About Professor pages, while contributing innovative ideas for mockups and implementation strategies for all site sections. Focused extensively on enhancing accessibility standards, visual aesthetics, and interactive elements to dramatically improve the overall student learning experience.",
       features: [
         "Responsive course layout",
@@ -280,16 +283,29 @@ const Index = () => {
             {projects.map((project, index) => (
               <Card key={index} className="group hover:shadow-lg transition-shadow">
                 <CardContent className="p-6">
-                  <div className="flex items-start justify-between mb-4">
-                    <h3 className="text-xl font-semibold group-hover:text-blue-600 transition-colors">
-                      {project.title}
-                    </h3>
-                    {project.award && (
-                      <Badge variant="default" className="gap-1">
-                        <Award className="w-3 h-3" />
-                        Finalist
-                      </Badge>
+                  <div className="flex items-center gap-4 mb-4">
+                    {project.icon && (
+                      <div className="w-16 h-16 rounded-lg overflow-hidden flex-shrink-0">
+                        <img 
+                          src={project.icon} 
+                          alt={`${project.title} icon`}
+                          className="w-full h-full object-cover"
+                        />
+                      </div>
                     )}
+                    <div className="flex-1">
+                      <div className="flex items-start justify-between">
+                        <h3 className="text-xl font-semibold group-hover:text-blue-600 transition-colors">
+                          {project.title}
+                        </h3>
+                        {project.award && (
+                          <Badge variant="default" className="gap-1 ml-2">
+                            <Award className="w-3 h-3" />
+                            Finalist
+                          </Badge>
+                        )}
+                      </div>
+                    </div>
                   </div>
                   
                   <p className="text-gray-600 mb-4">{project.description}</p>
