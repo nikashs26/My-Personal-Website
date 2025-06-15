@@ -1,4 +1,3 @@
-
 import { useState, useEffect, useRef } from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -280,33 +279,33 @@ const Index = () => {
             alt="Beautiful cityscape backdrop"
             className="w-full h-full object-cover"
           />
-          {/* Reduced overlay opacity for less dimness */}
-          <div className="absolute inset-0 bg-black/15"></div>
+          {/* Reduced overlay opacity for better readability */}
+          <div className="absolute inset-0 bg-black/30"></div>
         </div>
 
         <div className="text-center max-w-4xl mx-auto relative z-10">
-          <div className="mb-8 backdrop-blur-sm bg-white/10 rounded-2xl p-8 border border-white/20">
+          <div className="mb-8 backdrop-blur-sm bg-white/20 rounded-2xl p-8 border border-white/30">
             <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-white via-blue-100 to-white bg-clip-text text-transparent mb-4 drop-shadow-2xl leading-tight py-4">
               <span ref={nameRef}></span>
             </h1>
-            <p className="text-xl md:text-2xl text-white/90 mb-6 drop-shadow-lg">
+            <p className="text-xl md:text-2xl text-white mb-6 drop-shadow-lg font-semibold">
               Web Design & Engineering Student
             </p>
-            <p className="text-lg text-white/80 max-w-2xl mx-auto mb-8 drop-shadow-md">
+            <p className="text-lg text-white max-w-2xl mx-auto mb-8 drop-shadow-md font-medium">
               Passionate about creating user-friendly websites and applications by blending technical proficiency with creative design and aesthetics. Experienced in full-stack development, AI integration, and modern web technologies.
             </p>
           </div>
           
           <div className="flex flex-wrap justify-center gap-4 mb-8">
-            <Button variant="outline" className="gap-3 bg-white/30 border-white/40 text-white hover:bg-white/40 backdrop-blur-sm shadow-lg text-base px-6 py-3">
+            <Button variant="outline" className="gap-3 bg-white/40 border-white/50 text-white hover:bg-white/50 backdrop-blur-sm shadow-lg text-base px-6 py-3 font-semibold">
               <Phone className="w-5 h-5" />
               (408) 656-8424
             </Button>
-            <Button variant="outline" className="gap-3 bg-white/30 border-white/40 text-white hover:bg-white/40 backdrop-blur-sm shadow-lg text-base px-6 py-3">
+            <Button variant="outline" className="gap-3 bg-white/40 border-white/50 text-white hover:bg-white/50 backdrop-blur-sm shadow-lg text-base px-6 py-3 font-semibold">
               <Mail className="w-5 h-5" />
               ngshanbhag@scu.edu
             </Button>
-            <Button variant="outline" className="gap-3 bg-white/30 border-white/40 text-white hover:bg-white/40 backdrop-blur-sm shadow-lg text-base px-6 py-3">
+            <Button variant="outline" className="gap-3 bg-white/40 border-white/50 text-white hover:bg-white/50 backdrop-blur-sm shadow-lg text-base px-6 py-3 font-semibold">
               <MapPin className="w-5 h-5" />
               U.S. Citizen
             </Button>
@@ -639,50 +638,58 @@ const Index = () => {
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl font-bold text-center mb-12">Professional Experience</h2>
           <div className="space-y-8">
-            {experiences.map((job, index) => (
-              <Card key={index}>
-                <CardContent className="p-8">
-                  <div className="flex items-start gap-4">
-                    <div className="w-16 h-16 rounded-lg flex items-center justify-center overflow-hidden bg-white border border-gray-200">
-                      <img 
-                        src={job.logo} 
-                        alt={`${job.company} logo`}
-                        className="w-full h-full object-contain p-2"
-                      />
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="text-xl font-semibold">{job.company}</h3>
-                      <p className="text-lg text-blue-600 mb-1">{job.role}</p>
-                      <p className="text-sm text-gray-500 mb-2">{job.location}</p>
-                      <div className="flex items-center gap-2 text-gray-500 mb-4">
-                        <Calendar className="w-4 h-4" />
-                        {job.period}
+            {experiences.map((job, index) => {
+              console.log(`Loading logo for ${job.company}:`, job.logo);
+              return (
+                <Card key={index}>
+                  <CardContent className="p-8">
+                    <div className="flex items-start gap-4">
+                      <div className="w-16 h-16 rounded-lg flex items-center justify-center overflow-hidden bg-white border border-gray-200 shadow-sm">
+                        <img 
+                          src={job.logo} 
+                          alt={`${job.company} logo`}
+                          className="w-full h-full object-contain p-2"
+                          onLoad={() => console.log(`Successfully loaded logo for ${job.company}`)}
+                          onError={(e) => {
+                            console.error(`Failed to load logo for ${job.company}:`, e);
+                            console.log(`Attempted to load from: ${job.logo}`);
+                          }}
+                        />
                       </div>
-                      
-                      <div className="space-y-4">
-                        <ul className="space-y-2">
-                          {job.responsibilities.map((responsibility, idx) => (
-                            <li key={idx} className="flex items-start gap-2">
-                              <div className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                              <span className="text-gray-600">{responsibility}</span>
-                            </li>
-                          ))}
-                        </ul>
+                      <div className="flex-1">
+                        <h3 className="text-xl font-semibold">{job.company}</h3>
+                        <p className="text-lg text-blue-600 mb-1">{job.role}</p>
+                        <p className="text-sm text-gray-500 mb-2">{job.location}</p>
+                        <div className="flex items-center gap-2 text-gray-500 mb-4">
+                          <Calendar className="w-4 h-4" />
+                          {job.period}
+                        </div>
                         
-                        <div>
-                          <h4 className="font-medium mb-2">Skills Developed:</h4>
-                          <div className="flex flex-wrap gap-2">
-                            {job.skills.map((skill) => (
-                              <Badge key={skill} variant="outline">{skill}</Badge>
+                        <div className="space-y-4">
+                          <ul className="space-y-2">
+                            {job.responsibilities.map((responsibility, idx) => (
+                              <li key={idx} className="flex items-start gap-2">
+                                <div className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                                <span className="text-gray-600">{responsibility}</span>
+                              </li>
                             ))}
+                          </ul>
+                          
+                          <div>
+                            <h4 className="font-medium mb-2">Skills Developed:</h4>
+                            <div className="flex flex-wrap gap-2">
+                              {job.skills.map((skill) => (
+                                <Badge key={skill} variant="outline">{skill}</Badge>
+                              ))}
+                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </div>
-                </CardContent>
-              </Card>
-            ))}
+                  </CardContent>
+                </Card>
+              );
+            })}
           </div>
         </div>
       </section>
