@@ -305,10 +305,6 @@ const Index = () => {
               <Mail className="w-5 h-5" />
               ngshanbhag@scu.edu
             </Button>
-            <Button variant="outline" className="gap-3 bg-white/40 border-white/50 text-white hover:bg-white/50 backdrop-blur-sm shadow-lg text-base px-6 py-3 font-semibold">
-              <MapPin className="w-5 h-5" />
-              U.S. Citizen
-            </Button>
           </div>
           
           <div className="flex justify-center gap-4">
