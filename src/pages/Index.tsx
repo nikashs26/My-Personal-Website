@@ -134,7 +134,7 @@ const Index = () => {
       role: "Summer Operations Intern",
       period: "June 2024 - Aug 2024",
       location: "Saratoga, CA",
-      logo: "/lovable-uploads/97a1a8f8-7f4e-45b3-b7f5-2c3d1e9f4a6b.png",
+      logo: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&w=100&q=80",
       responsibilities: [
         "Managed comprehensive hands-on office operations including creative poster design and systematic organization of camper shirts, name-tags, and lanyards for 200+ campers",
         "Supervised diverse groups of children ages 5-13 in engaging STEAM classes and structured morning extended care sessions, ensuring educational value and safety",
@@ -148,7 +148,7 @@ const Index = () => {
       role: "Assistant Instructor",
       period: "May 2022 - Aug 2022, May 2023 - Aug 2023",
       location: "Campbell/Saratoga, CA",
-      logo: "/lovable-uploads/8c2d4e1f-9a3b-4c5d-8e7f-1a2b3c4d5e6f.png",
+      logo: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=100&q=80",
       responsibilities: [
         "Guided classes of 18-20 elementary and middle school students in comprehensive technology programs including Minecraft modding, Blockbench 3D modeling, LEGO robot-building, Roblox game development, and Scratch programming",
         "Provided individualized assistance to students through their projects, answering technical questions and troubleshooting coding challenges",
@@ -638,58 +638,50 @@ const Index = () => {
         <div className="max-w-6xl mx-auto">
           <h2 className="text-3xl font-bold text-center mb-12">Professional Experience</h2>
           <div className="space-y-8">
-            {experiences.map((job, index) => {
-              console.log(`Loading logo for ${job.company}:`, job.logo);
-              return (
-                <Card key={index}>
-                  <CardContent className="p-8">
-                    <div className="flex items-start gap-4">
-                      <div className="w-16 h-16 rounded-lg flex items-center justify-center overflow-hidden bg-white border border-gray-200 shadow-sm">
-                        <img 
-                          src={job.logo} 
-                          alt={`${job.company} logo`}
-                          className="w-full h-full object-contain p-2"
-                          onLoad={() => console.log(`Successfully loaded logo for ${job.company}`)}
-                          onError={(e) => {
-                            console.error(`Failed to load logo for ${job.company}:`, e);
-                            console.log(`Attempted to load from: ${job.logo}`);
-                          }}
-                        />
+            {experiences.map((job, index) => (
+              <Card key={index}>
+                <CardContent className="p-8">
+                  <div className="flex items-start gap-4">
+                    <div className="w-16 h-16 rounded-lg flex items-center justify-center overflow-hidden bg-white border border-gray-200 shadow-sm">
+                      <img 
+                        src={job.logo} 
+                        alt={`${job.company} logo`}
+                        className="w-full h-full object-cover rounded-lg"
+                      />
+                    </div>
+                    <div className="flex-1">
+                      <h3 className="text-xl font-semibold">{job.company}</h3>
+                      <p className="text-lg text-blue-600 mb-1">{job.role}</p>
+                      <p className="text-sm text-gray-500 mb-2">{job.location}</p>
+                      <div className="flex items-center gap-2 text-gray-500 mb-4">
+                        <Calendar className="w-4 h-4" />
+                        {job.period}
                       </div>
-                      <div className="flex-1">
-                        <h3 className="text-xl font-semibold">{job.company}</h3>
-                        <p className="text-lg text-blue-600 mb-1">{job.role}</p>
-                        <p className="text-sm text-gray-500 mb-2">{job.location}</p>
-                        <div className="flex items-center gap-2 text-gray-500 mb-4">
-                          <Calendar className="w-4 h-4" />
-                          {job.period}
-                        </div>
+                      
+                      <div className="space-y-4">
+                        <ul className="space-y-2">
+                          {job.responsibilities.map((responsibility, idx) => (
+                            <li key={idx} className="flex items-start gap-2">
+                              <div className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
+                              <span className="text-gray-600">{responsibility}</span>
+                            </li>
+                          ))}
+                        </ul>
                         
-                        <div className="space-y-4">
-                          <ul className="space-y-2">
-                            {job.responsibilities.map((responsibility, idx) => (
-                              <li key={idx} className="flex items-start gap-2">
-                                <div className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                                <span className="text-gray-600">{responsibility}</span>
-                              </li>
+                        <div>
+                          <h4 className="font-medium mb-2">Skills Developed:</h4>
+                          <div className="flex flex-wrap gap-2">
+                            {job.skills.map((skill) => (
+                              <Badge key={skill} variant="outline">{skill}</Badge>
                             ))}
-                          </ul>
-                          
-                          <div>
-                            <h4 className="font-medium mb-2">Skills Developed:</h4>
-                            <div className="flex flex-wrap gap-2">
-                              {job.skills.map((skill) => (
-                                <Badge key={skill} variant="outline">{skill}</Badge>
-                              ))}
-                            </div>
                           </div>
                         </div>
                       </div>
                     </div>
-                  </CardContent>
-                </Card>
-              );
-            })}
+                  </div>
+                </CardContent>
+              </Card>
+            ))}
           </div>
         </div>
       </section>
