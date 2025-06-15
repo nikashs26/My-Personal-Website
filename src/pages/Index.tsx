@@ -133,7 +133,7 @@ const Index = () => {
       company: "Camp Galileo",
       role: "Summer Operations Intern",
       period: "June 2024 - Aug 2024",
-      location: "Palo Alto, CA",
+      location: "Saratoga, CA",
       responsibilities: [
         "Managed comprehensive hands-on office operations including creative poster design and systematic organization of camper shirts, name-tags, and lanyards for 200+ campers",
         "Supervised diverse groups of children ages 5-13 in engaging STEAM classes and structured morning extended care sessions, ensuring educational value and safety",
@@ -146,7 +146,7 @@ const Index = () => {
       company: "TechKnowHow",
       role: "Assistant Instructor",
       period: "May 2022 - Aug 2022, May 2023 - Aug 2023",
-      location: "Los Gatos, CA",
+      location: "Campbell/Saratoga, CA",
       responsibilities: [
         "Guided classes of 18-20 elementary and middle school students in comprehensive technology programs including Minecraft modding, Blockbench 3D modeling, LEGO robot-building, Roblox game development, and Scratch programming",
         "Provided individualized assistance to students through their projects, answering technical questions and troubleshooting coding challenges",
@@ -374,7 +374,7 @@ const Index = () => {
                       <Badge 
                         key={skill} 
                         variant="outline" 
-                        className="hover:bg-blue-50 hover:border-blue-300 hover:text-blue-700 transition-colors cursor-default text-xs py-1"
+                        className="hover:bg-blue-50 hover:border-blue-300 hover:text-blue-700 transition-colors cursor-default text-sm py-1.5 px-3 font-medium"
                       >
                         {skill}
                       </Badge>
