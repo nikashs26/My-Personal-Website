@@ -324,9 +324,7 @@ const Index = () => {
                           "Abstract Data Types and Data Structures",
                           "Computer Networks",
                           "Probability and Statistics",
-                          "Calculus and Analytical Geometry III & IV",
-                          "Software Engineering",
-                          "Database Systems"
+                          "Calculus and Analytical Geometry III & IV"
                         ].map((course) => (
                           <Badge key={course} variant="secondary">{course}</Badge>
                         ))}
@@ -395,8 +393,8 @@ const Index = () => {
           <h2 className="text-3xl font-bold text-center mb-12">Featured Projects</h2>
           <div className="grid md:grid-cols-2 gap-8">
             {projects.map((project, index) => (
-              <Card key={index} className="group hover:shadow-lg transition-shadow relative overflow-hidden flex flex-col">
-                <CardContent className="p-6 relative flex flex-col h-full">
+              <Card key={index} className="group hover:shadow-lg transition-shadow relative overflow-hidden">
+                <CardContent className="p-6 relative h-full flex flex-col">
                   {/* Project Icon - Bigger and centered at top of card without white border */}
                   {project.icon && (
                     <div className="flex justify-center mb-6">
@@ -425,7 +423,7 @@ const Index = () => {
                     
                     <p className="text-gray-600 mb-4">{project.description}</p>
                     
-                    <div className="flex flex-wrap justify-center gap-2 mb-6 flex-1">
+                    <div className="flex flex-wrap justify-center gap-2 mb-6">
                       {project.tech.map((tech) => (
                         <Badge key={tech} variant="secondary">{tech}</Badge>
                       ))}
