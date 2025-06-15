@@ -140,7 +140,7 @@ const Index = () => {
         "Assisted and directly oversaw counselors-in-training, helping them complete assigned tasks while teaching essential mentorship and leadership skills",
         "Handled camper injuries through certified first-aid treatment protocols, ensuring campers remained safe while continuing to enjoy their camp experience"
       ],
-      skills: ["Leadership", "Child Safety", "Event Management", "Team Coordination", "First Aid"]
+      skills: ["Leadership", "Child Safety", "Event Management", "Team Coordination", "First Aid", "Creative Design", "Organization", "Communication", "Problem Solving", "Mentoring"]
     },
     {
       company: "TechKnowHow",
@@ -153,7 +153,7 @@ const Index = () => {
         "Directed extended care groups in diverse indoor and outdoor activities including strategic board games, educational videos, and supervised play structure activities",
         "Maintained clean and organized classroom environments at the end of each day to ensure smooth camp operations and prompt daily startup"
       ],
-      skills: ["Teaching", "Programming Instruction", "Classroom Management", "Technical Support", "Youth Development"]
+      skills: ["Teaching", "Programming Instruction", "Classroom Management", "Technical Support", "Youth Development", "Scratch Programming", "Minecraft Modding", "3D Modeling", "Game Development", "Patience", "Adaptability"]
     }
   ];
 
@@ -316,7 +316,7 @@ const Index = () => {
                 LinkedIn
               </a>
             </Button>
-            <Button asChild variant="outline" className="gap-3 bg-white/30 border-white/40 text-white hover:bg-white/40 backdrop-blur-sm shadow-lg text-base px-6 py-3">
+            <Button asChild className="gap-3 bg-black/90 hover:bg-gray-800/90 backdrop-blur-sm border border-white/20 shadow-lg text-base px-6 py-3 text-white">
               <a href="https://github.com/nikashs26" target="_blank" rel="noopener noreferrer">
                 <Github className="w-5 h-5" />
                 GitHub
