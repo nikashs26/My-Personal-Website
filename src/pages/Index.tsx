@@ -639,91 +639,82 @@ const Index = () => {
 
       {/* Experience Section */}
       <section id="experience" className="py-20 px-4 bg-white relative overflow-visible">
-        {/* Timeline vertical bar */}
-        <div className="absolute hidden md:block left-1/2 top-24 bottom-8 w-1 bg-gradient-to-b from-blue-200 via-blue-400 to-blue-200 rounded-full z-0 pointer-events-none"></div>
+        {/* Subtle timeline line */}
+        <div className="absolute hidden md:block left-8 top-24 bottom-8 w-1 bg-slate-200 rounded-full z-0 pointer-events-none" />
         <div className="max-w-6xl mx-auto relative z-10">
-          <h2 className="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-indigo-600 to-blue-600 bg-clip-text text-transparent">
+          <h2 className="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-indigo-700 to-blue-700 bg-clip-text text-transparent">
             Professional Experience
           </h2>
           <div className="flex flex-col gap-14 relative">
             {experiences.map((job, index) => (
               <div
                 key={index}
-                className={`
-                  flex flex-col md:flex-row items-center md:items-stretch gap-6 
-                  group relative transition-all duration-300
-                  md:even:flex-row-reverse
-                `}
+                className="flex flex-col md:flex-row items-start md:items-stretch gap-8 group relative"
               >
-                {/* Timeline dot & connector */}
-                <div className="hidden md:flex flex-col items-center z-10">
-                  <div className={`
-                    w-8 h-8 rounded-full flex items-center justify-center bg-gradient-to-br 
-                    from-blue-400 to-blue-700 border-4 border-white shadow-xl
-                    group-hover:scale-110 transition-transform duration-300
-                    ${index === 0 ? 'mt-4' : ''}
-                  `}>
-                    {/* Animated logo */}
+                {/* Timeline - Dot and subtle connector */}
+                <div className="hidden md:flex flex-col items-center mr-2 z-10">
+                  {/* Dot: logo in a subtle border circle */}
+                  <div className="w-8 h-8 rounded-full flex items-center justify-center bg-white border-2 border-slate-200 shadow-sm mb-1">
                     <img
                       src={job.logo}
                       alt={`${job.company} logo`}
-                      className="w-6 h-6 object-contain animate-fade-in"
+                      className="w-5 h-5 object-contain"
                     />
                   </div>
-                  {/* Vertical connector bar */}
+                  {/* Line to next experience */}
                   {index < experiences.length - 1 && (
-                    <div className="w-1 h-full bg-gradient-to-b from-blue-200 via-blue-400 to-blue-200 my-1"></div>
+                    <div className="flex-1 w-px bg-slate-200" />
                   )}
                 </div>
-                {/* Card */}
-                <div className={`
-                  shadow-md bg-gradient-to-br from-white via-blue-50 to-blue-100 rounded-2xl
-                  px-6 py-8 max-w-3xl w-full
-                  hover:scale-[1.03] hover:shadow-xl hover:bg-gradient-to-br hover:from-white hover:via-blue-100 hover:to-blue-200 hover:ring-4 hover:ring-blue-100/70 transition-transform group
-                  relative z-10
-                `}>
-                  <div className="flex items-center gap-4 mb-2">
-                    {/* Prominent logo for mobile */}
-                    <div className="md:hidden w-12 h-12 rounded-lg bg-white shadow flex items-center justify-center mr-2 border border-blue-100">
-                      <img
-                        src={job.logo}
-                        alt={`${job.company} logo`}
-                        className="w-9 h-9 object-contain"
-                      />
-                    </div>
-                    <div>
-                      <h3 className="text-2xl font-bold text-blue-700">{job.company}</h3>
-                      <div className="flex flex-wrap items-center gap-2">
-                        <span className="text-lg font-semibold text-blue-500">{job.role}</span>
-                        <span className="hidden md:inline">&bull;</span>
-                        <span className="text-sm text-gray-500">{job.location}</span>
-                      </div>
-                    </div>
+
+                {/* Main experience card */}
+                <div className="relative bg-white border border-slate-100 rounded-xl px-5 py-7 shadow-sm md:ml-2 w-full max-w-3xl">
+                  {/* Smaller logo on mobile */}
+                  <div className="md:hidden flex items-center mb-2">
+                    <img
+                      src={job.logo}
+                      alt={`${job.company} logo`}
+                      className="w-8 h-8 object-contain rounded mr-2 border border-slate-200"
+                    />
+                    <span className="font-bold text-lg text-blue-700">{job.company}</span>
                   </div>
-                  <div className="flex flex-wrap items-center gap-2 text-sm text-gray-500 mb-5">
-                    <Calendar className="w-4 h-4 text-indigo-400" />
+                  {/* Desktop only: Heading row */}
+                  <div className="hidden md:flex items-center gap-4 mb-1">
+                    <span className="font-bold text-xl text-blue-700">{job.company}</span>
+                    <span className="text-base text-blue-500 font-semibold">{job.role}</span>
+                    <span className="text-gray-400 mx-2">&bull;</span>
+                    <span className="text-sm text-gray-500">{job.location}</span>
+                  </div>
+                  {/* Mobile: Role/Location */}
+                  <div className="md:hidden text-blue-500 font-semibold text-base">{job.role}</div>
+                  <div className="md:hidden text-sm text-gray-500 mb-1">{job.location}</div>
+                  {/* Period */}
+                  <div className="flex items-center gap-2 text-xs text-slate-400 mb-3">
+                    <Calendar className="w-4 h-4 text-indigo-300" />
                     {job.period}
                   </div>
-                  <ul className="space-y-2 mb-5 ml-1">
+                  {/* Responsibilities */}
+                  <ul className="space-y-2 mb-4 ml-1">
                     {job.responsibilities.map((responsibility, idx) => (
                       <li key={idx} className="flex items-start gap-2">
-                        <span className="inline-block mt-2 rounded-full bg-blue-400/70 w-2 h-2"></span>
-                        <span className="text-gray-700">{responsibility}</span>
+                        <span className="block mt-2 w-1.5 h-1.5 rounded-full bg-blue-100" />
+                        <span className="text-gray-700 text-sm">{responsibility}</span>
                       </li>
                     ))}
                   </ul>
+                  {/* Skills */}
                   <div>
-                    <h4 className="font-medium mb-2 text-blue-600">Skills Developed:</h4>
+                    <span className="block mb-2 text-blue-600 font-medium">Skills Developed:</span>
                     <div className="flex flex-wrap gap-2">
                       {job.skills.map((skill) => (
-                        <Badge key={skill} variant="outline" className="text-xs px-3 py-1 bg-white/70 border-blue-200 hover:bg-blue-100 cursor-default font-medium">{skill}</Badge>
+                        <Badge key={skill} variant="outline" className="bg-slate-50 border-slate-100 text-xs font-medium px-3 py-1 cursor-default">{skill}</Badge>
                       ))}
                     </div>
                   </div>
                 </div>
-                {/* Timeline connector bar on mobile */}
+                {/* Connector for mobile (simple line) */}
                 {index < experiences.length - 1 && (
-                  <div className="md:hidden w-1 h-8 mx-auto bg-gradient-to-b from-blue-200 via-blue-400 to-blue-200 my-2 rounded-full" />
+                  <div className="md:hidden w-1 h-8 mx-auto bg-slate-200 my-2 rounded" />
                 )}
               </div>
             ))}
