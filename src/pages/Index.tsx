@@ -299,8 +299,12 @@ const Index = () => {
           <Card className="max-w-4xl mx-auto">
             <CardContent className="p-8">
               <div className="flex items-start gap-4">
-                <div className="w-12 h-12 bg-red-600 rounded-lg flex items-center justify-center text-white font-bold">
-                  SCU
+                <div className="w-16 h-16 bg-white rounded-lg flex items-center justify-center shadow-lg">
+                  <img 
+                    src="/lovable-uploads/97a30479-ded2-4573-a26c-0a29d4c523ea.png" 
+                    alt="Santa Clara University Logo"
+                    className="w-full h-full object-contain"
+                  />
                 </div>
                 <div className="flex-1">
                   <h3 className="text-xl font-semibold">Santa Clara University</h3>
@@ -376,10 +380,10 @@ const Index = () => {
             {projects.map((project, index) => (
               <Card key={index} className="group hover:shadow-lg transition-shadow relative overflow-hidden">
                 <CardContent className="p-6 relative">
-                  {/* Project Icon - Centered at top of card */}
+                  {/* Project Icon - Bigger and centered at top of card */}
                   {project.icon && (
                     <div className="flex justify-center mb-6">
-                      <div className="w-20 h-20 bg-white rounded-xl shadow-lg p-3 group-hover:scale-110 transition-transform duration-300">
+                      <div className="w-28 h-28 bg-white rounded-xl shadow-lg p-4 group-hover:scale-110 transition-transform duration-300">
                         <img 
                           src={project.icon} 
                           alt={`${project.title} icon`}
