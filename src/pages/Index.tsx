@@ -380,10 +380,10 @@ const Index = () => {
             {projects.map((project, index) => (
               <Card key={index} className="group hover:shadow-lg transition-shadow relative overflow-hidden">
                 <CardContent className="p-6 relative">
-                  {/* Project Icon - Bigger and centered at top of card */}
+                  {/* Project Icon - Bigger and centered at top of card without white border */}
                   {project.icon && (
                     <div className="flex justify-center mb-6">
-                      <div className="w-28 h-28 bg-white rounded-xl shadow-lg p-4 group-hover:scale-110 transition-transform duration-300">
+                      <div className="w-28 h-28 group-hover:scale-110 transition-transform duration-300">
                         <img 
                           src={project.icon} 
                           alt={`${project.title} icon`}
