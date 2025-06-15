@@ -279,12 +279,12 @@ const Index = () => {
             alt="Beautiful cityscape backdrop"
             className="w-full h-full object-cover"
           />
-          {/* Reduced overlay opacity for better readability */}
-          <div className="absolute inset-0 bg-black/30"></div>
+          {/* Increased overlay opacity for better readability */}
+          <div className="absolute inset-0 bg-black/50"></div>
         </div>
 
         <div className="text-center max-w-4xl mx-auto relative z-10">
-          <div className="mb-8 backdrop-blur-sm bg-white/20 rounded-2xl p-8 border border-white/30">
+          <div className="mb-8 backdrop-blur-sm bg-white/30 rounded-2xl p-8 border border-white/40">
             <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-white via-blue-100 to-white bg-clip-text text-transparent mb-4 drop-shadow-2xl leading-tight py-4">
               <span ref={nameRef}></span>
             </h1>
