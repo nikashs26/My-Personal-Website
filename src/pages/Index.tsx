@@ -1,15 +1,15 @@
-
 import { useState, useEffect, useRef } from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogDescription } from "@/components/ui/dialog";
-import { ExternalLink, Github, Linkedin, Mail, Phone, MapPin, ChevronUp, Calendar, Users, Award, Star, Code, Briefcase, Mouse } from 'lucide-react';
+import { ExternalLink, Github, Linkedin, Mail, Phone, MapPin, ChevronUp, Calendar, Users, Award, Star, Code, Briefcase } from 'lucide-react';
 import Typed from 'typed.js';
 
 const Index = () => {
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [navbarScrolled, setNavbarScrolled] = useState(false);
+  const [activeSection, setActiveSection] = useState('');
   const nameRef = useRef<HTMLSpanElement>(null);
 
   useEffect(() => {
@@ -17,6 +17,21 @@ const Index = () => {
       const scrollY = window.scrollY;
       setShowScrollTop(scrollY > 400);
       setNavbarScrolled(scrollY > 50);
+
+      // Detect current section
+      const sections = ['education', 'skills', 'projects', 'experience', 'contact'];
+      const sectionElements = sections.map(id => document.getElementById(id));
+      
+      for (let i = sections.length - 1; i >= 0; i--) {
+        const element = sectionElements[i];
+        if (element) {
+          const rect = element.getBoundingClientRect();
+          if (rect.top <= 100) {
+            setActiveSection(sections[i]);
+            break;
+          }
+        }
+      }
     };
 
     window.addEventListener('scroll', handleScroll);
@@ -190,19 +205,29 @@ const Index = () => {
             </div>
             <div className="hidden md:flex space-x-6">
               <a href="#education" className={`transition-colors duration-300 ${
-                navbarScrolled ? 'text-gray-600 hover:text-blue-600' : 'text-white/80 hover:text-white'
+                activeSection === 'education' 
+                  ? (navbarScrolled ? 'text-blue-600' : 'text-white') 
+                  : (navbarScrolled ? 'text-gray-600 hover:text-blue-600' : 'text-white/80 hover:text-white')
               }`}>Education</a>
               <a href="#skills" className={`transition-colors duration-300 ${
-                navbarScrolled ? 'text-gray-600 hover:text-blue-600' : 'text-white/80 hover:text-white'
+                activeSection === 'skills' 
+                  ? (navbarScrolled ? 'text-blue-600' : 'text-white') 
+                  : (navbarScrolled ? 'text-gray-600 hover:text-blue-600' : 'text-white/80 hover:text-white')
               }`}>Skills</a>
               <a href="#projects" className={`transition-colors duration-300 ${
-                navbarScrolled ? 'text-gray-600 hover:text-blue-600' : 'text-white/80 hover:text-white'
+                activeSection === 'projects' 
+                  ? (navbarScrolled ? 'text-blue-600' : 'text-white') 
+                  : (navbarScrolled ? 'text-gray-600 hover:text-blue-600' : 'text-white/80 hover:text-white')
               }`}>Projects</a>
               <a href="#experience" className={`transition-colors duration-300 ${
-                navbarScrolled ? 'text-gray-600 hover:text-blue-600' : 'text-white/80 hover:text-white'
+                activeSection === 'experience' 
+                  ? (navbarScrolled ? 'text-blue-600' : 'text-white') 
+                  : (navbarScrolled ? 'text-gray-600 hover:text-blue-600' : 'text-white/80 hover:text-white')
               }`}>Experience</a>
               <a href="#contact" className={`transition-colors duration-300 ${
-                navbarScrolled ? 'text-gray-600 hover:text-blue-600' : 'text-white/80 hover:text-white'
+                activeSection === 'contact' 
+                  ? (navbarScrolled ? 'text-blue-600' : 'text-white') 
+                  : (navbarScrolled ? 'text-gray-600 hover:text-blue-600' : 'text-white/80 hover:text-white')
               }`}>Contact</a>
             </div>
           </div>
@@ -220,14 +245,6 @@ const Index = () => {
           />
           {/* Reduced overlay opacity for less dimness */}
           <div className="absolute inset-0 bg-black/15"></div>
-        </div>
-
-        {/* Side Mouse Scroll Indicator */}
-        <div className="fixed left-6 top-1/2 transform -translate-y-1/2 z-20 animate-bounce">
-          <div className="flex flex-col items-center text-white/80 writing-mode-vertical">
-            <Mouse className="w-6 h-6 mb-2" />
-            <div className="text-xs font-medium [writing-mode:vertical-lr] rotate-180">Scroll Down</div>
-          </div>
         </div>
 
         <div className="text-center max-w-4xl mx-auto relative z-10">
@@ -359,20 +376,20 @@ const Index = () => {
             {projects.map((project, index) => (
               <Card key={index} className="group hover:shadow-lg transition-shadow relative overflow-hidden">
                 <CardContent className="p-6 relative">
-                  {/* Larger, clearer background icon */}
+                  {/* Clear, visible project icons */}
                   {project.icon && (
-                    <div className="absolute top-4 right-4 w-32 h-32 opacity-40 group-hover:opacity-60 transition-opacity">
+                    <div className="absolute top-4 right-4 w-16 h-16 group-hover:scale-110 transition-transform">
                       <img 
                         src={project.icon} 
                         alt={`${project.title} icon`}
-                        className="w-full h-full object-contain rounded-lg filter drop-shadow-lg"
+                        className="w-full h-full object-contain rounded-lg shadow-md"
                       />
                     </div>
                   )}
                   
                   <div className="relative z-10">
                     <div className="flex items-start justify-between mb-4">
-                      <h3 className="text-xl font-semibold group-hover:text-blue-600 transition-colors">
+                      <h3 className="text-xl font-semibold group-hover:text-blue-600 transition-colors pr-20">
                         {project.title}
                       </h3>
                       {project.award && (
