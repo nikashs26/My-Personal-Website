@@ -351,18 +351,35 @@ const Index = () => {
       {/* Skills Section */}
       <section id="skills" className="py-20 px-4 bg-white">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-12">Technical Skills</h2>
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {skillCategories.map((category) => (
-              <Card key={category.title}>
+          <div className="text-center mb-16">
+            <h2 className="text-4xl font-bold bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent mb-4">
+              Skills
+            </h2>
+            <p className="text-lg text-gray-600 max-w-2xl mx-auto">
+              A comprehensive toolkit of technologies and skills I use to build modern, scalable applications
+            </p>
+          </div>
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-6">
+            {skillCategories.map((category, index) => (
+              <Card key={category.title} className="group hover:shadow-xl transition-all duration-300 hover:-translate-y-1 border-0 bg-gradient-to-br from-white to-slate-50">
                 <CardContent className="p-6">
-                  <h3 className="text-lg font-semibold mb-4 flex items-center gap-2">
-                    <Code className="w-5 h-5 text-blue-600" />
-                    {category.title}
-                  </h3>
+                  <div className="flex items-center gap-3 mb-6">
+                    <div className="w-10 h-10 bg-gradient-to-br from-blue-500 to-purple-600 rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform">
+                      <Code className="w-5 h-5 text-white" />
+                    </div>
+                    <h3 className="text-lg font-semibold text-gray-800 group-hover:text-blue-600 transition-colors">
+                      {category.title}
+                    </h3>
+                  </div>
                   <div className="flex flex-wrap gap-2">
                     {category.skills.map((skill) => (
-                      <Badge key={skill} variant="outline">{skill}</Badge>
+                      <Badge 
+                        key={skill} 
+                        variant="outline" 
+                        className="hover:bg-blue-50 hover:border-blue-300 hover:text-blue-700 transition-colors cursor-default text-xs py-1"
+                      >
+                        {skill}
+                      </Badge>
                     ))}
                   </div>
                 </CardContent>
