@@ -3,7 +3,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogDescription } from "@/components/ui/dialog";
-import { ExternalLink, Github, Linkedin, Mail, Phone, MapPin, ChevronUp, Calendar, Users, Award, Star, Code, Briefcase, User } from 'lucide-react';
+import { ExternalLink, Github, Linkedin, Mail, Phone, MapPin, ChevronUp, Calendar, Users, Award, Star, Code, Briefcase, User, Heart, Gamepad2, Dumbbell, Palette, Music, Lightbulb } from 'lucide-react';
 import Typed from 'typed.js';
 
 const Index = () => {
@@ -19,7 +19,7 @@ const Index = () => {
       setNavbarScrolled(scrollY > 50);
 
       // Detect current section
-      const sections = ['education', 'skills', 'projects', 'experience', 'contact'];
+      const sections = ['about', 'education', 'skills', 'projects', 'experience', 'contact'];
       const sectionElements = sections.map(id => document.getElementById(id));
       
       for (let i = sections.length - 1; i >= 0; i--) {
@@ -195,6 +195,28 @@ const Index = () => {
     }
   ];
 
+  const aboutMeData = {
+    hobbies: [
+      { name: "Drawing", icon: Palette },
+      { name: "Gaming", icon: Gamepad2 },
+      { name: "Working Out", icon: Dumbbell },
+      { name: "Web Design", icon: Code }
+    ],
+    interests: [
+      "Full-stack Development",
+      "Web Design", 
+      "Animation",
+      "Music",
+      "Video Game Design",
+      "Entrepreneurship"
+    ],
+    favoriteSongs: [
+      "Down by Jay Sean",
+      "Down (w/o rap edit) by Jay Sean",
+      "Down Chasing Pluto Remix by Jay Sean"
+    ]
+  };
+
   return (
     <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
       {/* Sticky Navigation Bar with scroll effect */}
@@ -211,6 +233,11 @@ const Index = () => {
               Nikash Shanbhag
             </div>
             <div className="hidden md:flex space-x-6">
+              <a href="#about" className={`transition-colors duration-300 ${
+                activeSection === 'about' 
+                  ? (navbarScrolled ? 'text-blue-600' : 'text-white') 
+                  : (navbarScrolled ? 'text-gray-600 hover:text-blue-600' : 'text-white/80 hover:text-white')
+              }`}>About</a>
               <a href="#education" className={`transition-colors duration-300 ${
                 activeSection === 'education' 
                   ? (navbarScrolled ? 'text-blue-600' : 'text-white') 
@@ -299,6 +326,69 @@ const Index = () => {
         </div>
       </section>
 
+      {/* About Me Section */}
+      <section id="about" className="py-20 px-4 bg-gradient-to-br from-blue-50 to-indigo-100">
+        <div className="max-w-6xl mx-auto">
+          <h2 className="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+            About Me
+          </h2>
+          
+          <div className="grid md:grid-cols-3 gap-8">
+            {/* Hobbies */}
+            <Card className="group hover:shadow-xl transition-all duration-300 hover:scale-105">
+              <CardContent className="p-8 text-center">
+                <div className="w-16 h-16 bg-gradient-to-br from-pink-500 to-rose-500 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+                  <Heart className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-xl font-bold mb-6 text-gray-800">Hobbies</h3>
+                <div className="space-y-4">
+                  {aboutMeData.hobbies.map((hobby, index) => (
+                    <div key={index} className="flex items-center gap-3 p-3 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors">
+                      <hobby.icon className="w-5 h-5 text-blue-600" />
+                      <span className="text-gray-700 font-medium">{hobby.name}</span>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Interests */}
+            <Card className="group hover:shadow-xl transition-all duration-300 hover:scale-105">
+              <CardContent className="p-8 text-center">
+                <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-indigo-500 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+                  <Lightbulb className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-xl font-bold mb-6 text-gray-800">Interests</h3>
+                <div className="space-y-3">
+                  {aboutMeData.interests.map((interest, index) => (
+                    <div key={index} className="p-3 rounded-lg bg-purple-50 hover:bg-purple-100 transition-colors">
+                      <span className="text-purple-700 font-medium">{interest}</span>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+
+            {/* Favorite Songs */}
+            <Card className="group hover:shadow-xl transition-all duration-300 hover:scale-105">
+              <CardContent className="p-8 text-center">
+                <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-500 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+                  <Music className="w-8 h-8 text-white" />
+                </div>
+                <h3 className="text-xl font-bold mb-6 text-gray-800">Favorite Songs</h3>
+                <div className="space-y-3">
+                  {aboutMeData.favoriteSongs.map((song, index) => (
+                    <div key={index} className="p-3 rounded-lg bg-green-50 hover:bg-green-100 transition-colors">
+                      <span className="text-green-700 font-medium">{song}</span>
+                    </div>
+                  ))}
+                </div>
+              </CardContent>
+            </Card>
+          </div>
+        </div>
+      </section>
+
       {/* Education Section */}
       <section id="education" className="py-20 px-4">
         <div className="max-w-6xl mx-auto">
@@ -353,18 +443,11 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Skills Section - Redesigned */}
-      <section id="skills" className="py-20 px-4 bg-gradient-to-br from-slate-900 via-purple-900 to-slate-900 relative overflow-hidden">
-        {/* Animated Background Elements */}
-        <div className="absolute inset-0 overflow-hidden">
-          <div className="absolute top-1/4 left-1/4 w-96 h-96 bg-blue-500/10 rounded-full blur-3xl animate-pulse"></div>
-          <div className="absolute bottom-1/4 right-1/4 w-96 h-96 bg-purple-500/10 rounded-full blur-3xl animate-pulse delay-1000"></div>
-          <div className="absolute top-3/4 left-1/2 w-64 h-64 bg-cyan-500/10 rounded-full blur-2xl animate-pulse delay-500"></div>
-        </div>
-        
-        <div className="max-w-6xl mx-auto relative z-10">
+      {/* Skills Section - Simplified */}
+      <section id="skills" className="py-20 px-4 bg-gradient-to-br from-gray-900 to-slate-900">
+        <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-5xl font-bold bg-gradient-to-r from-white via-blue-200 to-purple-200 bg-clip-text text-transparent mb-6 drop-shadow-2xl">
+            <h2 className="text-5xl font-bold bg-gradient-to-r from-white via-blue-200 to-purple-200 bg-clip-text text-transparent mb-6">
               Skills Arsenal
             </h2>
             <p className="text-xl text-gray-300 max-w-2xl mx-auto leading-relaxed">
@@ -376,9 +459,6 @@ const Index = () => {
             {skillCategories.map((category, index) => (
               <Card key={category.title} className="group relative overflow-hidden bg-white/5 backdrop-blur-sm border-white/10 hover:bg-white/10 transition-all duration-500 hover:scale-105 hover:shadow-2xl hover:shadow-purple-500/25">
                 <CardContent className="p-6 relative">
-                  {/* Gradient Border Effect */}
-                  <div className={`absolute inset-0 bg-gradient-to-r ${category.gradient} opacity-0 group-hover:opacity-20 transition-opacity duration-500 rounded-lg`}></div>
-                  
                   <div className="flex items-center gap-4 mb-8 relative z-10">
                     <div className={`w-14 h-14 bg-gradient-to-r ${category.gradient} rounded-xl flex items-center justify-center group-hover:scale-110 transition-transform duration-300 shadow-lg`}>
                       <Code className="w-7 h-7 text-white" />
