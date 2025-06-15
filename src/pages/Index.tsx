@@ -390,7 +390,9 @@ const Index = () => {
       {/* Education Section */}
       <section id="education" className="py-20 px-4">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-12">Education</h2>
+          <h2 className="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
+            Education
+          </h2>
           <Card className="max-w-4xl mx-auto">
             <CardContent className="p-8">
               <div className="flex items-start gap-4">
@@ -445,7 +447,7 @@ const Index = () => {
       <section id="skills" className="py-20 px-4 bg-gray-50">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold text-gray-800 mb-6">
+            <h2 className="text-4xl font-bold mb-6 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
               Skills
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
@@ -498,7 +500,9 @@ const Index = () => {
         </div>
         
         <div className="max-w-6xl mx-auto relative z-10">
-          <h2 className="text-3xl font-bold text-center mb-12 text-white">Featured Projects</h2>
+          <h2 className="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-orange-400 to-red-500 bg-clip-text text-transparent">
+            Featured Projects
+          </h2>
           <div className="grid md:grid-cols-2 gap-8">
             {projects.map((project, index) => (
               <Card key={index} className="group hover:shadow-lg transition-shadow relative overflow-hidden h-full bg-white/95 backdrop-blur-sm">
@@ -632,7 +636,9 @@ const Index = () => {
       {/* Experience Section */}
       <section id="experience" className="py-20 px-4 bg-white">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-3xl font-bold text-center mb-12">Professional Experience</h2>
+          <h2 className="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-indigo-600 to-blue-600 bg-clip-text text-transparent">
+            Professional Experience
+          </h2>
           <div className="space-y-8">
             {experiences.map((job, index) => (
               <Card key={index}>
@@ -685,7 +691,9 @@ const Index = () => {
       {/* Contact Section */}
       <section id="contact" className="py-20 px-4">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-3xl font-bold mb-8">Let's Connect</h2>
+          <h2 className="text-4xl font-bold mb-8 bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent">
+            Let's Connect
+          </h2>
           
           {/* Profile Image Placeholder */}
           <div className="mb-8 flex justify-center">
