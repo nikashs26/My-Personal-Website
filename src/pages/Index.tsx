@@ -1,3 +1,4 @@
+
 import { useState, useEffect, useRef } from 'react';
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
@@ -134,7 +135,7 @@ const Index = () => {
       role: "Summer Operations Intern",
       period: "June 2024 - Aug 2024",
       location: "Saratoga, CA",
-      logo: "https://images.unsplash.com/photo-1488590528505-98d2b5aba04b?auto=format&fit=crop&w=100&q=80",
+      logo: "/lovable-uploads/0f4639f8-d264-4e57-a94e-208683190214.png",
       responsibilities: [
         "Managed comprehensive hands-on office operations including creative poster design and systematic organization of camper shirts, name-tags, and lanyards for 200+ campers",
         "Supervised diverse groups of children ages 5-13 in engaging STEAM classes and structured morning extended care sessions, ensuring educational value and safety",
@@ -148,7 +149,7 @@ const Index = () => {
       role: "Assistant Instructor",
       period: "May 2022 - Aug 2022, May 2023 - Aug 2023",
       location: "Campbell/Saratoga, CA",
-      logo: "https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=100&q=80",
+      logo: "/lovable-uploads/19205251-517b-45a4-ab4c-22599ea5b362.png",
       responsibilities: [
         "Guided classes of 18-20 elementary and middle school students in comprehensive technology programs including Minecraft modding, Blockbench 3D modeling, LEGO robot-building, Roblox game development, and Scratch programming",
         "Provided individualized assistance to students through their projects, answering technical questions and troubleshooting coding challenges",
@@ -646,7 +647,7 @@ const Index = () => {
                       <img 
                         src={job.logo} 
                         alt={`${job.company} logo`}
-                        className="w-full h-full object-cover rounded-lg"
+                        className="w-full h-full object-contain rounded-lg"
                       />
                     </div>
                     <div className="flex-1">
