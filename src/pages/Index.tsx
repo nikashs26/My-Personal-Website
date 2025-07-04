@@ -297,19 +297,15 @@ const Index = () => {
             </p>
           </div>
           
-          <div className="flex flex-wrap justify-center gap-4 mb-8">
-            <Button variant="outline" className="gap-3 bg-white/40 border-white/50 text-white hover:bg-white/50 backdrop-blur-sm shadow-lg text-base px-6 py-3 font-semibold">
-              <Phone className="w-5 h-5" />
-              (408) 656-8424
+          {/* Add all three buttons side by side, themed */}
+          <div className="flex justify-center gap-4 mb-8">
+            <Button asChild className="gap-3 bg-teal-600/90 hover:bg-teal-700/90 backdrop-blur-sm border border-white/20 shadow-lg text-base px-6 py-3 text-white">
+              <a href="mailto:ngshanbhag@scu.edu">
+                <Mail className="w-5 h-5" />
+                Email
+              </a>
             </Button>
-            <Button variant="outline" className="gap-3 bg-white/40 border-white/50 text-white hover:bg-white/50 backdrop-blur-sm shadow-lg text-base px-6 py-3 font-semibold">
-              <Mail className="w-5 h-5" />
-              ngshanbhag@scu.edu
-            </Button>
-          </div>
-          
-          <div className="flex justify-center gap-4">
-            <Button asChild className="gap-3 bg-blue-600/90 hover:bg-blue-700/90 backdrop-blur-sm border border-white/20 shadow-lg text-base px-6 py-3">
+            <Button asChild className="gap-3 bg-blue-600/90 hover:bg-blue-700/90 backdrop-blur-sm border border-white/20 shadow-lg text-base px-6 py-3 text-white">
               <a href="https://www.linkedin.com/in/nikash-shanbhag-a05931250/" target="_blank" rel="noopener noreferrer">
                 <Linkedin className="w-5 h-5" />
                 LinkedIn
@@ -321,6 +317,10 @@ const Index = () => {
                 GitHub
               </a>
             </Button>
+          </div>
+          
+          <div className="flex justify-center gap-4">
+            {/* The original outlined email button is removed */}
           </div>
         </div>
       </section>
@@ -702,9 +702,11 @@ const Index = () => {
           
           {/* Profile Image Placeholder */}
           <div className="mb-8 flex justify-center">
-            <div className="w-32 h-32 bg-gray-200 rounded-full flex items-center justify-center border-4 border-white shadow-lg">
-              <User className="w-16 h-16 text-gray-400" />
-            </div>
+            <img
+              src="/images/profile.jpg"
+              alt="Profile"
+              className="w-32 h-32 rounded-full border-4 border-white shadow-lg object-cover"
+            />
           </div>
           
           <p className="text-lg text-gray-600 mb-8">
@@ -733,16 +735,6 @@ const Index = () => {
           </div>
         </div>
       </section>
-
-      {/* Floating Phone Button */}
-      {/* 
-      <Button
-        className="fixed bottom-20 right-6 rounded-full w-12 h-12 shadow-lg z-50 bg-green-600 hover:bg-green-700"
-        onClick={() => window.open('tel:+14086568424')}
-      >
-        <Phone className="w-5 h-5" />
-      </Button>
-      */}
 
       {/* Scroll to top button */}
       {showScrollTop && (
