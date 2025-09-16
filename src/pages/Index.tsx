@@ -62,7 +62,7 @@ const Index = () => {
       description: "Modern full-stack recipe platform with secure auth, smart recommendations, and AI meal planning",
       tech: ["TypeScript", "Python", "React", "TailwindCSS", "Flask", "Lovable", "Supabase"],
       github: "https://github.com/nikashs26/full-stack-recipe",
-      live: "https://better-bulk.vercel.app/",
+      live: "https://betterbulk.netlify.app/",
       icon: "/lovable-uploads/618148c4-936d-47a3-8c77-35a7bdcf0843.png",
       details: "Designed and shipped a modern full‑stack recipe platform with a Vite/React frontend on Netlify and a Flask API on Render. Implemented secure Supabase auth, user preferences with fast ChromaDB-backed storage, and a high‑performance recipe cache/search service supporting dietary restrictions, allergens, cuisines, and cooking‑time filters. Built a smart recommendation engine with fair cuisine distribution and guaranteed favorite‑food coverage that respects all user restrictions, plus an AI meal planner that targets user‑set macro goals. Added recipe creation/editing, favorites, and reviews with clean RESTful endpoints, plus curated/manual recipes alongside semantic search. Optimized production performance with a ChromaDB singleton and lightweight embeddings, reduced logging overhead, and improved UX with resilient validation and clear form behavior. Deployed via CI‑style Git pushes; leveraged Lovable AI Copilot for debugging, test scaffolding, and refactors to accelerate delivery and enhance code quality.",
       features: [
