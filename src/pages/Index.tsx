@@ -59,12 +59,12 @@ const Index = () => {
   const projects = [
     {
       title: "Better Bulk",
-      description: "Full-stack recipe-finder web application with user authentication and recipe management",
+      description: "Modern full-stack recipe platform with secure auth, smart recommendations, and AI meal planning",
       tech: ["TypeScript", "Python", "React", "TailwindCSS", "Flask", "Lovable", "Supabase"],
       github: "https://github.com/nikashs26/full-stack-recipe",
       live: "https://better-bulk.vercel.app/",
       icon: "/lovable-uploads/618148c4-936d-47a3-8c77-35a7bdcf0843.png",
-      details: "Designed a comprehensive full-stack recipe-finder web application featuring robust user authentication, recipe creation/editing capabilities, advanced search functionality, and favorite marking system. Successfully integrated the React-based frontend with a Flask backend, utilizing Supabase for secure data storage and retrieval for user sign-ups/sign-ins, user reviews, and manually written recipes. Implemented RESTful API endpoints for diverse recipe generation and data management. Leveraged Lovable AI Copilot extensively for debugging, automated test generation, and code optimization, resulting in improved development efficiency and code quality.",
+      details: "Designed and shipped a modern full‑stack recipe platform with a Vite/React frontend on Netlify and a Flask API on Render. Implemented secure Supabase auth, user preferences with fast ChromaDB-backed storage, and a high‑performance recipe cache/search service supporting dietary restrictions, allergens, cuisines, and cooking‑time filters. Built a smart recommendation engine with fair cuisine distribution and guaranteed favorite‑food coverage that respects all user restrictions, plus an AI meal planner that targets user‑set macro goals. Added recipe creation/editing, favorites, and reviews with clean RESTful endpoints, plus curated/manual recipes alongside semantic search. Optimized production performance with a ChromaDB singleton and lightweight embeddings, reduced logging overhead, and improved UX with resilient validation and clear form behavior. Deployed via CI‑style Git pushes; leveraged Lovable AI Copilot for debugging, test scaffolding, and refactors to accelerate delivery and enhance code quality.",
       features: [
         "User authentication and profile management",
         "Recipe creation with rich text editor",
