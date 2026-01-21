@@ -58,65 +58,31 @@ const Index = () => {
 
   const projects = [
     {
-      title: "CrashCast",
-      description: "Winner ACM AWS/INRIX Hack 2025 - Emergency response optimization app",
-      tech: ["React", "CSS", "AWS Lambda", "FastAPI", "INRIX API"],
-      github: "https://github.com/nikashs26/crashcast",
-      devpost: "https://devpost.com/software/crashcast",
-      award: "Winner ACM AWS/INRIX Hack 2025",
-      details: "Guided a team of four in a hackathon to develop a web application that identifies high-risk areas worldwide and displays nearby hospitals and ambulances, aiding hospitals to optimize dispatcher deployment, using AWS Lambda and INRIX data. Built a React and CSS frontend for a location-based emergency assistance app, featuring an interactive map with location search, real-time ambulance and accident urgency updates, and Help and About pages. Integrated backend to frontend by converting INRIX data to displayable JSON with coordinates and radii.",
-      features: [
-        "Interactive map with location search",
-        "Real-time ambulance tracking",
-        "Accident urgency indicators",
-        "Hospital optimization dashboard",
-        "AWS Lambda integration",
-        "INRIX data visualization"
-      ]
-    },
-    {
-      title: "Last Shot",
-      description: "Winner ACM Roblox Game Jam 2025 - Zombie apocalypse adventure game",
-      tech: ["Roblox Studio", "Lua"],
-      devpost: "https://devpost.com/software/last-shot",
-      game: "https://www.roblox.com/games/lastshot",
-      award: "Winner ACM Roblox Game Jam 2025",
-      details: "Led team of five to develop a top-down zombie apocalypse adventure game, featuring strategic airship combat, narrative-driven gameplay, and a unique plot twist, all in just 3 days. Developed visual effects in Roblox Studio and scripted zombie AI with randomized pathing using Lua. Helped generate cinematic cutscenes and interactive camera controls to enhance storytelling and immersion. Overcame scripting and performance challenges by optimizing event triggers.",
-      features: [
-        "Strategic airship combat",
-        "Narrative-driven gameplay",
-        "Zombie AI with randomized pathing",
-        "Cinematic cutscenes",
-        "Interactive camera controls",
-        "Optimized event triggers"
-      ]
-    },
-    {
       title: "Better Bulk",
-      description: "Full-stack recipe platform with 1,000+ recipes and AI meal planning",
-      tech: ["TypeScript", "Python", "React", "TailwindCSS", "Flask", "ChromaDB", "Lovable", "Cursor"],
+      description: "Full-stack recipe-finder web application with user authentication and recipe management",
+      tech: ["TypeScript", "Python", "React", "TailwindCSS", "Flask", "Lovable", "Supabase"],
       github: "https://github.com/nikashs26/full-stack-recipe",
-      live: "https://betterbulk.netlify.app/",
+      live: "https://better-bulk.vercel.app/",
       icon: "/lovable-uploads/618148c4-936d-47a3-8c77-35a7bdcf0843.png",
-      details: "Leveraged AI copilots (Lovable/Cursor) to build a full-stack recipe management application featuring 1,000+ recipes, with highly-rated recipe collections, personalized recommendations, preference-based agentic meal planning, shopping list generation, user reviews, and recipe-management folders. Designed responsive home and search page using React, TypeScript, and Tailwind CSS and a Flask backend with ChromaDB for recipe, review, and meal planner history storage and retrieval. Implemented an agent using LLMs (Ollama/HuggingFace) to generate custom weekly meal plans tailored to macros and dietary needs.",
+      details: "Designed a comprehensive full-stack recipe-finder web application featuring robust user authentication, recipe creation/editing capabilities, advanced search functionality, and favorite marking system. Successfully integrated the React-based frontend with a Flask backend, utilizing Supabase for secure data storage and retrieval for user sign-ups/sign-ins, user reviews, and manually written recipes. Implemented RESTful API endpoints for diverse recipe generation and data management. Leveraged Lovable AI Copilot extensively for debugging, automated test generation, and code optimization, resulting in improved development efficiency and code quality.",
       features: [
-        "1,000+ recipes with collections",
-        "Personalized recommendations",
-        "AI-powered meal planning",
-        "Shopping list generation",
+        "User authentication and profile management",
+        "Recipe creation with rich text editor",
+        "Advanced search and filtering",
+        "Favorite recipes system",
         "User reviews and ratings",
-        "Recipe management folders"
+        "Responsive design for all devices"
       ]
     },
     {
       title: "Simba's Surveillance",
-      description: "Real-time Lion King-themed AI trespasser detection system",
-      tech: ["HTML", "CSS", "React", "Python"],
+      description: "Real-time Lion King-themed wildlife trespasser detection system",
+      tech: ["HTML", "CSS", "React", "Python", "AI/ML", "Computer Vision"],
       github: "https://github.com/NickelR22/simbassurveillance",
       devpost: "https://devpost.com/software/bobs-consulting?ref_content=my-projects-tab&ref_feature=my_projects",
       live: "https://simbassurveillance.vercel.app/",
       icon: "/lovable-uploads/1df91ec5-47e3-43bb-b6e9-77df008d698a.png",
-      details: "Designed a real-time Lion King-themed AI system to identify human trespassers in live-streamed footage. Built and styled responsive home and 'About' pages in React and CSS using a self-developed mockup. Integrated Python-based backend by retrieving and displaying JSON data in the frontend, including timestamps and images of detected trespassers.",
+      details: "Developed the complete frontend for a real-time, Lion King-themed wildlife trespasser detection system that uses advanced AI to identify human figures in live-streamed video from protected territories. Created a responsive homepage using React and CSS, structured the comprehensive About page, and implemented dynamic data visualization. Successfully connected the Python-based backend by retrieving and displaying JSON data in the React frontend, including precise timestamps and images of detected trespassers. Enhanced real-time data visualization to improve accessibility and responsiveness, directly supporting wildlife protection efforts.",
       features: [
         "Real-time video stream processing",
         "AI-powered human detection",
@@ -127,48 +93,43 @@ const Index = () => {
       ]
     },
     {
-      title: "MintMarket",
-      description: "End-to-end e-commerce platform for NFT buying and selling",
-      tech: ["Blockchain", "JavaScript", "HTML", "CSS"],
-      github: "https://github.com/nikashs26/mintmarket",
-      live: "https://mintmarket.vercel.app/",
-      details: "Coordinated with a team of 3 to build a fully functional, end-to-end e-commerce platform for NFT buying and selling utilizing a simulated blockchaining, strategic design for all pages, and no frameworks. Built the login, Q&A, and homepage, using HTML, CSS, and JS focusing on positive user experience. Implemented hashing for simulated blockchain in JavaScript.",
+      title: "Peter Parks",
+      description: "AWS/INRIX Hack 2024 Finalist - Real-time parking detection system",
+      tech: ["React", "CSS", "AWS", "INRIX API", "Real-time Data"],
+      github: "https://github.com/nikashs26/AI-Hack-2024",
+      devpost: "https://devpost.com/software/parking-kjx41u",
+      award: "Finalist AWS/INRIX Hack 2024",
+      icon: "/lovable-uploads/e0ea65b7-32bb-4430-a0d5-ffc1fd9eb25e.png",
+      details: "Led the frontend development team for an innovative web application that detects available parking spaces in real-time using AWS cloud services and INRIX traffic data APIs. Implemented a sophisticated user interface using JavaScript and CSS, with a primary focus on optimal user experience and accessibility. Coordinated extensively with the backend development team to seamlessly integrate frontend components with real-time parking data streams. The project achieved finalist status in the competitive AWS/INRIX Hack 2024, demonstrating technical excellence and practical application.",
       features: [
-        "NFT marketplace functionality",
-        "Simulated blockchain",
-        "User authentication",
-        "Q&A section",
-        "Strategic page design",
-        "No framework implementation"
+        "Real-time parking availability",
+        "Interactive city maps",
+        "Predictive parking analytics",
+        "Mobile-first design",
+        "AWS cloud integration",
+        "INRIX data visualization"
+      ]
+    },
+    {
+      title: "Math 13 Course Page",
+      description: "Modern redesign of Santa Clara University math professor's course webpage",
+      tech: ["HTML", "CSS", "JavaScript", "Responsive Design"],
+      github: "https://github.com/nikashs26/Math-13-Smolarski-Page",
+      live: "https://math-13-smolarski-page.vercel.app/static/index.html",
+      icon: "/lovable-uploads/9f95cbc2-ef86-4ca7-962d-81a3231913a2.png",
+      details: "Conceptualized and led a collaborative team to completely recreate an SCU math professor's course webpage using modern HTML, CSS, and JavaScript technologies. Designed a contemporary, fully responsive interface with significantly improved functionality and enhanced user engagement features. Personally developed the Home and About Professor pages, while contributing innovative ideas for mockups and implementation strategies for all site sections. Focused extensively on enhancing accessibility standards, visual aesthetics, and interactive elements to dramatically improve the overall student learning experience.",
+      features: [
+        "Responsive course layout",
+        "Interactive assignment calendar",
+        "Student resource hub",
+        "Modern UI/UX design",
+        "Accessible navigation",
+        "Mobile optimization"
       ]
     }
   ];
 
   const experiences = [
-    {
-      company: "Inspired Earth",
-      role: "Undergraduate Researcher",
-      period: "December 2025 - Present",
-      location: "Santa Clara University",
-      supervisor: "Prof. Navid Shaghaghi",
-      responsibilities: [
-        "Designing and implementing blockchain-backed prototypes exploring decentralized identity, content ownership, and incentive alignment for NFT's",
-        "Developing smart contract logic and integrated on-chain components with chainlink functions",
-        "Researching Web3 protocols to inform system design decisions and avoid common scalability and security pitfalls"
-      ],
-      skills: ["Blockchain", "Smart Contracts", "Web3", "Chainlink", "NFT", "Decentralized Identity", "Research"]
-    },
-    {
-      company: "Wave: Ripples to World Tides",
-      role: "Founding Engineer",
-      period: "November 2025 - Present",
-      location: "Remote",
-      responsibilities: [
-        "Leading frontend development for an early-stage social media startup building an app for users to select their interests (called waves), see content based on these waves, and post their own media to waves of their choice",
-        "Building production-ready user interfaces using React Native, TypeScript, and Tailwind CSS, focusing on performance and accessibility"
-      ],
-      skills: ["React Native", "TypeScript", "Tailwind CSS", "Mobile Development", "Startup", "Frontend Leadership", "Accessibility"]
-    },
     {
       company: "Camp Galileo",
       role: "Summer Operations Intern",
@@ -201,24 +162,39 @@ const Index = () => {
 
   const skillCategories = [
     {
-      title: "Languages & Frameworks",
-      skills: ["Python", "Java", "C", "HTML", "CSS", "JavaScript", "TypeScript", "Tailwind", "Vite", "SQL", "React", "Flask"],
+      title: "Programming Languages",
+      skills: ["Python", "Java", "C", "HTML5", "CSS3", "JavaScript (ES6+)", "TypeScript", "SQL"],
       gradient: "from-blue-500 to-cyan-500"
     },
     {
-      title: "Tools & Productivity",
-      skills: ["GitHub", "Chrome DevTools", "VS Code", "PyCharm", "Pygame", "Netlify", "Railway", "Figma"],
+      title: "Frameworks & Libraries",
+      skills: ["React", "Flask", "TailwindCSS", "Node.js", "Express.js", "Bootstrap", "jQuery"],
+      gradient: "from-purple-500 to-pink-500"
+    },
+    {
+      title: "DevOps & Tools",
+      skills: ["Git", "GitHub", "VS Code", "PyCharm", "Chrome DevTools", "Postman", "Figma", "Adobe Creative Suite"],
       gradient: "from-green-500 to-emerald-500"
     },
     {
-      title: "AI Tools",
-      skills: ["Lovable", "Bolt.new", "Cursor", "Claude", "WindSurf"],
+      title: "Databases & Cloud",
+      skills: ["Supabase", "PostgreSQL", "MySQL", "AWS", "Vercel", "Firebase", "RESTful APIs"],
+      gradient: "from-orange-500 to-red-500"
+    },
+    {
+      title: "Design & Creative",
+      skills: ["UI/UX Design", "Adobe Illustrator", "Adobe Photoshop", "Procreate", "Figma", "Responsive Design"],
+      gradient: "from-indigo-500 to-blue-500"
+    },
+    {
+      title: "AI & Development Tools",
+      skills: ["Lovable AI", "Bolt.new", "Cursor", "GitHub Copilot", "Machine Learning Basics"],
       gradient: "from-violet-500 to-purple-500"
     },
     {
-      title: "Interests",
-      skills: ["Full-stack Development", "Robotics", "Agentic Applications", "Game Design", "Human-Computer Interaction"],
-      gradient: "from-orange-500 to-red-500"
+      title: "Soft Skills",
+      skills: ["Problem-solving", "Creative Thinking", "Team Leadership", "Project Management", "Communication", "Mentoring"],
+      gradient: "from-pink-500 to-rose-500"
     }
   ];
 
@@ -231,10 +207,11 @@ const Index = () => {
     ],
     interests: [
       "Full-stack Development",
-      "Robotics", 
-      "Agentic Applications",
-      "Game Design",
-      "Human-Computer Interaction"
+      "Web Design", 
+      "Animation",
+      "Music",
+      "Video Game Design",
+      "Entrepreneurship"
     ],
     favoriteSongs: [
       "Down by Jay Sean",
@@ -320,15 +297,19 @@ const Index = () => {
             </p>
           </div>
           
-          {/* Add all three buttons side by side, themed */}
-          <div className="flex justify-center gap-4 mb-8">
-            <Button asChild className="gap-3 bg-teal-600/90 hover:bg-teal-700/90 backdrop-blur-sm border border-white/20 shadow-lg text-base px-6 py-3 text-white">
-              <a href="mailto:ngshanbhag@scu.edu">
-                <Mail className="w-5 h-5" />
-                Email
-              </a>
+          <div className="flex flex-wrap justify-center gap-4 mb-8">
+            <Button variant="outline" className="gap-3 bg-white/40 border-white/50 text-white hover:bg-white/50 backdrop-blur-sm shadow-lg text-base px-6 py-3 font-semibold">
+              <Phone className="w-5 h-5" />
+              (408) 656-8424
             </Button>
-            <Button asChild className="gap-3 bg-blue-600/90 hover:bg-blue-700/90 backdrop-blur-sm border border-white/20 shadow-lg text-base px-6 py-3 text-white">
+            <Button variant="outline" className="gap-3 bg-white/40 border-white/50 text-white hover:bg-white/50 backdrop-blur-sm shadow-lg text-base px-6 py-3 font-semibold">
+              <Mail className="w-5 h-5" />
+              ngshanbhag@scu.edu
+            </Button>
+          </div>
+          
+          <div className="flex justify-center gap-4">
+            <Button asChild className="gap-3 bg-blue-600/90 hover:bg-blue-700/90 backdrop-blur-sm border border-white/20 shadow-lg text-base px-6 py-3">
               <a href="https://www.linkedin.com/in/nikash-shanbhag-a05931250/" target="_blank" rel="noopener noreferrer">
                 <Linkedin className="w-5 h-5" />
                 LinkedIn
@@ -340,10 +321,6 @@ const Index = () => {
                 GitHub
               </a>
             </Button>
-          </div>
-          
-          <div className="flex justify-center gap-4">
-            {/* The original outlined email button is removed */}
           </div>
         </div>
       </section>
@@ -429,10 +406,10 @@ const Index = () => {
                 </div>
                 <div className="flex-1">
                   <h3 className="text-xl font-semibold">Santa Clara University</h3>
-                  <p className="text-lg text-blue-600 mb-2">B.S. in Web Design and Engineering, Responsible AI</p>
+                  <p className="text-lg text-blue-600 mb-2">B.S. in Web Design and Engineering</p>
                   <div className="flex items-center gap-2 text-gray-500 mb-4">
                     <Calendar className="w-4 h-4" />
-                    Sept 2024 - Dec 2027
+                    Sept 2024 - Present
                   </div>
                   
                   <div className="space-y-4">
@@ -440,16 +417,12 @@ const Index = () => {
                       <h4 className="font-medium mb-2">Relevant Courses:</h4>
                       <div className="flex flex-wrap gap-2">
                         {[
-                          "Web Development",
-                          "Web Usability",
                           "Advanced Programming",
                           "Introduction to Web Technologies", 
                           "Abstract Data Types and Data Structures",
                           "Computer Networks",
                           "Probability and Statistics",
-                          "Web Information Management",
-                          "Basic Digital Imaging",
-                          "Ethics in Technology"
+                          "Calculus and Analytical Geometry III & IV"
                         ].map((course) => (
                           <Badge key={course} variant="secondary">{course}</Badge>
                         ))}
@@ -534,12 +507,12 @@ const Index = () => {
           <div className="grid md:grid-cols-2 gap-8">
             {projects.map((project, index) => (
               <Card key={index} className="group hover:shadow-lg transition-shadow relative overflow-hidden h-full bg-white/95 backdrop-blur-sm">
-                {/* Winner Badge for hackathon projects */}
-                {project.award && (
+                {/* Finalist Badge for Peter Parks */}
+                {project.title === "Peter Parks" && (
                   <div className="absolute top-4 right-4 z-10">
                     <Badge variant="default" className="gap-1 bg-yellow-500 hover:bg-yellow-600 text-yellow-900 font-semibold">
                       <Award className="w-3 h-3" />
-                      Winner
+                      Finalist
                     </Badge>
                   </div>
                 )}
@@ -588,9 +561,9 @@ const Index = () => {
                             <DialogTitle className="flex items-center gap-2">
                               {project.title}
                               {project.award && (
-                                <Badge variant="default" className="gap-1 bg-yellow-500 text-yellow-900">
+                                <Badge variant="default" className="gap-1">
                                   <Award className="w-3 h-3" />
-                                  Winner
+                                  Finalist
                                 </Badge>
                               )}
                             </DialogTitle>
@@ -677,15 +650,11 @@ const Index = () => {
                 <CardContent className="p-8">
                   <div className="flex items-start gap-4">
                     <div className="w-16 h-16 rounded-lg flex items-center justify-center overflow-hidden bg-white border border-gray-200 shadow-sm">
-                      {job.logo ? (
-                        <img 
-                          src={job.logo} 
-                          alt={`${job.company} logo`}
-                          className="w-full h-full object-contain rounded-lg"
-                        />
-                      ) : (
-                        <Briefcase className="w-8 h-8 text-blue-600" />
-                      )}
+                      <img 
+                        src={job.logo} 
+                        alt={`${job.company} logo`}
+                        className="w-full h-full object-contain rounded-lg"
+                      />
                     </div>
                     <div className="flex-1">
                       <h3 className="text-xl font-semibold">{job.company}</h3>
@@ -733,11 +702,9 @@ const Index = () => {
           
           {/* Profile Image Placeholder */}
           <div className="mb-8 flex justify-center">
-            <img
-              src="/images/profile.jpg"
-              alt="Profile"
-              className="w-32 h-32 rounded-full border-4 border-white shadow-lg object-cover"
-            />
+            <div className="w-32 h-32 bg-gray-200 rounded-full flex items-center justify-center border-4 border-white shadow-lg">
+              <User className="w-16 h-16 text-gray-400" />
+            </div>
           </div>
           
           <p className="text-lg text-gray-600 mb-8">
@@ -766,6 +733,16 @@ const Index = () => {
           </div>
         </div>
       </section>
+
+      {/* Floating Phone Button */}
+      {/* 
+      <Button
+        className="fixed bottom-20 right-6 rounded-full w-12 h-12 shadow-lg z-50 bg-green-600 hover:bg-green-700"
+        onClick={() => window.open('tel:+14086568424')}
+      >
+        <Phone className="w-5 h-5" />
+      </Button>
+      */}
 
       {/* Scroll to top button */}
       {showScrollTop && (
