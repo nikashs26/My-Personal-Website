@@ -1,17 +1,109 @@
-
 import { useState, useEffect, useRef } from 'react';
+import { motion, useScroll, useTransform, useSpring, useInView } from 'framer-motion';
 import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogDescription } from "@/components/ui/dialog";
-import { ExternalLink, Github, Linkedin, Mail, Phone, MapPin, ChevronUp, Calendar, Users, Award, Star, Code, Briefcase, User, Heart, Gamepad2, Dumbbell, Palette, Music, Lightbulb } from 'lucide-react';
+import { ExternalLink, Github, Linkedin, Mail, Phone, ChevronUp, Calendar, Users, Award, Star, Code, Heart, Gamepad2, Dumbbell, Palette, Music, Lightbulb, Sparkles, ArrowDown } from 'lucide-react';
 import Typed from 'typed.js';
+
+// Animated section wrapper
+const AnimatedSection = ({ children, className = "", delay = 0 }: { children: React.ReactNode; className?: string; delay?: number }) => {
+  const ref = useRef(null);
+  const isInView = useInView(ref, { once: true, margin: "-100px" });
+  
+  return (
+    <motion.div
+      ref={ref}
+      initial={{ opacity: 0, y: 60 }}
+      animate={isInView ? { opacity: 1, y: 0 } : { opacity: 0, y: 60 }}
+      transition={{ duration: 0.8, delay, ease: [0.21, 0.47, 0.32, 0.98] }}
+      className={className}
+    >
+      {children}
+    </motion.div>
+  );
+};
+
+// Floating particles component
+const FloatingParticles = () => {
+  return (
+    <div className="absolute inset-0 overflow-hidden pointer-events-none">
+      {[...Array(20)].map((_, i) => (
+        <motion.div
+          key={i}
+          className="absolute w-2 h-2 bg-white/20 rounded-full"
+          initial={{ 
+            x: Math.random() * (typeof window !== 'undefined' ? window.innerWidth : 1000), 
+            y: Math.random() * (typeof window !== 'undefined' ? window.innerHeight : 800) 
+          }}
+          animate={{ 
+            y: [null, Math.random() * -200 - 100],
+            opacity: [0, 1, 0]
+          }}
+          transition={{ 
+            duration: Math.random() * 10 + 10,
+            repeat: Infinity,
+            delay: Math.random() * 5
+          }}
+        />
+      ))}
+    </div>
+  );
+};
+
+// 3D Tilt Card
+const TiltCard = ({ children, className = "" }: { children: React.ReactNode; className?: string }) => {
+  const [rotateX, setRotateX] = useState(0);
+  const [rotateY, setRotateY] = useState(0);
+  
+  const handleMouseMove = (e: React.MouseEvent<HTMLDivElement>) => {
+    const card = e.currentTarget;
+    const rect = card.getBoundingClientRect();
+    const x = e.clientX - rect.left;
+    const y = e.clientY - rect.top;
+    const centerX = rect.width / 2;
+    const centerY = rect.height / 2;
+    
+    setRotateX((y - centerY) / 20);
+    setRotateY((centerX - x) / 20);
+  };
+  
+  const handleMouseLeave = () => {
+    setRotateX(0);
+    setRotateY(0);
+  };
+  
+  return (
+    <motion.div
+      className={`${className}`}
+      style={{ 
+        transformStyle: 'preserve-3d',
+        perspective: 1000
+      }}
+      animate={{ rotateX, rotateY }}
+      transition={{ type: "spring", stiffness: 300, damping: 30 }}
+      onMouseMove={handleMouseMove}
+      onMouseLeave={handleMouseLeave}
+    >
+      {children}
+    </motion.div>
+  );
+};
 
 const Index = () => {
   const [showScrollTop, setShowScrollTop] = useState(false);
   const [navbarScrolled, setNavbarScrolled] = useState(false);
   const [activeSection, setActiveSection] = useState('');
   const nameRef = useRef<HTMLSpanElement>(null);
+  const heroRef = useRef(null);
+  
+  const { scrollYProgress } = useScroll();
+  const scaleX = useSpring(scrollYProgress, { stiffness: 100, damping: 30, restDelta: 0.001 });
+  
+  const { scrollY } = useScroll();
+  const heroOpacity = useTransform(scrollY, [0, 500], [1, 0]);
+  const heroScale = useTransform(scrollY, [0, 500], [1, 0.8]);
 
   useEffect(() => {
     const handleScroll = () => {
@@ -19,7 +111,6 @@ const Index = () => {
       setShowScrollTop(scrollY > 400);
       setNavbarScrolled(scrollY > 50);
 
-      // Detect current section
       const sections = ['about', 'education', 'skills', 'projects', 'experience', 'contact'];
       const sectionElements = sections.map(id => document.getElementById(id));
       
@@ -43,16 +134,17 @@ const Index = () => {
     if (nameRef.current) {
       const typed = new Typed(nameRef.current, {
         strings: ['Nikash Shanbhag'],
-        typeSpeed: 100,
-        showCursor: false,
-        onComplete: () => {
-          // Optional: add any completion logic here
+        typeSpeed: 80,
+        showCursor: true,
+        cursorChar: '|',
+        onComplete: (self) => {
+          setTimeout(() => {
+            if (self.cursor) self.cursor.style.display = 'none';
+          }, 1000);
         }
       });
 
-      return () => {
-        typed.destroy();
-      };
+      return () => typed.destroy();
     }
   }, []);
 
@@ -64,15 +156,9 @@ const Index = () => {
       github: "https://github.com/nikashs26/crashcast",
       devpost: "https://devpost.com/software/crashcast",
       award: "Winner ACM AWS/INRIX Hack 2025",
-      details: "Guided a team of four in a hackathon to develop a web application that identifies high-risk areas worldwide and displays nearby hospitals and ambulances, aiding hospitals to optimize dispatcher deployment, using AWS Lambda and INRIX data. Built a React and CSS frontend for a location-based emergency assistance app, featuring an interactive map with location search, real-time ambulance and accident urgency updates, and Help and About pages. Integrated backend to frontend by converting INRIX data to displayable JSON with coordinates and radii.",
-      features: [
-        "Interactive map with location search",
-        "Real-time ambulance tracking",
-        "Accident urgency updates",
-        "AWS Lambda integration",
-        "INRIX data visualization",
-        "Help and About pages"
-      ]
+      gradient: "from-emerald-500 to-teal-600",
+      details: "Guided a team of four in a hackathon to develop a web application that identifies high-risk areas worldwide and displays nearby hospitals and ambulances, aiding hospitals to optimize dispatcher deployment, using AWS Lambda and INRIX data.",
+      features: ["Interactive map with location search", "Real-time ambulance tracking", "Accident urgency updates", "AWS Lambda integration", "INRIX data visualization", "Help and About pages"]
     },
     {
       title: "Last Shot",
@@ -81,83 +167,53 @@ const Index = () => {
       devpost: "https://devpost.com/software/last-shot",
       live: "https://www.roblox.com/games/last-shot",
       award: "Winner ACM Roblox Game Jam 2025",
-      details: "Led team of five to develop a top-down zombie apocalypse adventure game, featuring strategic airship combat, narrative-driven gameplay, and a unique plot twist, all in just 3 days. Developed visual effects in Roblox Studio and scripted zombie AI with randomized pathing using Lua. Helped generate cinematic cutscenes and interactive camera controls to enhance storytelling and immersion. Overcame scripting and performance challenges by optimizing event triggers.",
-      features: [
-        "Strategic airship combat",
-        "Narrative-driven gameplay",
-        "Zombie AI with randomized pathing",
-        "Cinematic cutscenes",
-        "Interactive camera controls",
-        "Optimized event triggers"
-      ]
+      gradient: "from-red-500 to-orange-600",
+      details: "Led team of five to develop a top-down zombie apocalypse adventure game, featuring strategic airship combat, narrative-driven gameplay, and a unique plot twist, all in just 3 days.",
+      features: ["Strategic airship combat", "Narrative-driven gameplay", "Zombie AI with randomized pathing", "Cinematic cutscenes", "Interactive camera controls", "Optimized event triggers"]
     },
     {
       title: "Better Bulk",
       description: "Full-stack recipe management app with 1,000+ recipes and AI-powered meal planning",
-      tech: ["TypeScript", "Python", "React", "TailwindCSS", "Flask", "ChromaDB", "Lovable", "Cursor"],
+      tech: ["TypeScript", "Python", "React", "TailwindCSS", "Flask", "ChromaDB"],
       github: "https://github.com/nikashs26/full-stack-recipe",
       live: "https://better-bulk.vercel.app/",
       icon: "/lovable-uploads/618148c4-936d-47a3-8c77-35a7bdcf0843.png",
-      details: "Leveraged AI copilots (Lovable/Cursor) to build a full-stack recipe management application featuring 1,000+ recipes, with highly-rated recipe collections, personalized recommendations, preference-based agentic meal planning, shopping list generation, user reviews, and recipe-management folders. Designed responsive home and search page using React, TypeScript, and Tailwind CSS and a Flask backend with ChromaDB for recipe, review, and meal planner history storage and retrieval. Implemented an agent using LLMs (Ollama/HuggingFace) to generate custom weekly meal plans tailored to macros and dietary needs.",
-      features: [
-        "1,000+ recipe database",
-        "AI-powered meal planning agent",
-        "Shopping list generation",
-        "User reviews and ratings",
-        "Recipe management folders",
-        "Personalized recommendations"
-      ]
+      gradient: "from-violet-500 to-purple-600",
+      details: "Leveraged AI copilots to build a full-stack recipe management application featuring 1,000+ recipes, personalized recommendations, and AI-powered meal planning.",
+      features: ["1,000+ recipe database", "AI-powered meal planning agent", "Shopping list generation", "User reviews and ratings", "Recipe management folders", "Personalized recommendations"]
     },
     {
       title: "Simba's Surveillance",
       description: "Real-time Lion King-themed AI system to identify human trespassers",
       tech: ["HTML", "CSS", "React", "Python", "AI/ML"],
       github: "https://github.com/NickelR22/simbassurveillance",
-      devpost: "https://devpost.com/software/bobs-consulting?ref_content=my-projects-tab&ref_feature=my_projects",
+      devpost: "https://devpost.com/software/bobs-consulting",
       live: "https://simbassurveillance.vercel.app/",
       icon: "/lovable-uploads/1df91ec5-47e3-43bb-b6e9-77df008d698a.png",
-      details: "Designed a real-time Lion King-themed AI system to identify human trespassers in live-streamed footage. Built and styled responsive home and 'About' pages in React and CSS using a self-developed mockup. Integrated Python-based backend by retrieving and displaying JSON data in the frontend, including timestamps and images of detected trespassers.",
-      features: [
-        "Real-time video stream processing",
-        "AI-powered human detection",
-        "Live alerts and notifications",
-        "Wildlife protection dashboard",
-        "Historical data visualization",
-        "Mobile-responsive interface"
-      ]
+      gradient: "from-amber-500 to-yellow-600",
+      details: "Designed a real-time Lion King-themed AI system to identify human trespassers in live-streamed footage.",
+      features: ["Real-time video stream processing", "AI-powered human detection", "Live alerts and notifications", "Wildlife protection dashboard", "Historical data visualization", "Mobile-responsive interface"]
     },
     {
       title: "MintMarket",
       description: "End-to-end e-commerce platform for NFT buying and selling with simulated blockchain",
       tech: ["JavaScript", "HTML", "CSS", "Blockchain"],
       github: "https://github.com/nikashs26/mintmarket",
-      details: "Coordinated with a team of 3 to build a fully functional, end-to-end e-commerce platform for NFT buying and selling utilizing a simulated blockchain, strategic design for all pages, and no frameworks. Built the login, Q&A, and homepage, using HTML, CSS, and JS focusing on positive user experience. Implemented hashing for simulated blockchain in JavaScript.",
-      features: [
-        "NFT marketplace functionality",
-        "Simulated blockchain with hashing",
-        "User authentication system",
-        "Q&A section",
-        "Strategic page design",
-        "No framework dependency"
-      ]
+      gradient: "from-cyan-500 to-blue-600",
+      details: "Built a fully functional e-commerce platform for NFT buying and selling utilizing a simulated blockchain.",
+      features: ["NFT marketplace functionality", "Simulated blockchain with hashing", "User authentication system", "Q&A section", "Strategic page design", "No framework dependency"]
     },
     {
       title: "Peter Parks",
       description: "AWS/INRIX Hack 2024 Finalist - Real-time parking detection system",
-      tech: ["React", "CSS", "AWS", "INRIX API", "Real-time Data"],
+      tech: ["React", "CSS", "AWS", "INRIX API"],
       github: "https://github.com/nikashs26/AI-Hack-2024",
       devpost: "https://devpost.com/software/parking-kjx41u",
       award: "Finalist AWS/INRIX Hack 2024",
       icon: "/lovable-uploads/e0ea65b7-32bb-4430-a0d5-ffc1fd9eb25e.png",
-      details: "Led the frontend development team for an innovative web application that detects available parking spaces in real-time using AWS cloud services and INRIX traffic data APIs. Implemented a sophisticated user interface using JavaScript and CSS, with a primary focus on optimal user experience and accessibility. Coordinated extensively with the backend development team to seamlessly integrate frontend components with real-time parking data streams. The project achieved finalist status in the competitive AWS/INRIX Hack 2024, demonstrating technical excellence and practical application.",
-      features: [
-        "Real-time parking availability",
-        "Interactive city maps",
-        "Predictive parking analytics",
-        "Mobile-first design",
-        "AWS cloud integration",
-        "INRIX data visualization"
-      ]
+      gradient: "from-pink-500 to-rose-600",
+      details: "Led frontend development for a web application that detects available parking spaces in real-time using AWS cloud services and INRIX traffic data APIs.",
+      features: ["Real-time parking availability", "Interactive city maps", "Predictive parking analytics", "Mobile-first design", "AWS cloud integration", "INRIX data visualization"]
     },
     {
       title: "Math 13 Course Page",
@@ -166,15 +222,9 @@ const Index = () => {
       github: "https://github.com/nikashs26/Math-13-Smolarski-Page",
       live: "https://math-13-smolarski-page.vercel.app/static/index.html",
       icon: "/lovable-uploads/9f95cbc2-ef86-4ca7-962d-81a3231913a2.png",
-      details: "Conceptualized and led a collaborative team to completely recreate an SCU math professor's course webpage using modern HTML, CSS, and JavaScript technologies. Designed a contemporary, fully responsive interface with significantly improved functionality and enhanced user engagement features. Personally developed the Home and About Professor pages, while contributing innovative ideas for mockups and implementation strategies for all site sections. Focused extensively on enhancing accessibility standards, visual aesthetics, and interactive elements to dramatically improve the overall student learning experience.",
-      features: [
-        "Responsive course layout",
-        "Interactive assignment calendar",
-        "Student resource hub",
-        "Modern UI/UX design",
-        "Accessible navigation",
-        "Mobile optimization"
-      ]
+      gradient: "from-indigo-500 to-blue-600",
+      details: "Led a collaborative team to completely recreate an SCU math professor's course webpage using modern technologies.",
+      features: ["Responsive course layout", "Interactive assignment calendar", "Student resource hub", "Modern UI/UX design", "Accessible navigation", "Mobile optimization"]
     }
   ];
 
@@ -185,24 +235,26 @@ const Index = () => {
       period: "December 2025 - Present",
       location: "Santa Clara University",
       logo: "/lovable-uploads/0f4639f8-d264-4e57-a94e-208683190214.png",
+      gradient: "from-green-500 to-emerald-600",
       responsibilities: [
         "Designing and implementing blockchain-backed prototypes exploring decentralized identity, content ownership, and incentive alignment for NFT's",
         "Developing smart contract logic and integrated on-chain components with Chainlink functions",
-        "Researching Web3 protocols to inform system design decisions and avoid common scalability and security pitfalls"
+        "Researching Web3 protocols to inform system design decisions"
       ],
-      skills: ["Blockchain", "Smart Contracts", "Web3", "Chainlink", "Decentralized Identity", "NFTs", "Research"]
+      skills: ["Blockchain", "Smart Contracts", "Web3", "Chainlink", "NFTs", "Research"]
     },
     {
-      company: "Wave: Ripples to World Tides",
+      company: "Wave",
       role: "Founding Engineer",
       period: "November 2025 - Present",
       location: "Remote",
       logo: "/lovable-uploads/19205251-517b-45a4-ab4c-22599ea5b362.png",
+      gradient: "from-blue-500 to-cyan-600",
       responsibilities: [
-        "Leading frontend development for an early-stage social media startup building an app for users to select their interests (called waves), see content based on these waves, and post their own media to waves of their choice",
-        "Building production-ready user interfaces using React Native, TypeScript, and Tailwind CSS, focusing on performance and accessibility"
+        "Leading frontend development for an early-stage social media startup",
+        "Building production-ready user interfaces using React Native, TypeScript, and Tailwind CSS"
       ],
-      skills: ["React Native", "TypeScript", "Tailwind CSS", "Frontend Development", "Startup", "Mobile Development", "UI/UX"]
+      skills: ["React Native", "TypeScript", "Tailwind CSS", "Mobile Development", "UI/UX"]
     },
     {
       company: "Camp Galileo",
@@ -210,447 +262,554 @@ const Index = () => {
       period: "June 2024 - Aug 2024",
       location: "Saratoga, CA",
       logo: "/lovable-uploads/0f4639f8-d264-4e57-a94e-208683190214.png",
+      gradient: "from-orange-500 to-red-600",
       responsibilities: [
-        "Managed comprehensive hands-on office operations including creative poster design and systematic organization of camper shirts, name-tags, and lanyards for 200+ campers",
-        "Supervised diverse groups of children ages 5-13 in engaging STEAM classes and structured morning extended care sessions, ensuring educational value and safety",
-        "Assisted and directly oversaw counselors-in-training, helping them complete assigned tasks while teaching essential mentorship and leadership skills",
-        "Handled camper injuries through certified first-aid treatment protocols, ensuring campers remained safe while continuing to enjoy their camp experience"
+        "Managed operations for 200+ campers including poster design and organization",
+        "Supervised children ages 5-13 in STEAM classes",
+        "Mentored counselors-in-training"
       ],
-      skills: ["Leadership", "Child Safety", "Event Management", "Team Coordination", "First Aid", "Creative Design", "Organization", "Communication", "Problem Solving", "Mentoring"]
+      skills: ["Leadership", "Event Management", "Team Coordination", "First Aid", "Mentoring"]
     },
     {
       company: "TechKnowHow",
       role: "Assistant Instructor",
-      period: "May 2022 - Aug 2022, May 2023 - Aug 2023",
+      period: "May 2022 - Aug 2023",
       location: "Campbell/Saratoga, CA",
       logo: "/lovable-uploads/19205251-517b-45a4-ab4c-22599ea5b362.png",
+      gradient: "from-purple-500 to-pink-600",
       responsibilities: [
-        "Guided classes of 18-20 elementary and middle school students in comprehensive technology programs including Minecraft modding, Blockbench 3D modeling, LEGO robot-building, Roblox game development, and Scratch programming",
-        "Provided individualized assistance to students through their projects, answering technical questions and troubleshooting coding challenges",
-        "Directed extended care groups in diverse indoor and outdoor activities including strategic board games, educational videos, and supervised play structure activities",
-        "Maintained clean and organized classroom environments at the end of each day to ensure smooth camp operations and prompt daily startup"
+        "Guided classes of 18-20 students in technology programs including Minecraft modding and Roblox development",
+        "Provided individualized technical assistance"
       ],
-      skills: ["Teaching", "Programming Instruction", "Classroom Management", "Technical Support", "Youth Development", "Scratch Programming", "Minecraft Modding", "3D Modeling", "Game Development", "Patience", "Adaptability"]
+      skills: ["Teaching", "Programming Instruction", "Game Development", "Youth Development"]
     }
   ];
 
   const skillCategories = [
-    {
-      title: "Languages & Frameworks",
-      skills: ["Python", "Java", "C", "HTML", "CSS", "JavaScript", "Tailwind", "TypeScript", "Vite", "SQL", "React", "Flask"],
-      gradient: "from-blue-500 to-cyan-500"
-    },
-    {
-      title: "Tools & Productivity",
-      skills: ["GitHub", "Chrome DevTools", "VS Code", "PyCharm", "Pygame", "Netlify", "Railway", "Figma"],
-      gradient: "from-purple-500 to-pink-500"
-    },
-    {
-      title: "AI Tools",
-      skills: ["Lovable", "Bolt.new", "Cursor", "Claude", "WindSurf"],
-      gradient: "from-green-500 to-emerald-500"
-    },
-    {
-      title: "Interests",
-      skills: ["Full-stack Development", "Robotics", "Agentic Applications", "Game Design", "Human-Computer Interaction"],
-      gradient: "from-orange-500 to-red-500"
-    }
+    { title: "Languages & Frameworks", skills: ["Python", "Java", "C", "HTML", "CSS", "JavaScript", "TypeScript", "React", "Flask", "SQL"], gradient: "from-blue-500 to-cyan-500", icon: Code },
+    { title: "Tools & Productivity", skills: ["GitHub", "Chrome DevTools", "VS Code", "PyCharm", "Figma", "Netlify", "Railway"], gradient: "from-purple-500 to-pink-500", icon: Sparkles },
+    { title: "AI Tools", skills: ["Lovable", "Bolt.new", "Cursor", "Claude", "WindSurf"], gradient: "from-green-500 to-emerald-500", icon: Lightbulb },
+    { title: "Interests", skills: ["Full-stack Dev", "Robotics", "Agentic Apps", "Game Design", "HCI"], gradient: "from-orange-500 to-red-500", icon: Heart }
   ];
 
   const aboutMeData = {
     hobbies: [
-      { name: "Drawing", icon: Palette },
-      { name: "Gaming", icon: Gamepad2 },
-      { name: "Working Out", icon: Dumbbell },
-      { name: "Web Design", icon: Code }
+      { name: "Drawing", icon: Palette, color: "from-pink-500 to-rose-500" },
+      { name: "Gaming", icon: Gamepad2, color: "from-purple-500 to-indigo-500" },
+      { name: "Working Out", icon: Dumbbell, color: "from-green-500 to-emerald-500" },
+      { name: "Web Design", icon: Code, color: "from-blue-500 to-cyan-500" }
     ],
-    interests: [
-      "Full-stack Development",
-      "Robotics",
-      "Agentic Applications",
-      "Game Design",
-      "Human-Computer Interaction"
-    ],
-    favoriteSongs: [
-      "Down by Jay Sean",
-      "Down (w/o rap edit) by Jay Sean",
-      "Down Chasing Pluto Remix by Jay Sean"
-    ]
+    interests: ["Full-stack Development", "Robotics", "Agentic Applications", "Game Design", "Human-Computer Interaction"],
+    favoriteSongs: ["Down by Jay Sean", "Down (w/o rap edit) by Jay Sean", "Down Chasing Pluto Remix by Jay Sean"]
   };
 
+  const navLinks = ['about', 'education', 'skills', 'projects', 'experience', 'contact'];
+
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
-      {/* Sticky Navigation Bar with scroll effect */}
-      <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
-        navbarScrolled 
-          ? 'bg-white/90 backdrop-blur-md border-b border-white/20 shadow-sm' 
-          : 'bg-transparent'
-      }`}>
-        <div className="max-w-6xl mx-auto px-4 py-3">
+    <div className="min-h-screen bg-slate-950 text-white overflow-x-hidden">
+      {/* Progress bar */}
+      <motion.div 
+        className="fixed top-0 left-0 right-0 h-1 bg-gradient-to-r from-blue-500 via-purple-500 to-pink-500 origin-left z-[60]"
+        style={{ scaleX }}
+      />
+
+      {/* Sticky Navigation */}
+      <motion.nav 
+        className={`fixed top-0 left-0 right-0 z-50 transition-all duration-500 ${
+          navbarScrolled 
+            ? 'bg-slate-900/80 backdrop-blur-xl border-b border-white/10 shadow-2xl shadow-black/20' 
+            : 'bg-transparent'
+        }`}
+        initial={{ y: -100 }}
+        animate={{ y: 0 }}
+        transition={{ duration: 0.6 }}
+      >
+        <div className="max-w-7xl mx-auto px-6 py-4">
           <div className="flex justify-between items-center">
-            <div className={`font-semibold transition-colors duration-300 ${
-              navbarScrolled ? 'text-gray-800' : 'text-white'
-            }`}>
-              Nikash Shanbhag
-            </div>
-            <div className="hidden md:flex space-x-6">
-              <a href="#about" className={`transition-colors duration-300 ${
-                activeSection === 'about' 
-                  ? (navbarScrolled ? 'text-blue-600' : 'text-white') 
-                  : (navbarScrolled ? 'text-gray-600 hover:text-blue-600' : 'text-white/80 hover:text-white')
-              }`}>About</a>
-              <a href="#education" className={`transition-colors duration-300 ${
-                activeSection === 'education' 
-                  ? (navbarScrolled ? 'text-blue-600' : 'text-white') 
-                  : (navbarScrolled ? 'text-gray-600 hover:text-blue-600' : 'text-white/80 hover:text-white')
-              }`}>Education</a>
-              <a href="#skills" className={`transition-colors duration-300 ${
-                activeSection === 'skills' 
-                  ? (navbarScrolled ? 'text-blue-600' : 'text-white') 
-                  : (navbarScrolled ? 'text-gray-600 hover:text-blue-600' : 'text-white/80 hover:text-white')
-              }`}>Skills</a>
-              <a href="#projects" className={`transition-colors duration-300 ${
-                activeSection === 'projects' 
-                  ? (navbarScrolled ? 'text-blue-600' : 'text-white') 
-                  : (navbarScrolled ? 'text-gray-600 hover:text-blue-600' : 'text-white/80 hover:text-white')
-              }`}>Projects</a>
-              <a href="#experience" className={`transition-colors duration-300 ${
-                activeSection === 'experience' 
-                  ? (navbarScrolled ? 'text-blue-600' : 'text-white') 
-                  : (navbarScrolled ? 'text-gray-600 hover:text-blue-600' : 'text-white/80 hover:text-white')
-              }`}>Experience</a>
-              <a href="#contact" className={`transition-colors duration-300 ${
-                activeSection === 'contact' 
-                  ? (navbarScrolled ? 'text-blue-600' : 'text-white') 
-                  : (navbarScrolled ? 'text-gray-600 hover:text-blue-600' : 'text-white/80 hover:text-white')
-              }`}>Contact</a>
+            <motion.div 
+              className="font-bold text-xl bg-gradient-to-r from-blue-400 to-purple-400 bg-clip-text text-transparent"
+              whileHover={{ scale: 1.05 }}
+            >
+              NS
+            </motion.div>
+            <div className="hidden md:flex items-center gap-8">
+              {navLinks.map((link) => (
+                <motion.a 
+                  key={link}
+                  href={`#${link}`} 
+                  className={`relative text-sm font-medium transition-colors capitalize ${
+                    activeSection === link ? 'text-white' : 'text-gray-400 hover:text-white'
+                  }`}
+                  whileHover={{ y: -2 }}
+                >
+                  {link}
+                  {activeSection === link && (
+                    <motion.div 
+                      className="absolute -bottom-1 left-0 right-0 h-0.5 bg-gradient-to-r from-blue-500 to-purple-500"
+                      layoutId="activeSection"
+                    />
+                  )}
+                </motion.a>
+              ))}
             </div>
           </div>
         </div>
-      </nav>
+      </motion.nav>
 
-      {/* Hero Section with Custom Backdrop */}
-      <section className="relative min-h-screen flex items-center justify-center px-4 overflow-hidden pt-16">
-        {/* Custom Image Backdrop */}
-        <div className="absolute inset-0 z-0">
+      {/* Hero Section */}
+      <motion.section 
+        ref={heroRef}
+        className="relative min-h-screen flex items-center justify-center px-4 overflow-hidden"
+        style={{ opacity: heroOpacity, scale: heroScale }}
+      >
+        {/* Animated gradient background */}
+        <div className="absolute inset-0 animated-gradient opacity-30" />
+        
+        {/* Floating particles */}
+        <FloatingParticles />
+        
+        {/* Custom backdrop with overlay */}
+        <div className="absolute inset-0">
           <img 
             src="/lovable-uploads/63ac8832-661a-4ccc-ae0a-847202e073e9.png" 
-            alt="Beautiful cityscape backdrop"
-            className="w-full h-full object-cover"
+            alt="Cityscape backdrop"
+            className="w-full h-full object-cover opacity-40"
           />
-          {/* Increased overlay opacity for better readability */}
-          <div className="absolute inset-0 bg-black/50"></div>
+          <div className="absolute inset-0 bg-gradient-to-b from-slate-950/50 via-slate-950/70 to-slate-950" />
         </div>
 
-        <div className="text-center max-w-4xl mx-auto relative z-10">
-          <div className="mb-8 backdrop-blur-sm bg-white/30 rounded-2xl p-8 border border-white/40">
-            <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-white via-blue-100 to-white bg-clip-text text-transparent mb-4 drop-shadow-2xl leading-tight py-4">
-              <span ref={nameRef}></span>
+        <div className="text-center max-w-5xl mx-auto relative z-10 pt-20">
+          <motion.div
+            initial={{ opacity: 0, y: 40 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ duration: 1, delay: 0.2 }}
+          >
+            {/* Glowing badge */}
+            <motion.div 
+              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm mb-8"
+              initial={{ opacity: 0, scale: 0.8 }}
+              animate={{ opacity: 1, scale: 1 }}
+              transition={{ delay: 0.5 }}
+            >
+              <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
+              <span className="text-sm text-gray-300">Available for opportunities</span>
+            </motion.div>
+
+            {/* Main heading */}
+            <h1 className="text-6xl md:text-8xl font-black mb-6 leading-none">
+              <span className="bg-gradient-to-r from-white via-blue-100 to-white bg-clip-text text-transparent">
+                <span ref={nameRef}></span>
+              </span>
             </h1>
-            <p className="text-xl md:text-2xl text-white mb-6 drop-shadow-lg font-semibold">
+            
+            <motion.p 
+              className="text-2xl md:text-3xl font-light text-gray-300 mb-4"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 0.8 }}
+            >
               Web Design & Engineering Student
-            </p>
-            <p className="text-lg text-white max-w-2xl mx-auto mb-8 drop-shadow-md font-medium">
-              Passionate about creating user-friendly websites and applications by blending technical proficiency with creative design and aesthetics. Experienced in full-stack development, AI integration, and modern web technologies.
-            </p>
-          </div>
+            </motion.p>
+            
+            <motion.p 
+              className="text-lg text-gray-400 max-w-2xl mx-auto mb-12 leading-relaxed"
+              initial={{ opacity: 0 }}
+              animate={{ opacity: 1 }}
+              transition={{ delay: 1 }}
+            >
+              Crafting elegant digital experiences through full-stack development, 
+              AI integration, and creative design. Currently studying at Santa Clara University.
+            </motion.p>
+          </motion.div>
           
-          <div className="flex flex-wrap justify-center gap-4 mb-8">
-            <Button variant="outline" className="gap-3 bg-white/40 border-white/50 text-white hover:bg-white/50 backdrop-blur-sm shadow-lg text-base px-6 py-3 font-semibold">
-              <Phone className="w-5 h-5" />
-              (408) 656-8424
-            </Button>
-            <Button variant="outline" className="gap-3 bg-white/40 border-white/50 text-white hover:bg-white/50 backdrop-blur-sm shadow-lg text-base px-6 py-3 font-semibold">
-              <Mail className="w-5 h-5" />
+          {/* CTA Buttons */}
+          <motion.div 
+            className="flex flex-wrap justify-center gap-4 mb-16"
+            initial={{ opacity: 0, y: 20 }}
+            animate={{ opacity: 1, y: 0 }}
+            transition={{ delay: 1.2 }}
+          >
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <Button asChild size="lg" className="gap-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 border-0 shadow-lg shadow-blue-500/25 text-lg px-8 py-6">
+                <a href="https://www.linkedin.com/in/nikash-shanbhag-a05931250/" target="_blank" rel="noopener noreferrer">
+                  <Linkedin className="w-5 h-5" />
+                  Connect on LinkedIn
+                </a>
+              </Button>
+            </motion.div>
+            <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+              <Button asChild size="lg" variant="outline" className="gap-3 border-white/20 bg-white/5 backdrop-blur-sm hover:bg-white/10 text-lg px-8 py-6">
+                <a href="https://github.com/nikashs26" target="_blank" rel="noopener noreferrer">
+                  <Github className="w-5 h-5" />
+                  View GitHub
+                </a>
+              </Button>
+            </motion.div>
+          </motion.div>
+
+          {/* Contact pills */}
+          <motion.div 
+            className="flex flex-wrap justify-center gap-3"
+            initial={{ opacity: 0 }}
+            animate={{ opacity: 1 }}
+            transition={{ delay: 1.4 }}
+          >
+            <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm text-gray-400">
+              <Mail className="w-4 h-4" />
               ngshanbhag@scu.edu
-            </Button>
-          </div>
-          
-          <div className="flex justify-center gap-4">
-            <Button asChild className="gap-3 bg-blue-600/90 hover:bg-blue-700/90 backdrop-blur-sm border border-white/20 shadow-lg text-base px-6 py-3">
-              <a href="https://www.linkedin.com/in/nikash-shanbhag-a05931250/" target="_blank" rel="noopener noreferrer">
-                <Linkedin className="w-5 h-5" />
-                LinkedIn
-              </a>
-            </Button>
-            <Button asChild className="gap-3 bg-black/90 hover:bg-gray-800/90 backdrop-blur-sm border border-white/20 shadow-lg text-base px-6 py-3 text-white">
-              <a href="https://github.com/nikashs26" target="_blank" rel="noopener noreferrer">
-                <Github className="w-5 h-5" />
-                GitHub
-              </a>
-            </Button>
-          </div>
+            </div>
+            <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm text-gray-400">
+              <Phone className="w-4 h-4" />
+              (408) 656-8424
+            </div>
+          </motion.div>
         </div>
-      </section>
+
+        {/* Scroll indicator */}
+        <motion.div 
+          className="absolute bottom-8 left-1/2 -translate-x-1/2"
+          animate={{ y: [0, 10, 0] }}
+          transition={{ duration: 2, repeat: Infinity }}
+        >
+          <ArrowDown className="w-6 h-6 text-gray-500" />
+        </motion.div>
+      </motion.section>
 
       {/* About Me Section */}
-      <section id="about" className="py-20 px-4 bg-gradient-to-br from-blue-50 to-indigo-100">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
-            About Me
-          </h2>
+      <section id="about" className="py-32 px-4 relative">
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950" />
+        <div className="max-w-7xl mx-auto relative z-10">
+          <AnimatedSection>
+            <div className="text-center mb-20">
+              <h2 className="text-5xl md:text-6xl font-bold mb-6">
+                <span className="bg-gradient-to-r from-blue-400 via-purple-400 to-pink-400 bg-clip-text text-transparent">
+                  About Me
+                </span>
+              </h2>
+              <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+                Passionate about building things that live on the internet
+              </p>
+            </div>
+          </AnimatedSection>
           
           <div className="grid md:grid-cols-3 gap-8">
             {/* Hobbies */}
-            <Card className="group hover:shadow-xl transition-all duration-300 hover:scale-105">
-              <CardContent className="p-8 text-center">
-                <div className="w-16 h-16 bg-gradient-to-br from-pink-500 to-rose-500 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
-                  <Heart className="w-8 h-8 text-white" />
-                </div>
-                <h3 className="text-xl font-bold mb-6 text-gray-800">Hobbies</h3>
-                <div className="space-y-4">
-                  {aboutMeData.hobbies.map((hobby, index) => (
-                    <div key={index} className="flex items-center gap-3 p-3 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors">
-                      <hobby.icon className="w-5 h-5 text-blue-600" />
-                      <span className="text-gray-700 font-medium">{hobby.name}</span>
+            <AnimatedSection delay={0.1}>
+              <TiltCard>
+                <Card className="h-full bg-gradient-to-br from-slate-800/50 to-slate-900/50 border-white/10 backdrop-blur-xl overflow-hidden group">
+                  <CardContent className="p-8">
+                    <motion.div 
+                      className="w-16 h-16 bg-gradient-to-br from-pink-500 to-rose-500 rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-pink-500/25"
+                      whileHover={{ rotate: 360 }}
+                      transition={{ duration: 0.6 }}
+                    >
+                      <Heart className="w-8 h-8 text-white" />
+                    </motion.div>
+                    <h3 className="text-2xl font-bold mb-6 text-white">Hobbies</h3>
+                    <div className="space-y-3">
+                      {aboutMeData.hobbies.map((hobby, index) => (
+                        <motion.div 
+                          key={index} 
+                          className={`flex items-center gap-3 p-4 rounded-xl bg-gradient-to-r ${hobby.color} bg-opacity-10 border border-white/5`}
+                          whileHover={{ x: 10, scale: 1.02 }}
+                        >
+                          <hobby.icon className="w-5 h-5 text-white" />
+                          <span className="text-gray-200 font-medium">{hobby.name}</span>
+                        </motion.div>
+                      ))}
                     </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
+                  </CardContent>
+                </Card>
+              </TiltCard>
+            </AnimatedSection>
 
             {/* Interests */}
-            <Card className="group hover:shadow-xl transition-all duration-300 hover:scale-105">
-              <CardContent className="p-8 text-center">
-                <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-indigo-500 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
-                  <Lightbulb className="w-8 h-8 text-white" />
-                </div>
-                <h3 className="text-xl font-bold mb-6 text-gray-800">Interests</h3>
-                <div className="space-y-3">
-                  {aboutMeData.interests.map((interest, index) => (
-                    <div key={index} className="p-3 rounded-lg bg-purple-50 hover:bg-purple-100 transition-colors">
-                      <span className="text-purple-700 font-medium">{interest}</span>
+            <AnimatedSection delay={0.2}>
+              <TiltCard>
+                <Card className="h-full bg-gradient-to-br from-slate-800/50 to-slate-900/50 border-white/10 backdrop-blur-xl overflow-hidden">
+                  <CardContent className="p-8">
+                    <motion.div 
+                      className="w-16 h-16 bg-gradient-to-br from-purple-500 to-indigo-500 rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-purple-500/25"
+                      whileHover={{ rotate: 360 }}
+                      transition={{ duration: 0.6 }}
+                    >
+                      <Lightbulb className="w-8 h-8 text-white" />
+                    </motion.div>
+                    <h3 className="text-2xl font-bold mb-6 text-white">Interests</h3>
+                    <div className="space-y-3">
+                      {aboutMeData.interests.map((interest, index) => (
+                        <motion.div 
+                          key={index} 
+                          className="p-4 rounded-xl bg-purple-500/10 border border-purple-500/20"
+                          whileHover={{ x: 10, scale: 1.02 }}
+                        >
+                          <span className="text-purple-200 font-medium">{interest}</span>
+                        </motion.div>
+                      ))}
                     </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
+                  </CardContent>
+                </Card>
+              </TiltCard>
+            </AnimatedSection>
 
             {/* Favorite Songs */}
-            <Card className="group hover:shadow-xl transition-all duration-300 hover:scale-105">
-              <CardContent className="p-8 text-center">
-                <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-500 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
-                  <Music className="w-8 h-8 text-white" />
-                </div>
-                <h3 className="text-xl font-bold mb-6 text-gray-800">Favorite Songs</h3>
-                <div className="space-y-3">
-                  {aboutMeData.favoriteSongs.map((song, index) => (
-                    <div key={index} className="p-3 rounded-lg bg-green-50 hover:bg-green-100 transition-colors">
-                      <span className="text-green-700 font-medium">{song}</span>
+            <AnimatedSection delay={0.3}>
+              <TiltCard>
+                <Card className="h-full bg-gradient-to-br from-slate-800/50 to-slate-900/50 border-white/10 backdrop-blur-xl overflow-hidden">
+                  <CardContent className="p-8">
+                    <motion.div 
+                      className="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-500 rounded-2xl flex items-center justify-center mb-6 shadow-lg shadow-green-500/25"
+                      whileHover={{ rotate: 360 }}
+                      transition={{ duration: 0.6 }}
+                    >
+                      <Music className="w-8 h-8 text-white" />
+                    </motion.div>
+                    <h3 className="text-2xl font-bold mb-6 text-white">Favorite Songs</h3>
+                    <div className="space-y-3">
+                      {aboutMeData.favoriteSongs.map((song, index) => (
+                        <motion.div 
+                          key={index} 
+                          className="p-4 rounded-xl bg-green-500/10 border border-green-500/20"
+                          whileHover={{ x: 10, scale: 1.02 }}
+                        >
+                          <span className="text-green-200 font-medium">{song}</span>
+                        </motion.div>
+                      ))}
                     </div>
-                  ))}
-                </div>
-              </CardContent>
-            </Card>
+                  </CardContent>
+                </Card>
+              </TiltCard>
+            </AnimatedSection>
           </div>
         </div>
       </section>
 
       {/* Education Section */}
-      <section id="education" className="py-20 px-4">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
-            Education
-          </h2>
-          <Card className="max-w-4xl mx-auto">
-            <CardContent className="p-8">
-              <div className="flex items-start gap-4">
-                <div className="w-16 h-16 bg-transparent rounded-lg flex items-center justify-center">
-                  <img 
-                    src="/lovable-uploads/97a30479-ded2-4573-a26c-0a29d4c523ea.png" 
-                    alt="Santa Clara University Logo"
-                    className="w-full h-full object-contain"
-                  />
-                </div>
-                <div className="flex-1">
-                  <h3 className="text-xl font-semibold">Santa Clara University</h3>
-                  <p className="text-lg text-blue-600 mb-2">B.S. in Web Design and Engineering, Responsible AI</p>
-                  <div className="flex items-center gap-2 text-gray-500 mb-4">
-                    <Calendar className="w-4 h-4" />
-                    Sept 2024 - Dec 2027
-                  </div>
-                  
-                  <div className="space-y-4">
-                    <div>
-                      <h4 className="font-medium mb-2">Relevant Courses:</h4>
-                      <div className="flex flex-wrap gap-2">
-                        {[
-                          "Web Development",
-                          "Web Usability",
-                          "Advanced Programming",
-                          "Introduction to Web Technologies", 
-                          "Abstract Data Types and Data Structures",
-                          "Computer Networks",
-                          "Probability and Statistics",
-                          "Web Information Management",
-                          "Basic Digital Imaging",
-                          "Ethics in Technology"
-                        ].map((course) => (
-                          <Badge key={course} variant="secondary">{course}</Badge>
-                        ))}
-                      </div>
-                    </div>
-                    
-                    <div>
-                      <h4 className="font-medium mb-2">Activities:</h4>
-                      <div className="flex items-center gap-2">
-                        <Users className="w-4 h-4 text-blue-600" />
-                        <span>Association for Computing Machinery (ACM)</span>
-                      </div>
-                    </div>
-                  </div>
-                </div>
-              </div>
-            </CardContent>
-          </Card>
-        </div>
-      </section>
+      <section id="education" className="py-32 px-4 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-950 to-slate-900" />
+        <div className="max-w-4xl mx-auto relative z-10">
+          <AnimatedSection>
+            <div className="text-center mb-16">
+              <h2 className="text-5xl md:text-6xl font-bold mb-6">
+                <span className="bg-gradient-to-r from-green-400 to-emerald-400 bg-clip-text text-transparent">
+                  Education
+                </span>
+              </h2>
+            </div>
+          </AnimatedSection>
 
-      {/* Skills Section - Simplified */}
-      <section id="skills" className="py-20 px-4 bg-gray-50">
-        <div className="max-w-6xl mx-auto">
-          <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-6 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
-              Skills
-            </h2>
-            <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
-              A comprehensive toolkit of technologies and skills I use to build modern, scalable applications
-            </p>
-          </div>
-          
-          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
-            {skillCategories.map((category, index) => (
-              <Card key={category.title} className="group hover:shadow-lg transition-all duration-300 hover:scale-105">
-                <CardContent className="p-6">
-                  <div className="flex items-center gap-4 mb-6">
-                    <div className={`w-12 h-12 bg-gradient-to-r ${category.gradient} rounded-lg flex items-center justify-center group-hover:scale-110 transition-transform duration-300`}>
-                      <Code className="w-6 h-6 text-white" />
+          <AnimatedSection delay={0.2}>
+            <TiltCard>
+              <Card className="bg-gradient-to-br from-slate-800/80 to-slate-900/80 border-white/10 backdrop-blur-xl overflow-hidden">
+                <CardContent className="p-10">
+                  <div className="flex flex-col md:flex-row items-start gap-6">
+                    <motion.div 
+                      className="w-20 h-20 rounded-2xl overflow-hidden bg-white/10 p-2 flex-shrink-0"
+                      whileHover={{ scale: 1.1, rotate: 5 }}
+                    >
+                      <img 
+                        src="/lovable-uploads/97a30479-ded2-4573-a26c-0a29d4c523ea.png" 
+                        alt="Santa Clara University Logo"
+                        className="w-full h-full object-contain"
+                      />
+                    </motion.div>
+                    <div className="flex-1">
+                      <h3 className="text-2xl font-bold text-white mb-2">Santa Clara University</h3>
+                      <p className="text-xl text-blue-400 mb-3">B.S. in Web Design and Engineering, Responsible AI</p>
+                      <div className="flex items-center gap-2 text-gray-400 mb-6">
+                        <Calendar className="w-4 h-4" />
+                        Sept 2024 - Dec 2027
+                      </div>
+                      
+                      <div className="space-y-6">
+                        <div>
+                          <h4 className="font-semibold text-gray-300 mb-3">Relevant Courses</h4>
+                          <div className="flex flex-wrap gap-2">
+                            {["Web Development", "Web Usability", "Advanced Programming", "Data Structures", "Computer Networks", "Probability & Statistics", "Web Information Management", "Digital Imaging", "Ethics in Technology"].map((course) => (
+                              <motion.div key={course} whileHover={{ scale: 1.05 }}>
+                                <Badge variant="secondary" className="bg-white/10 border-white/20 text-gray-300 hover:bg-white/20">
+                                  {course}
+                                </Badge>
+                              </motion.div>
+                            ))}
+                          </div>
+                        </div>
+                        
+                        <div className="flex items-center gap-3 p-4 rounded-xl bg-blue-500/10 border border-blue-500/20">
+                          <Users className="w-5 h-5 text-blue-400" />
+                          <span className="text-gray-300">Association for Computing Machinery (ACM)</span>
+                        </div>
+                      </div>
                     </div>
-                    <h3 className="text-lg font-bold text-gray-800">
-                      {category.title}
-                    </h3>
-                  </div>
-                  
-                  <div className="flex flex-wrap gap-2">
-                    {category.skills.map((skill, skillIndex) => (
-                      <Badge 
-                        key={skill}
-                        variant="secondary" 
-                        className="text-sm hover:bg-gray-200 transition-colors cursor-default"
-                      >
-                        {skill}
-                      </Badge>
-                    ))}
                   </div>
                 </CardContent>
               </Card>
+            </TiltCard>
+          </AnimatedSection>
+        </div>
+      </section>
+
+      {/* Skills Section */}
+      <section id="skills" className="py-32 px-4 relative">
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-900 via-slate-950 to-slate-900" />
+        <div className="max-w-7xl mx-auto relative z-10">
+          <AnimatedSection>
+            <div className="text-center mb-20">
+              <h2 className="text-5xl md:text-6xl font-bold mb-6">
+                <span className="bg-gradient-to-r from-purple-400 via-pink-400 to-red-400 bg-clip-text text-transparent">
+                  Skills
+                </span>
+              </h2>
+              <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+                Technologies and tools I use to bring ideas to life
+              </p>
+            </div>
+          </AnimatedSection>
+          
+          <div className="grid md:grid-cols-2 lg:grid-cols-4 gap-6">
+            {skillCategories.map((category, index) => (
+              <AnimatedSection key={category.title} delay={index * 0.1}>
+                <TiltCard className="h-full">
+                  <Card className="h-full bg-gradient-to-br from-slate-800/50 to-slate-900/50 border-white/10 backdrop-blur-xl overflow-hidden group hover:border-white/20 transition-colors">
+                    <CardContent className="p-6">
+                      <motion.div 
+                        className={`w-14 h-14 bg-gradient-to-r ${category.gradient} rounded-xl flex items-center justify-center mb-5 shadow-lg`}
+                        whileHover={{ scale: 1.1, rotate: 10 }}
+                      >
+                        <category.icon className="w-7 h-7 text-white" />
+                      </motion.div>
+                      <h3 className="text-lg font-bold text-white mb-4">{category.title}</h3>
+                      <div className="flex flex-wrap gap-2">
+                        {category.skills.map((skill) => (
+                          <motion.div key={skill} whileHover={{ scale: 1.1 }}>
+                            <Badge className="bg-white/10 border-white/10 text-gray-300 hover:bg-white/20 cursor-default">
+                              {skill}
+                            </Badge>
+                          </motion.div>
+                        ))}
+                      </div>
+                    </CardContent>
+                  </Card>
+                </TiltCard>
+              </AnimatedSection>
             ))}
           </div>
         </div>
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="py-20 px-4 relative overflow-hidden">
-        {/* Background Image */}
-        <div className="absolute inset-0 z-0">
-          <img 
-            src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=2000&q=80" 
-            alt="Programming code background"
-            className="w-full h-full object-cover"
-          />
-          {/* Dark overlay for text readability */}
-          <div className="absolute inset-0 bg-black/60"></div>
-        </div>
-        
-        <div className="max-w-6xl mx-auto relative z-10">
-          <h2 className="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-orange-400 to-red-500 bg-clip-text text-transparent">
-            Featured Projects
-          </h2>
-          <div className="grid md:grid-cols-2 gap-8">
+      <section id="projects" className="py-32 px-4 relative overflow-hidden">
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-900 to-slate-950" />
+        <div className="max-w-7xl mx-auto relative z-10">
+          <AnimatedSection>
+            <div className="text-center mb-20">
+              <h2 className="text-5xl md:text-6xl font-bold mb-6">
+                <span className="bg-gradient-to-r from-orange-400 via-red-400 to-pink-400 bg-clip-text text-transparent">
+                  Featured Projects
+                </span>
+              </h2>
+              <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+                A collection of my recent work and hackathon wins
+              </p>
+            </div>
+          </AnimatedSection>
+
+          <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
             {projects.map((project, index) => (
-              <Card key={index} className="group hover:shadow-lg transition-shadow relative overflow-hidden h-full bg-white/95 backdrop-blur-sm">
-                {/* Award Badge for projects */}
-                {project.award && (
-                  <div className="absolute top-4 right-4 z-10">
-                    <Badge variant="default" className={`gap-1 font-semibold ${
-                      project.award.includes("Winner") 
-                        ? "bg-green-500 hover:bg-green-600 text-white" 
-                        : "bg-yellow-500 hover:bg-yellow-600 text-yellow-900"
-                    }`}>
-                      <Award className="w-3 h-3" />
-                      {project.award.includes("Winner") ? "Winner" : "Finalist"}
-                    </Badge>
-                  </div>
-                )}
-                
-                <CardContent className="p-6 h-full flex flex-col">
-                  {/* Project Icon */}
-                  {project.icon && (
-                    <div className="flex justify-center mb-6">
-                      <div className="w-28 h-28 group-hover:scale-110 transition-transform duration-300">
-                        <img 
-                          src={project.icon} 
-                          alt={`${project.title} icon`}
-                          className="w-full h-full object-contain"
-                        />
+              <AnimatedSection key={index} delay={index * 0.1}>
+                <TiltCard className="h-full">
+                  <Card className="h-full bg-gradient-to-br from-slate-800/50 to-slate-900/50 border-white/10 backdrop-blur-xl overflow-hidden group hover:border-white/20 transition-all duration-300">
+                    {/* Award badge */}
+                    {project.award && (
+                      <div className="absolute top-4 right-4 z-10">
+                        <motion.div
+                          initial={{ scale: 0 }}
+                          animate={{ scale: 1 }}
+                          transition={{ delay: 0.5 + index * 0.1, type: "spring" }}
+                        >
+                          <Badge className={`gap-1 font-semibold shadow-lg ${
+                            project.award.includes("Winner") 
+                              ? "bg-gradient-to-r from-green-500 to-emerald-500 text-white border-0" 
+                              : "bg-gradient-to-r from-yellow-500 to-orange-500 text-white border-0"
+                          }`}>
+                            <Award className="w-3 h-3" />
+                            {project.award.includes("Winner") ? "Winner" : "Finalist"}
+                          </Badge>
+                        </motion.div>
                       </div>
-                    </div>
-                  )}
-                  
-                  <div className="flex-1 flex flex-col">
-                    <div className="flex items-center justify-center gap-2 mb-4">
-                      <h3 className="text-xl font-semibold group-hover:text-blue-600 transition-colors text-center">
+                    )}
+                    
+                    <CardContent className="p-6 h-full flex flex-col">
+                      {/* Gradient header bar */}
+                      <div className={`h-1 w-full bg-gradient-to-r ${project.gradient} rounded-full mb-6`} />
+                      
+                      {/* Icon */}
+                      {project.icon && (
+                        <motion.div 
+                          className="flex justify-center mb-6"
+                          whileHover={{ scale: 1.1, rotate: 5 }}
+                        >
+                          <img 
+                            src={project.icon} 
+                            alt={`${project.title} icon`}
+                            className="w-20 h-20 object-contain"
+                          />
+                        </motion.div>
+                      )}
+                      
+                      <h3 className="text-xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors">
                         {project.title}
                       </h3>
-                    </div>
-                    
-                    <p className="text-gray-600 mb-4 text-center">{project.description}</p>
-                    
-                    <div className="flex flex-wrap justify-center gap-2 mb-6">
-                      {project.tech.map((tech) => (
-                        <Badge key={tech} variant="secondary">{tech}</Badge>
-                      ))}
-                    </div>
-                    
-                    {/* Spacer to push button to bottom */}
-                    <div className="flex-1"></div>
-                    
-                    <div className="mt-4">
+                      <p className="text-gray-400 mb-4 text-sm flex-grow">{project.description}</p>
+                      
+                      <div className="flex flex-wrap gap-2 mb-6">
+                        {project.tech.slice(0, 4).map((tech) => (
+                          <Badge key={tech} variant="secondary" className="bg-white/5 border-white/10 text-gray-400 text-xs">
+                            {tech}
+                          </Badge>
+                        ))}
+                        {project.tech.length > 4 && (
+                          <Badge variant="secondary" className="bg-white/5 border-white/10 text-gray-400 text-xs">
+                            +{project.tech.length - 4}
+                          </Badge>
+                        )}
+                      </div>
+                      
                       <Dialog>
                         <DialogTrigger asChild>
-                          <Button variant="outline" className="w-full">
+                          <Button variant="outline" className="w-full border-white/20 bg-white/5 hover:bg-white/10 text-white">
                             View Details
                           </Button>
                         </DialogTrigger>
-                        <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto">
+                        <DialogContent className="max-w-4xl max-h-[80vh] overflow-y-auto bg-slate-900 border-white/10">
                           <DialogHeader>
-                            <DialogTitle className="flex items-center gap-2">
+                            <DialogTitle className="flex items-center gap-3 text-2xl text-white">
                               {project.title}
                               {project.award && (
-                                <Badge variant="default" className="gap-1">
+                                <Badge className={`gap-1 ${project.award.includes("Winner") ? "bg-green-500" : "bg-yellow-500"}`}>
                                   <Award className="w-3 h-3" />
-                                  Finalist
+                                  {project.award.includes("Winner") ? "Winner" : "Finalist"}
                                 </Badge>
                               )}
                             </DialogTitle>
-                            <DialogDescription>
-                              Detailed project information and features
+                            <DialogDescription className="text-gray-400">
+                              Project details and features
                             </DialogDescription>
                           </DialogHeader>
-                          <div className="space-y-6">
+                          <div className="space-y-6 mt-4">
                             <div>
-                              <h4 className="font-medium mb-2">Project Description:</h4>
-                              <p className="text-gray-600">{project.details}</p>
+                              <h4 className="font-semibold text-white mb-2">Description</h4>
+                              <p className="text-gray-400">{project.details}</p>
                             </div>
                             
                             {project.features && (
                               <div>
-                                <h4 className="font-medium mb-2">Key Features:</h4>
-                                <ul className="space-y-1">
+                                <h4 className="font-semibold text-white mb-2">Key Features</h4>
+                                <ul className="grid md:grid-cols-2 gap-2">
                                   {project.features.map((feature, idx) => (
                                     <li key={idx} className="flex items-start gap-2">
                                       <Star className="w-4 h-4 text-yellow-500 mt-0.5 flex-shrink-0" />
-                                      <span className="text-gray-600">{feature}</span>
+                                      <span className="text-gray-400">{feature}</span>
                                     </li>
                                   ))}
                                 </ul>
@@ -658,36 +817,35 @@ const Index = () => {
                             )}
                             
                             <div>
-                              <h4 className="font-medium mb-2">Technologies Used:</h4>
+                              <h4 className="font-semibold text-white mb-2">Technologies</h4>
                               <div className="flex flex-wrap gap-2">
                                 {project.tech.map((tech) => (
-                                  <Badge key={tech} variant="secondary">{tech}</Badge>
+                                  <Badge key={tech} variant="secondary" className="bg-white/10 text-gray-300">
+                                    {tech}
+                                  </Badge>
                                 ))}
                               </div>
                             </div>
                             
-                            <div className="flex flex-wrap gap-2">
+                            <div className="flex flex-wrap gap-3 pt-4">
                               {project.github && (
-                                <Button asChild variant="outline" size="sm" className="gap-2">
+                                <Button asChild variant="outline" size="sm" className="gap-2 border-white/20 bg-white/5 hover:bg-white/10">
                                   <a href={project.github} target="_blank" rel="noopener noreferrer">
-                                    <Github className="w-4 h-4" />
-                                    GitHub
+                                    <Github className="w-4 h-4" /> GitHub
                                   </a>
                                 </Button>
                               )}
                               {project.live && (
-                                <Button asChild size="sm" className="gap-2">
+                                <Button asChild size="sm" className="gap-2 bg-gradient-to-r from-blue-600 to-purple-600">
                                   <a href={project.live} target="_blank" rel="noopener noreferrer">
-                                    <ExternalLink className="w-4 h-4" />
-                                    Live Demo
+                                    <ExternalLink className="w-4 h-4" /> Live Demo
                                   </a>
                                 </Button>
                               )}
                               {project.devpost && (
-                                <Button asChild variant="outline" size="sm" className="gap-2">
+                                <Button asChild variant="outline" size="sm" className="gap-2 border-white/20 bg-white/5 hover:bg-white/10">
                                   <a href={project.devpost} target="_blank" rel="noopener noreferrer">
-                                    <ExternalLink className="w-4 h-4" />
-                                    DevPost
+                                    <ExternalLink className="w-4 h-4" /> DevPost
                                   </a>
                                 </Button>
                               )}
@@ -695,133 +853,170 @@ const Index = () => {
                           </div>
                         </DialogContent>
                       </Dialog>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+                    </CardContent>
+                  </Card>
+                </TiltCard>
+              </AnimatedSection>
             ))}
           </div>
         </div>
       </section>
 
       {/* Experience Section */}
-      <section id="experience" className="py-20 px-4 bg-white">
-        <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-indigo-600 to-blue-600 bg-clip-text text-transparent">
-            Professional Experience
-          </h2>
+      <section id="experience" className="py-32 px-4 relative">
+        <div className="absolute inset-0 bg-gradient-to-b from-slate-950 via-slate-900 to-slate-950" />
+        <div className="max-w-5xl mx-auto relative z-10">
+          <AnimatedSection>
+            <div className="text-center mb-20">
+              <h2 className="text-5xl md:text-6xl font-bold mb-6">
+                <span className="bg-gradient-to-r from-indigo-400 via-blue-400 to-cyan-400 bg-clip-text text-transparent">
+                  Experience
+                </span>
+              </h2>
+            </div>
+          </AnimatedSection>
+
           <div className="space-y-8">
             {experiences.map((job, index) => (
-              <Card key={index}>
-                <CardContent className="p-8">
-                  <div className="flex items-start gap-4">
-                    <div className="w-16 h-16 rounded-lg flex items-center justify-center overflow-hidden bg-white border border-gray-200 shadow-sm">
-                      <img 
-                        src={job.logo} 
-                        alt={`${job.company} logo`}
-                        className="w-full h-full object-contain rounded-lg"
-                      />
-                    </div>
-                    <div className="flex-1">
-                      <h3 className="text-xl font-semibold">{job.company}</h3>
-                      <p className="text-lg text-blue-600 mb-1">{job.role}</p>
-                      <p className="text-sm text-gray-500 mb-2">{job.location}</p>
-                      <div className="flex items-center gap-2 text-gray-500 mb-4">
-                        <Calendar className="w-4 h-4" />
-                        {job.period}
-                      </div>
-                      
-                      <div className="space-y-4">
-                        <ul className="space-y-2">
-                          {job.responsibilities.map((responsibility, idx) => (
-                            <li key={idx} className="flex items-start gap-2">
-                              <div className="w-1.5 h-1.5 bg-blue-500 rounded-full mt-2 flex-shrink-0"></div>
-                              <span className="text-gray-600">{responsibility}</span>
-                            </li>
-                          ))}
-                        </ul>
-                        
-                        <div>
-                          <h4 className="font-medium mb-2">Skills Developed:</h4>
+              <AnimatedSection key={index} delay={index * 0.15}>
+                <TiltCard>
+                  <Card className="bg-gradient-to-br from-slate-800/50 to-slate-900/50 border-white/10 backdrop-blur-xl overflow-hidden hover:border-white/20 transition-colors">
+                    <CardContent className="p-8">
+                      <div className="flex flex-col md:flex-row items-start gap-6">
+                        <motion.div 
+                          className={`w-16 h-16 rounded-xl overflow-hidden bg-gradient-to-br ${job.gradient} p-0.5 flex-shrink-0`}
+                          whileHover={{ scale: 1.1, rotate: 5 }}
+                        >
+                          <div className="w-full h-full bg-slate-900 rounded-lg overflow-hidden p-2">
+                            <img 
+                              src={job.logo} 
+                              alt={`${job.company} logo`}
+                              className="w-full h-full object-contain"
+                            />
+                          </div>
+                        </motion.div>
+                        <div className="flex-1">
+                          <div className="flex flex-wrap items-center gap-3 mb-2">
+                            <h3 className="text-xl font-bold text-white">{job.company}</h3>
+                            <Badge className={`bg-gradient-to-r ${job.gradient} text-white border-0`}>
+                              {job.role}
+                            </Badge>
+                          </div>
+                          <div className="flex flex-wrap items-center gap-4 text-gray-400 text-sm mb-4">
+                            <span className="flex items-center gap-1">
+                              <Calendar className="w-4 h-4" />
+                              {job.period}
+                            </span>
+                            <span>{job.location}</span>
+                          </div>
+                          
+                          <ul className="space-y-3 mb-6">
+                            {job.responsibilities.map((responsibility, idx) => (
+                              <motion.li 
+                                key={idx} 
+                                className="flex items-start gap-3"
+                                initial={{ opacity: 0, x: -20 }}
+                                whileInView={{ opacity: 1, x: 0 }}
+                                transition={{ delay: idx * 0.1 }}
+                              >
+                                <div className={`w-2 h-2 bg-gradient-to-r ${job.gradient} rounded-full mt-2 flex-shrink-0`} />
+                                <span className="text-gray-400">{responsibility}</span>
+                              </motion.li>
+                            ))}
+                          </ul>
+                          
                           <div className="flex flex-wrap gap-2">
                             {job.skills.map((skill) => (
-                              <Badge key={skill} variant="outline" className="text-sm px-3 py-1">{skill}</Badge>
+                              <motion.div key={skill} whileHover={{ scale: 1.05 }}>
+                                <Badge variant="outline" className="border-white/20 text-gray-400 hover:bg-white/10">
+                                  {skill}
+                                </Badge>
+                              </motion.div>
                             ))}
                           </div>
                         </div>
                       </div>
-                    </div>
-                  </div>
-                </CardContent>
-              </Card>
+                    </CardContent>
+                  </Card>
+                </TiltCard>
+              </AnimatedSection>
             ))}
           </div>
         </div>
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-20 px-4">
-        <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl font-bold mb-8 bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent">
-            Let's Connect
-          </h2>
+      <section id="contact" className="py-32 px-4 relative overflow-hidden">
+        <div className="absolute inset-0 animated-gradient opacity-20" />
+        <div className="absolute inset-0 bg-slate-950/80" />
+        
+        <div className="max-w-4xl mx-auto text-center relative z-10">
+          <AnimatedSection>
+            <h2 className="text-5xl md:text-6xl font-bold mb-6">
+              <span className="bg-gradient-to-r from-teal-400 via-cyan-400 to-blue-400 bg-clip-text text-transparent">
+                Let's Connect
+              </span>
+            </h2>
+            <p className="text-xl text-gray-400 mb-12 max-w-xl mx-auto">
+              I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.
+            </p>
+          </AnimatedSection>
           
-          {/* Profile Image Placeholder */}
-          <div className="mb-8 flex justify-center">
-            <div className="w-32 h-32 bg-gray-200 rounded-full flex items-center justify-center border-4 border-white shadow-lg">
-              <User className="w-16 h-16 text-gray-400" />
+          <AnimatedSection delay={0.2}>
+            <div className="flex flex-wrap justify-center gap-4">
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <Button asChild size="lg" className="gap-3 bg-gradient-to-r from-blue-600 to-purple-600 hover:from-blue-700 hover:to-purple-700 border-0 shadow-lg shadow-blue-500/25 text-lg px-8 py-6">
+                  <a href="mailto:ngshanbhag@scu.edu">
+                    <Mail className="w-5 h-5" />
+                    Email Me
+                  </a>
+                </Button>
+              </motion.div>
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <Button asChild size="lg" variant="outline" className="gap-3 border-white/20 bg-white/5 backdrop-blur-sm hover:bg-white/10 text-lg px-8 py-6">
+                  <a href="https://www.linkedin.com/in/nikash-shanbhag-a05931250/" target="_blank" rel="noopener noreferrer">
+                    <Linkedin className="w-5 h-5" />
+                    LinkedIn
+                  </a>
+                </Button>
+              </motion.div>
+              <motion.div whileHover={{ scale: 1.05 }} whileTap={{ scale: 0.95 }}>
+                <Button asChild size="lg" variant="outline" className="gap-3 border-white/20 bg-white/5 backdrop-blur-sm hover:bg-white/10 text-lg px-8 py-6">
+                  <a href="https://github.com/nikashs26" target="_blank" rel="noopener noreferrer">
+                    <Github className="w-5 h-5" />
+                    GitHub
+                  </a>
+                </Button>
+              </motion.div>
             </div>
-          </div>
-          
-          <p className="text-lg text-gray-600 mb-8">
-            I'm always interested in new opportunities, collaborations, and innovative projects!
-          </p>
-          
-          <div className="flex flex-wrap justify-center gap-4">
-            <Button asChild size="lg" className="gap-2 bg-black text-white hover:bg-gray-800">
-              <a href="mailto:ngshanbhag@scu.edu">
-                <Mail className="w-5 h-5" />
-                Email Me
-              </a>
-            </Button>
-            <Button asChild size="lg" className="gap-2 bg-black text-white hover:bg-gray-800">
-              <a href="https://www.linkedin.com/in/nikash-shanbhag-a05931250/" target="_blank" rel="noopener noreferrer">
-                <Linkedin className="w-5 h-5" />
-                LinkedIn
-              </a>
-            </Button>
-            <Button asChild size="lg" className="gap-2 bg-black text-white hover:bg-gray-800">
-              <a href="https://github.com/nikashs26" target="_blank" rel="noopener noreferrer">
-                <Github className="w-5 h-5" />
-                GitHub
-              </a>
-            </Button>
-          </div>
+          </AnimatedSection>
         </div>
       </section>
 
-      {/* Floating Phone Button */}
-      {/* 
-      <Button
-        className="fixed bottom-20 right-6 rounded-full w-12 h-12 shadow-lg z-50 bg-green-600 hover:bg-green-700"
-        onClick={() => window.open('tel:+14086568424')}
-      >
-        <Phone className="w-5 h-5" />
-      </Button>
-      */}
+      {/* Footer */}
+      <footer className="py-8 px-4 border-t border-white/10">
+        <div className="max-w-7xl mx-auto text-center text-gray-500 text-sm">
+          <p>© 2025 Nikash Shanbhag. Built with passion and ☕</p>
+        </div>
+      </footer>
 
       {/* Scroll to top button */}
-      {showScrollTop && (
-        <Button
-          className="fixed bottom-6 right-6 rounded-full w-12 h-12 shadow-lg z-50"
-          onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
-        >
-          <ChevronUp className="w-5 h-5" />
-        </Button>
-      )}
+      <motion.div
+        initial={{ opacity: 0, scale: 0 }}
+        animate={{ opacity: showScrollTop ? 1 : 0, scale: showScrollTop ? 1 : 0 }}
+        className="fixed bottom-8 right-8 z-50"
+      >
+        <motion.div whileHover={{ scale: 1.1 }} whileTap={{ scale: 0.9 }}>
+          <Button
+            className="rounded-full w-14 h-14 shadow-lg bg-gradient-to-r from-blue-600 to-purple-600 border-0"
+            onClick={() => window.scrollTo({ top: 0, behavior: 'smooth' })}
+          >
+            <ChevronUp className="w-6 h-6" />
+          </Button>
+        </motion.div>
+      </motion.div>
     </div>
   );
 };
 
 export default Index;
-
