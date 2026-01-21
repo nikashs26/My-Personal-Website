@@ -58,31 +58,65 @@ const Index = () => {
 
   const projects = [
     {
+      title: "CrashCast",
+      description: "Winner ACM AWS/INRIX Hack 2025 - Web app identifying high-risk areas and nearby emergency services",
+      tech: ["React", "CSS", "AWS Lambda", "FastAPI", "INRIX API"],
+      github: "https://github.com/nikashs26/crashcast",
+      devpost: "https://devpost.com/software/crashcast",
+      award: "Winner ACM AWS/INRIX Hack 2025",
+      details: "Guided a team of four in a hackathon to develop a web application that identifies high-risk areas worldwide and displays nearby hospitals and ambulances, aiding hospitals to optimize dispatcher deployment, using AWS Lambda and INRIX data. Built a React and CSS frontend for a location-based emergency assistance app, featuring an interactive map with location search, real-time ambulance and accident urgency updates, and Help and About pages. Integrated backend to frontend by converting INRIX data to displayable JSON with coordinates and radii.",
+      features: [
+        "Interactive map with location search",
+        "Real-time ambulance tracking",
+        "Accident urgency updates",
+        "AWS Lambda integration",
+        "INRIX data visualization",
+        "Help and About pages"
+      ]
+    },
+    {
+      title: "Last Shot",
+      description: "Winner ACM Roblox Game Jam 2025 - Top-down zombie apocalypse adventure game",
+      tech: ["Roblox Studio", "Lua"],
+      devpost: "https://devpost.com/software/last-shot",
+      live: "https://www.roblox.com/games/last-shot",
+      award: "Winner ACM Roblox Game Jam 2025",
+      details: "Led team of five to develop a top-down zombie apocalypse adventure game, featuring strategic airship combat, narrative-driven gameplay, and a unique plot twist, all in just 3 days. Developed visual effects in Roblox Studio and scripted zombie AI with randomized pathing using Lua. Helped generate cinematic cutscenes and interactive camera controls to enhance storytelling and immersion. Overcame scripting and performance challenges by optimizing event triggers.",
+      features: [
+        "Strategic airship combat",
+        "Narrative-driven gameplay",
+        "Zombie AI with randomized pathing",
+        "Cinematic cutscenes",
+        "Interactive camera controls",
+        "Optimized event triggers"
+      ]
+    },
+    {
       title: "Better Bulk",
-      description: "Full-stack recipe-finder web application with user authentication and recipe management",
-      tech: ["TypeScript", "Python", "React", "TailwindCSS", "Flask", "Lovable", "Supabase"],
+      description: "Full-stack recipe management app with 1,000+ recipes and AI-powered meal planning",
+      tech: ["TypeScript", "Python", "React", "TailwindCSS", "Flask", "ChromaDB", "Lovable", "Cursor"],
       github: "https://github.com/nikashs26/full-stack-recipe",
       live: "https://better-bulk.vercel.app/",
       icon: "/lovable-uploads/618148c4-936d-47a3-8c77-35a7bdcf0843.png",
-      details: "Designed a comprehensive full-stack recipe-finder web application featuring robust user authentication, recipe creation/editing capabilities, advanced search functionality, and favorite marking system. Successfully integrated the React-based frontend with a Flask backend, utilizing Supabase for secure data storage and retrieval for user sign-ups/sign-ins, user reviews, and manually written recipes. Implemented RESTful API endpoints for diverse recipe generation and data management. Leveraged Lovable AI Copilot extensively for debugging, automated test generation, and code optimization, resulting in improved development efficiency and code quality.",
+      details: "Leveraged AI copilots (Lovable/Cursor) to build a full-stack recipe management application featuring 1,000+ recipes, with highly-rated recipe collections, personalized recommendations, preference-based agentic meal planning, shopping list generation, user reviews, and recipe-management folders. Designed responsive home and search page using React, TypeScript, and Tailwind CSS and a Flask backend with ChromaDB for recipe, review, and meal planner history storage and retrieval. Implemented an agent using LLMs (Ollama/HuggingFace) to generate custom weekly meal plans tailored to macros and dietary needs.",
       features: [
-        "User authentication and profile management",
-        "Recipe creation with rich text editor",
-        "Advanced search and filtering",
-        "Favorite recipes system",
+        "1,000+ recipe database",
+        "AI-powered meal planning agent",
+        "Shopping list generation",
         "User reviews and ratings",
-        "Responsive design for all devices"
+        "Recipe management folders",
+        "Personalized recommendations"
       ]
     },
     {
       title: "Simba's Surveillance",
-      description: "Real-time Lion King-themed wildlife trespasser detection system",
-      tech: ["HTML", "CSS", "React", "Python", "AI/ML", "Computer Vision"],
+      description: "Real-time Lion King-themed AI system to identify human trespassers",
+      tech: ["HTML", "CSS", "React", "Python", "AI/ML"],
       github: "https://github.com/NickelR22/simbassurveillance",
       devpost: "https://devpost.com/software/bobs-consulting?ref_content=my-projects-tab&ref_feature=my_projects",
       live: "https://simbassurveillance.vercel.app/",
       icon: "/lovable-uploads/1df91ec5-47e3-43bb-b6e9-77df008d698a.png",
-      details: "Developed the complete frontend for a real-time, Lion King-themed wildlife trespasser detection system that uses advanced AI to identify human figures in live-streamed video from protected territories. Created a responsive homepage using React and CSS, structured the comprehensive About page, and implemented dynamic data visualization. Successfully connected the Python-based backend by retrieving and displaying JSON data in the React frontend, including precise timestamps and images of detected trespassers. Enhanced real-time data visualization to improve accessibility and responsiveness, directly supporting wildlife protection efforts.",
+      details: "Designed a real-time Lion King-themed AI system to identify human trespassers in live-streamed footage. Built and styled responsive home and 'About' pages in React and CSS using a self-developed mockup. Integrated Python-based backend by retrieving and displaying JSON data in the frontend, including timestamps and images of detected trespassers.",
       features: [
         "Real-time video stream processing",
         "AI-powered human detection",
@@ -90,6 +124,21 @@ const Index = () => {
         "Wildlife protection dashboard",
         "Historical data visualization",
         "Mobile-responsive interface"
+      ]
+    },
+    {
+      title: "MintMarket",
+      description: "End-to-end e-commerce platform for NFT buying and selling with simulated blockchain",
+      tech: ["JavaScript", "HTML", "CSS", "Blockchain"],
+      github: "https://github.com/nikashs26/mintmarket",
+      details: "Coordinated with a team of 3 to build a fully functional, end-to-end e-commerce platform for NFT buying and selling utilizing a simulated blockchain, strategic design for all pages, and no frameworks. Built the login, Q&A, and homepage, using HTML, CSS, and JS focusing on positive user experience. Implemented hashing for simulated blockchain in JavaScript.",
+      features: [
+        "NFT marketplace functionality",
+        "Simulated blockchain with hashing",
+        "User authentication system",
+        "Q&A section",
+        "Strategic page design",
+        "No framework dependency"
       ]
     },
     {
@@ -131,6 +180,31 @@ const Index = () => {
 
   const experiences = [
     {
+      company: "Inspired Earth",
+      role: "Undergraduate Researcher",
+      period: "December 2025 - Present",
+      location: "Santa Clara University",
+      logo: "/lovable-uploads/0f4639f8-d264-4e57-a94e-208683190214.png",
+      responsibilities: [
+        "Designing and implementing blockchain-backed prototypes exploring decentralized identity, content ownership, and incentive alignment for NFT's",
+        "Developing smart contract logic and integrated on-chain components with Chainlink functions",
+        "Researching Web3 protocols to inform system design decisions and avoid common scalability and security pitfalls"
+      ],
+      skills: ["Blockchain", "Smart Contracts", "Web3", "Chainlink", "Decentralized Identity", "NFTs", "Research"]
+    },
+    {
+      company: "Wave: Ripples to World Tides",
+      role: "Founding Engineer",
+      period: "November 2025 - Present",
+      location: "Remote",
+      logo: "/lovable-uploads/19205251-517b-45a4-ab4c-22599ea5b362.png",
+      responsibilities: [
+        "Leading frontend development for an early-stage social media startup building an app for users to select their interests (called waves), see content based on these waves, and post their own media to waves of their choice",
+        "Building production-ready user interfaces using React Native, TypeScript, and Tailwind CSS, focusing on performance and accessibility"
+      ],
+      skills: ["React Native", "TypeScript", "Tailwind CSS", "Frontend Development", "Startup", "Mobile Development", "UI/UX"]
+    },
+    {
       company: "Camp Galileo",
       role: "Summer Operations Intern",
       period: "June 2024 - Aug 2024",
@@ -162,39 +236,24 @@ const Index = () => {
 
   const skillCategories = [
     {
-      title: "Programming Languages",
-      skills: ["Python", "Java", "C", "HTML5", "CSS3", "JavaScript (ES6+)", "TypeScript", "SQL"],
+      title: "Languages & Frameworks",
+      skills: ["Python", "Java", "C", "HTML", "CSS", "JavaScript", "Tailwind", "TypeScript", "Vite", "SQL", "React", "Flask"],
       gradient: "from-blue-500 to-cyan-500"
     },
     {
-      title: "Frameworks & Libraries",
-      skills: ["React", "Flask", "TailwindCSS", "Node.js", "Express.js", "Bootstrap", "jQuery"],
+      title: "Tools & Productivity",
+      skills: ["GitHub", "Chrome DevTools", "VS Code", "PyCharm", "Pygame", "Netlify", "Railway", "Figma"],
       gradient: "from-purple-500 to-pink-500"
     },
     {
-      title: "DevOps & Tools",
-      skills: ["Git", "GitHub", "VS Code", "PyCharm", "Chrome DevTools", "Postman", "Figma", "Adobe Creative Suite"],
+      title: "AI Tools",
+      skills: ["Lovable", "Bolt.new", "Cursor", "Claude", "WindSurf"],
       gradient: "from-green-500 to-emerald-500"
     },
     {
-      title: "Databases & Cloud",
-      skills: ["Supabase", "PostgreSQL", "MySQL", "AWS", "Vercel", "Firebase", "RESTful APIs"],
+      title: "Interests",
+      skills: ["Full-stack Development", "Robotics", "Agentic Applications", "Game Design", "Human-Computer Interaction"],
       gradient: "from-orange-500 to-red-500"
-    },
-    {
-      title: "Design & Creative",
-      skills: ["UI/UX Design", "Adobe Illustrator", "Adobe Photoshop", "Procreate", "Figma", "Responsive Design"],
-      gradient: "from-indigo-500 to-blue-500"
-    },
-    {
-      title: "AI & Development Tools",
-      skills: ["Lovable AI", "Bolt.new", "Cursor", "GitHub Copilot", "Machine Learning Basics"],
-      gradient: "from-violet-500 to-purple-500"
-    },
-    {
-      title: "Soft Skills",
-      skills: ["Problem-solving", "Creative Thinking", "Team Leadership", "Project Management", "Communication", "Mentoring"],
-      gradient: "from-pink-500 to-rose-500"
     }
   ];
 
@@ -207,11 +266,10 @@ const Index = () => {
     ],
     interests: [
       "Full-stack Development",
-      "Web Design", 
-      "Animation",
-      "Music",
-      "Video Game Design",
-      "Entrepreneurship"
+      "Robotics",
+      "Agentic Applications",
+      "Game Design",
+      "Human-Computer Interaction"
     ],
     favoriteSongs: [
       "Down by Jay Sean",
@@ -406,10 +464,10 @@ const Index = () => {
                 </div>
                 <div className="flex-1">
                   <h3 className="text-xl font-semibold">Santa Clara University</h3>
-                  <p className="text-lg text-blue-600 mb-2">B.S. in Web Design and Engineering</p>
+                  <p className="text-lg text-blue-600 mb-2">B.S. in Web Design and Engineering, Responsible AI</p>
                   <div className="flex items-center gap-2 text-gray-500 mb-4">
                     <Calendar className="w-4 h-4" />
-                    Sept 2024 - Present
+                    Sept 2024 - Dec 2027
                   </div>
                   
                   <div className="space-y-4">
@@ -417,12 +475,16 @@ const Index = () => {
                       <h4 className="font-medium mb-2">Relevant Courses:</h4>
                       <div className="flex flex-wrap gap-2">
                         {[
+                          "Web Development",
+                          "Web Usability",
                           "Advanced Programming",
                           "Introduction to Web Technologies", 
                           "Abstract Data Types and Data Structures",
                           "Computer Networks",
                           "Probability and Statistics",
-                          "Calculus and Analytical Geometry III & IV"
+                          "Web Information Management",
+                          "Basic Digital Imaging",
+                          "Ethics in Technology"
                         ].map((course) => (
                           <Badge key={course} variant="secondary">{course}</Badge>
                         ))}
@@ -507,12 +569,16 @@ const Index = () => {
           <div className="grid md:grid-cols-2 gap-8">
             {projects.map((project, index) => (
               <Card key={index} className="group hover:shadow-lg transition-shadow relative overflow-hidden h-full bg-white/95 backdrop-blur-sm">
-                {/* Finalist Badge for Peter Parks */}
-                {project.title === "Peter Parks" && (
+                {/* Award Badge for projects */}
+                {project.award && (
                   <div className="absolute top-4 right-4 z-10">
-                    <Badge variant="default" className="gap-1 bg-yellow-500 hover:bg-yellow-600 text-yellow-900 font-semibold">
+                    <Badge variant="default" className={`gap-1 font-semibold ${
+                      project.award.includes("Winner") 
+                        ? "bg-green-500 hover:bg-green-600 text-white" 
+                        : "bg-yellow-500 hover:bg-yellow-600 text-yellow-900"
+                    }`}>
                       <Award className="w-3 h-3" />
-                      Finalist
+                      {project.award.includes("Winner") ? "Winner" : "Finalist"}
                     </Badge>
                   </div>
                 )}
