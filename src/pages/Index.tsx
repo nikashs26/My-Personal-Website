@@ -4,7 +4,7 @@ import { Card, CardContent } from "@/components/ui/card";
 import { Badge } from "@/components/ui/badge";
 import { Button } from "@/components/ui/button";
 import { Dialog, DialogContent, DialogHeader, DialogTitle, DialogTrigger, DialogDescription } from "@/components/ui/dialog";
-import { ExternalLink, Github, Linkedin, Mail, Phone, MapPin, ChevronUp, Calendar, Users, Award, Star, Code, Briefcase, User, Heart, Gamepad2, Dumbbell, Palette, Music, Lightbulb } from 'lucide-react';
+import { ExternalLink, Github, Linkedin, Mail, MapPin, ChevronUp, Calendar, Users, Award, Star, Code, Briefcase, User, Heart, Gamepad2, Dumbbell, Palette, Music, Lightbulb, Sparkles } from 'lucide-react';
 import Typed from 'typed.js';
 
 const Index = () => {
@@ -279,7 +279,7 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 to-slate-100">
+    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/40">
       {/* Sticky Navigation Bar with scroll effect */}
       <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         navbarScrolled 
@@ -343,37 +343,38 @@ const Index = () => {
         </div>
 
         <div className="text-center max-w-4xl mx-auto relative z-10">
-          <div className="mb-8 backdrop-blur-sm bg-white/30 rounded-2xl p-8 border border-white/40">
-            <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-white via-blue-100 to-white bg-clip-text text-transparent mb-4 drop-shadow-2xl leading-tight py-4">
+          <div className="mb-8 backdrop-blur-md bg-white/20 rounded-3xl p-10 border border-white/30 shadow-2xl animate-fade-in">
+            <div className="flex items-center justify-center gap-2 mb-4">
+              <Sparkles className="w-6 h-6 text-yellow-300 animate-pulse" />
+              <span className="text-white/90 font-medium tracking-wide uppercase text-sm">Portfolio</span>
+              <Sparkles className="w-6 h-6 text-yellow-300 animate-pulse" />
+            </div>
+            <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-white via-blue-200 to-cyan-100 bg-clip-text text-transparent mb-4 drop-shadow-2xl leading-tight py-4">
               <span ref={nameRef}></span>
             </h1>
             <p className="text-xl md:text-2xl text-white mb-6 drop-shadow-lg font-semibold">
               Web Design & Engineering Student
             </p>
-            <p className="text-lg text-white max-w-2xl mx-auto mb-8 drop-shadow-md font-medium">
+            <p className="text-lg text-white/90 max-w-2xl mx-auto mb-8 drop-shadow-md font-medium leading-relaxed">
               Passionate about creating user-friendly websites and applications by blending technical proficiency with creative design and aesthetics. Experienced in full-stack development, AI integration, and modern web technologies.
             </p>
           </div>
           
           <div className="flex flex-wrap justify-center gap-4 mb-8">
-            <Button variant="outline" className="gap-3 bg-white/40 border-white/50 text-white hover:bg-white/50 backdrop-blur-sm shadow-lg text-base px-6 py-3 font-semibold">
-              <Phone className="w-5 h-5" />
-              (408) 656-8424
-            </Button>
-            <Button variant="outline" className="gap-3 bg-white/40 border-white/50 text-white hover:bg-white/50 backdrop-blur-sm shadow-lg text-base px-6 py-3 font-semibold">
+            <Button variant="outline" className="gap-3 bg-white/40 border-white/50 text-white hover:bg-white/50 backdrop-blur-sm shadow-lg text-base px-6 py-3 font-semibold hover:scale-105 transition-all duration-300">
               <Mail className="w-5 h-5" />
               ngshanbhag@scu.edu
             </Button>
           </div>
           
           <div className="flex justify-center gap-4">
-            <Button asChild className="gap-3 bg-blue-600/90 hover:bg-blue-700/90 backdrop-blur-sm border border-white/20 shadow-lg text-base px-6 py-3">
+            <Button asChild className="gap-3 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 backdrop-blur-sm border border-white/20 shadow-lg text-base px-8 py-3 hover:scale-105 transition-all duration-300 hover:shadow-blue-500/25 hover:shadow-xl">
               <a href="https://www.linkedin.com/in/nikash-shanbhag-a05931250/" target="_blank" rel="noopener noreferrer">
                 <Linkedin className="w-5 h-5" />
                 LinkedIn
               </a>
             </Button>
-            <Button asChild className="gap-3 bg-black/90 hover:bg-gray-800/90 backdrop-blur-sm border border-white/20 shadow-lg text-base px-6 py-3 text-white">
+            <Button asChild className="gap-3 bg-gradient-to-r from-gray-800 to-gray-900 hover:from-gray-900 hover:to-black backdrop-blur-sm border border-white/20 shadow-lg text-base px-8 py-3 text-white hover:scale-105 transition-all duration-300 hover:shadow-gray-500/25 hover:shadow-xl">
               <a href="https://github.com/nikashs26" target="_blank" rel="noopener noreferrer">
                 <Github className="w-5 h-5" />
                 GitHub
@@ -800,15 +801,6 @@ const Index = () => {
         </div>
       </section>
 
-      {/* Floating Phone Button */}
-      {/* 
-      <Button
-        className="fixed bottom-20 right-6 rounded-full w-12 h-12 shadow-lg z-50 bg-green-600 hover:bg-green-700"
-        onClick={() => window.open('tel:+14086568424')}
-      >
-        <Phone className="w-5 h-5" />
-      </Button>
-      */}
 
       {/* Scroll to top button */}
       {showScrollTop && (
