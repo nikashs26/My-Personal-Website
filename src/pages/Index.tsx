@@ -384,17 +384,6 @@ const Index = () => {
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 1, delay: 0.2 }}
           >
-            {/* Glowing badge */}
-            <motion.div 
-              className="inline-flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 backdrop-blur-sm mb-8"
-              initial={{ opacity: 0, scale: 0.8 }}
-              animate={{ opacity: 1, scale: 1 }}
-              transition={{ delay: 0.5 }}
-            >
-              <span className="w-2 h-2 rounded-full bg-green-400 animate-pulse" />
-              <span className="text-sm text-gray-300">Available for opportunities</span>
-            </motion.div>
-
             {/* Main heading */}
             <h1 className="text-6xl md:text-8xl font-black mb-6 leading-none">
               <span className="bg-gradient-to-r from-white via-blue-100 to-white bg-clip-text text-transparent">
@@ -447,7 +436,7 @@ const Index = () => {
             </motion.div>
           </motion.div>
 
-          {/* Contact pills */}
+          {/* Contact pill */}
           <motion.div 
             className="flex flex-wrap justify-center gap-3"
             initial={{ opacity: 0 }}
@@ -457,10 +446,6 @@ const Index = () => {
             <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm text-slate-300">
               <Mail className="w-4 h-4" />
               ngshanbhag@scu.edu
-            </div>
-            <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm text-slate-300">
-              <Phone className="w-4 h-4" />
-              (408) 656-8424
             </div>
           </motion.div>
         </div>
