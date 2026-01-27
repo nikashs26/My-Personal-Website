@@ -403,7 +403,7 @@ const Index = () => {
             </h1>
             
             <motion.p 
-              className="text-2xl md:text-3xl font-light text-gray-300 mb-4"
+              className="text-2xl md:text-3xl font-light text-slate-200 mb-4"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 0.8 }}
@@ -412,7 +412,7 @@ const Index = () => {
             </motion.p>
             
             <motion.p 
-              className="text-lg text-gray-400 max-w-2xl mx-auto mb-12 leading-relaxed"
+              className="text-lg text-slate-300 max-w-2xl mx-auto mb-12 leading-relaxed"
               initial={{ opacity: 0 }}
               animate={{ opacity: 1 }}
               transition={{ delay: 1 }}
@@ -454,11 +454,11 @@ const Index = () => {
             animate={{ opacity: 1 }}
             transition={{ delay: 1.4 }}
           >
-            <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm text-gray-400">
+            <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm text-slate-300">
               <Mail className="w-4 h-4" />
               ngshanbhag@scu.edu
             </div>
-            <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm text-gray-400">
+            <div className="flex items-center gap-2 px-4 py-2 rounded-full bg-white/5 border border-white/10 text-sm text-slate-300">
               <Phone className="w-4 h-4" />
               (408) 656-8424
             </div>
@@ -486,7 +486,7 @@ const Index = () => {
                   About Me
                 </span>
               </h2>
-              <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+              <p className="text-xl text-slate-300 max-w-2xl mx-auto">
                 Passionate about building things that live on the internet
               </p>
             </div>
@@ -514,7 +514,7 @@ const Index = () => {
                           whileHover={{ x: 10, scale: 1.02 }}
                         >
                           <hobby.icon className="w-5 h-5 text-white" />
-                          <span className="text-gray-200 font-medium">{hobby.name}</span>
+                          <span className="text-white font-medium">{hobby.name}</span>
                         </motion.div>
                       ))}
                     </div>
@@ -543,7 +543,7 @@ const Index = () => {
                           className="p-4 rounded-xl bg-purple-500/10 border border-purple-500/20"
                           whileHover={{ x: 10, scale: 1.02 }}
                         >
-                          <span className="text-purple-200 font-medium">{interest}</span>
+                          <span className="text-purple-100 font-medium">{interest}</span>
                         </motion.div>
                       ))}
                     </div>
@@ -572,7 +572,7 @@ const Index = () => {
                           className="p-4 rounded-xl bg-green-500/10 border border-green-500/20"
                           whileHover={{ x: 10, scale: 1.02 }}
                         >
-                          <span className="text-green-200 font-medium">{song}</span>
+                          <span className="text-green-100 font-medium">{song}</span>
                         </motion.div>
                       ))}
                     </div>
@@ -616,18 +616,18 @@ const Index = () => {
                     <div className="flex-1">
                       <h3 className="text-2xl font-bold text-white mb-2">Santa Clara University</h3>
                       <p className="text-xl text-blue-400 mb-3">B.S. in Web Design and Engineering, Responsible AI</p>
-                      <div className="flex items-center gap-2 text-gray-400 mb-6">
+                      <div className="flex items-center gap-2 text-slate-300 mb-6">
                         <Calendar className="w-4 h-4" />
                         Sept 2024 - Dec 2027
                       </div>
                       
                       <div className="space-y-6">
                         <div>
-                          <h4 className="font-semibold text-gray-300 mb-3">Relevant Courses</h4>
+                          <h4 className="font-semibold text-slate-200 mb-3">Relevant Courses</h4>
                           <div className="flex flex-wrap gap-2">
                             {["Web Development", "Web Usability", "Advanced Programming", "Data Structures", "Computer Networks", "Probability & Statistics", "Web Information Management", "Digital Imaging", "Ethics in Technology"].map((course) => (
                               <motion.div key={course} whileHover={{ scale: 1.05 }}>
-                                <Badge variant="secondary" className="bg-white/10 border-white/20 text-gray-300 hover:bg-white/20">
+                                <Badge variant="secondary" className="bg-white/10 border-white/20 text-slate-200 hover:bg-white/20">
                                   {course}
                                 </Badge>
                               </motion.div>
@@ -637,7 +637,7 @@ const Index = () => {
                         
                         <div className="flex items-center gap-3 p-4 rounded-xl bg-blue-500/10 border border-blue-500/20">
                           <Users className="w-5 h-5 text-blue-400" />
-                          <span className="text-gray-300">Association for Computing Machinery (ACM)</span>
+                          <span className="text-slate-200">Association for Computing Machinery (ACM)</span>
                         </div>
                       </div>
                     </div>
@@ -660,7 +660,7 @@ const Index = () => {
                   Skills
                 </span>
               </h2>
-              <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+              <p className="text-xl text-slate-300 max-w-2xl mx-auto">
                 Technologies and tools I use to bring ideas to life
               </p>
             </div>
@@ -682,7 +682,7 @@ const Index = () => {
                       <div className="flex flex-wrap gap-2">
                         {category.skills.map((skill) => (
                           <motion.div key={skill} whileHover={{ scale: 1.1 }}>
-                            <Badge className="bg-white/10 border-white/10 text-gray-300 hover:bg-white/20 cursor-default">
+                            <Badge className="bg-white/10 border-white/10 text-slate-200 hover:bg-white/20 cursor-default">
                               {skill}
                             </Badge>
                           </motion.div>
@@ -708,7 +708,7 @@ const Index = () => {
                   Featured Projects
                 </span>
               </h2>
-              <p className="text-xl text-gray-400 max-w-2xl mx-auto">
+              <p className="text-xl text-slate-300 max-w-2xl mx-auto">
                 A collection of my recent work and hackathon wins
               </p>
             </div>
@@ -760,16 +760,16 @@ const Index = () => {
                       <h3 className="text-xl font-bold text-white mb-3 group-hover:text-blue-400 transition-colors">
                         {project.title}
                       </h3>
-                      <p className="text-gray-400 mb-4 text-sm flex-grow">{project.description}</p>
+                      <p className="text-slate-300 mb-4 text-sm flex-grow">{project.description}</p>
                       
                       <div className="flex flex-wrap gap-2 mb-6">
                         {project.tech.slice(0, 4).map((tech) => (
-                          <Badge key={tech} variant="secondary" className="bg-white/5 border-white/10 text-gray-400 text-xs">
+                          <Badge key={tech} variant="secondary" className="bg-white/5 border-white/10 text-slate-300 text-xs">
                             {tech}
                           </Badge>
                         ))}
                         {project.tech.length > 4 && (
-                          <Badge variant="secondary" className="bg-white/5 border-white/10 text-gray-400 text-xs">
+                          <Badge variant="secondary" className="bg-white/5 border-white/10 text-slate-300 text-xs">
                             +{project.tech.length - 4}
                           </Badge>
                         )}
@@ -792,14 +792,14 @@ const Index = () => {
                                 </Badge>
                               )}
                             </DialogTitle>
-                            <DialogDescription className="text-gray-400">
+                            <DialogDescription className="text-slate-300">
                               Project details and features
                             </DialogDescription>
                           </DialogHeader>
                           <div className="space-y-6 mt-4">
                             <div>
                               <h4 className="font-semibold text-white mb-2">Description</h4>
-                              <p className="text-gray-400">{project.details}</p>
+                              <p className="text-slate-300">{project.details}</p>
                             </div>
                             
                             {project.features && (
@@ -809,7 +809,7 @@ const Index = () => {
                                   {project.features.map((feature, idx) => (
                                     <li key={idx} className="flex items-start gap-2">
                                       <Star className="w-4 h-4 text-yellow-500 mt-0.5 flex-shrink-0" />
-                                      <span className="text-gray-400">{feature}</span>
+                                      <span className="text-slate-300">{feature}</span>
                                     </li>
                                   ))}
                                 </ul>
@@ -820,7 +820,7 @@ const Index = () => {
                               <h4 className="font-semibold text-white mb-2">Technologies</h4>
                               <div className="flex flex-wrap gap-2">
                                 {project.tech.map((tech) => (
-                                  <Badge key={tech} variant="secondary" className="bg-white/10 text-gray-300">
+                                  <Badge key={tech} variant="secondary" className="bg-white/10 text-slate-200">
                                     {tech}
                                   </Badge>
                                 ))}
@@ -902,7 +902,7 @@ const Index = () => {
                               {job.role}
                             </Badge>
                           </div>
-                          <div className="flex flex-wrap items-center gap-4 text-gray-400 text-sm mb-4">
+                          <div className="flex flex-wrap items-center gap-4 text-slate-300 text-sm mb-4">
                             <span className="flex items-center gap-1">
                               <Calendar className="w-4 h-4" />
                               {job.period}
@@ -920,7 +920,7 @@ const Index = () => {
                                 transition={{ delay: idx * 0.1 }}
                               >
                                 <div className={`w-2 h-2 bg-gradient-to-r ${job.gradient} rounded-full mt-2 flex-shrink-0`} />
-                                <span className="text-gray-400">{responsibility}</span>
+                                <span className="text-slate-300">{responsibility}</span>
                               </motion.li>
                             ))}
                           </ul>
@@ -928,7 +928,7 @@ const Index = () => {
                           <div className="flex flex-wrap gap-2">
                             {job.skills.map((skill) => (
                               <motion.div key={skill} whileHover={{ scale: 1.05 }}>
-                                <Badge variant="outline" className="border-white/20 text-gray-400 hover:bg-white/10">
+                                <Badge variant="outline" className="border-white/20 text-slate-300 hover:bg-white/10">
                                   {skill}
                                 </Badge>
                               </motion.div>
@@ -957,7 +957,7 @@ const Index = () => {
                 Let's Connect
               </span>
             </h2>
-            <p className="text-xl text-gray-400 mb-12 max-w-xl mx-auto">
+            <p className="text-xl text-slate-300 mb-12 max-w-xl mx-auto">
               I'm always open to discussing new projects, creative ideas, or opportunities to be part of your visions.
             </p>
           </AnimatedSection>
@@ -995,7 +995,7 @@ const Index = () => {
 
       {/* Footer */}
       <footer className="py-8 px-4 border-t border-white/10">
-        <div className="max-w-7xl mx-auto text-center text-gray-500 text-sm">
+        <div className="max-w-7xl mx-auto text-center text-slate-400 text-sm">
           <p>© 2025 Nikash Shanbhag. Built with passion and ☕</p>
         </div>
       </footer>
