@@ -288,11 +288,12 @@ const Index = () => {
       }`}>
         <div className="max-w-6xl mx-auto px-4 py-3">
           <div className="flex justify-between items-center">
-            <div className={`font-semibold transition-colors duration-300 ${
-              navbarScrolled ? 'text-gray-800' : 'text-white'
+            <a href="#" className={`flex items-center gap-2 font-semibold transition-colors duration-300 ${
+              navbarScrolled ? 'text-blue-700' : 'text-white'
             }`}>
-              Nikash Shanbhag
-            </div>
+              <img src="/ns-logo.png" alt="NS logo" className={`w-9 h-9 transition-all duration-300 ${navbarScrolled ? '' : 'brightness-0 invert'}`} />
+              <span>Nikash Shanbhag</span>
+            </a>
             <div className="hidden md:flex space-x-6">
               <a href="#about" className={`transition-colors duration-300 ${
                 activeSection === 'about' 
@@ -344,9 +345,6 @@ const Index = () => {
 
         <div className="text-center max-w-4xl mx-auto relative z-10">
           <div className="mb-8 backdrop-blur-md bg-white/20 rounded-3xl p-10 border border-white/30 shadow-2xl animate-fade-in">
-            <div className="flex items-center justify-center mb-6">
-              <img src="/ns-logo.png" alt="NS logo" className="w-20 h-20 drop-shadow-2xl" />
-            </div>
             <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-white via-blue-100 to-blue-200 bg-clip-text text-transparent mb-4 drop-shadow-2xl leading-tight py-4">
               <span ref={nameRef}></span>
             </h1>
@@ -372,7 +370,7 @@ const Index = () => {
                 LinkedIn
               </a>
             </Button>
-            <Button asChild className="gap-3 bg-gradient-to-r from-gray-800 to-gray-900 hover:from-gray-900 hover:to-black backdrop-blur-sm border border-white/20 shadow-lg text-base px-8 py-3 text-white hover:scale-105 transition-all duration-300 hover:shadow-gray-500/25 hover:shadow-xl">
+            <Button asChild className="gap-3 bg-white text-blue-700 hover:bg-blue-50 border border-white shadow-lg text-base px-8 py-3 hover:scale-105 transition-all duration-300 hover:shadow-blue-500/25 hover:shadow-xl">
               <a href="https://github.com/nikashs26" target="_blank" rel="noopener noreferrer">
                 <Github className="w-5 h-5" />
                 GitHub
@@ -549,20 +547,9 @@ const Index = () => {
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="py-20 px-4 relative overflow-hidden">
-        {/* Background Image */}
-        <div className="absolute inset-0 z-0">
-          <img 
-            src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=2000&q=80" 
-            alt="Programming code background"
-            className="w-full h-full object-cover"
-          />
-          {/* Dark overlay for text readability */}
-          <div className="absolute inset-0 bg-black/60"></div>
-        </div>
-        
+      <section id="projects" className="py-20 px-4 relative overflow-hidden bg-gradient-to-br from-blue-700 via-blue-600 to-blue-800">
         <div className="max-w-6xl mx-auto relative z-10">
-          <h2 className="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-blue-300 to-white bg-clip-text text-transparent">
+          <h2 className="text-4xl font-bold text-center mb-16 text-white drop-shadow">
             Featured Projects
           </h2>
           <div className="grid md:grid-cols-2 gap-8">
@@ -573,8 +560,8 @@ const Index = () => {
                   <div className="absolute top-4 right-4 z-10">
                     <Badge variant="default" className={`gap-1 font-semibold ${
                       project.award.includes("Winner") 
-                        ? "bg-green-500 hover:bg-green-600 text-white" 
-                        : "bg-yellow-500 hover:bg-yellow-600 text-yellow-900"
+                        ? "bg-blue-600 hover:bg-blue-700 text-white" 
+                        : "bg-blue-100 hover:bg-blue-200 text-blue-800 border border-blue-300"
                     }`}>
                       <Award className="w-3 h-3" />
                       {project.award.includes("Winner") ? "Winner" : "Finalist"}
@@ -767,8 +754,8 @@ const Index = () => {
           
           {/* Profile Image Placeholder */}
           <div className="mb-8 flex justify-center">
-            <div className="w-32 h-32 bg-white rounded-full flex items-center justify-center border-4 border-blue-100 shadow-lg">
-              <img src="/ns-logo.png" alt="NS logo" className="w-20 h-20" />
+            <div className="w-32 h-32 bg-blue-50 rounded-full flex items-center justify-center border-4 border-blue-200 shadow-lg">
+              <User className="w-16 h-16 text-blue-600" />
             </div>
           </div>
           
