@@ -279,7 +279,7 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/40">
+    <div className="min-h-screen bg-gradient-to-br from-white via-blue-50/40 to-blue-100/30">
       {/* Sticky Navigation Bar with scroll effect */}
       <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         navbarScrolled 
