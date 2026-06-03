@@ -759,16 +759,16 @@ const Index = () => {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-20 px-4">
+      <section id="contact" className="py-20 px-4 bg-gradient-to-br from-white to-blue-50">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl font-bold mb-8 bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent">
+          <h2 className="text-4xl font-bold mb-8 bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
             Let's Connect
           </h2>
           
           {/* Profile Image Placeholder */}
           <div className="mb-8 flex justify-center">
-            <div className="w-32 h-32 bg-gray-200 rounded-full flex items-center justify-center border-4 border-white shadow-lg">
-              <User className="w-16 h-16 text-gray-400" />
+            <div className="w-32 h-32 bg-white rounded-full flex items-center justify-center border-4 border-blue-100 shadow-lg">
+              <img src="/ns-logo.png" alt="NS logo" className="w-20 h-20" />
             </div>
           </div>
           
@@ -777,19 +777,19 @@ const Index = () => {
           </p>
           
           <div className="flex flex-wrap justify-center gap-4">
-            <Button asChild size="lg" className="gap-2 bg-black text-white hover:bg-gray-800">
+            <Button asChild size="lg" className="gap-2 bg-blue-600 text-white hover:bg-blue-700">
               <a href="mailto:ngshanbhag@scu.edu">
                 <Mail className="w-5 h-5" />
                 Email Me
               </a>
             </Button>
-            <Button asChild size="lg" className="gap-2 bg-black text-white hover:bg-gray-800">
+            <Button asChild size="lg" className="gap-2 bg-blue-600 text-white hover:bg-blue-700">
               <a href="https://www.linkedin.com/in/nikash-shanbhag-a05931250/" target="_blank" rel="noopener noreferrer">
                 <Linkedin className="w-5 h-5" />
                 LinkedIn
               </a>
             </Button>
-            <Button asChild size="lg" className="gap-2 bg-black text-white hover:bg-gray-800">
+            <Button asChild size="lg" className="gap-2 bg-blue-600 text-white hover:bg-blue-700">
               <a href="https://github.com/nikashs26" target="_blank" rel="noopener noreferrer">
                 <Github className="w-5 h-5" />
                 GitHub
