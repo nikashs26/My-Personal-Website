@@ -238,22 +238,22 @@ const Index = () => {
     {
       title: "Languages & Frameworks",
       skills: ["Python", "Java", "C", "HTML", "CSS", "JavaScript", "Tailwind", "TypeScript", "Vite", "SQL", "React", "Flask"],
-      gradient: "from-blue-500 to-cyan-500"
+      gradient: "from-blue-500 to-blue-700"
     },
     {
       title: "Tools & Productivity",
       skills: ["GitHub", "Chrome DevTools", "VS Code", "PyCharm", "Pygame", "Netlify", "Railway", "Figma"],
-      gradient: "from-purple-500 to-pink-500"
+      gradient: "from-blue-400 to-blue-600"
     },
     {
       title: "AI Tools",
       skills: ["Lovable", "Bolt.new", "Cursor", "Claude", "WindSurf"],
-      gradient: "from-green-500 to-emerald-500"
+      gradient: "from-sky-500 to-blue-600"
     },
     {
       title: "Interests",
       skills: ["Full-stack Development", "Robotics", "Agentic Applications", "Game Design", "Human-Computer Interaction"],
-      gradient: "from-orange-500 to-red-500"
+      gradient: "from-blue-600 to-indigo-700"
     }
   ];
 
