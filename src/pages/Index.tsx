@@ -393,13 +393,13 @@ const Index = () => {
             {/* Hobbies */}
             <Card className="group hover:shadow-xl transition-all duration-300 hover:scale-105">
               <CardContent className="p-8 text-center">
-                <div className="w-16 h-16 bg-gradient-to-br from-pink-500 to-rose-500 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+                <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-700 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
                   <Heart className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-xl font-bold mb-6 text-gray-800">Hobbies</h3>
                 <div className="space-y-4">
                   {aboutMeData.hobbies.map((hobby, index) => (
-                    <div key={index} className="flex items-center gap-3 p-3 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors">
+                    <div key={index} className="flex items-center gap-3 p-3 rounded-lg bg-blue-50 hover:bg-blue-100 transition-colors">
                       <hobby.icon className="w-5 h-5 text-blue-600" />
                       <span className="text-gray-700 font-medium">{hobby.name}</span>
                     </div>
@@ -411,14 +411,14 @@ const Index = () => {
             {/* Interests */}
             <Card className="group hover:shadow-xl transition-all duration-300 hover:scale-105">
               <CardContent className="p-8 text-center">
-                <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-indigo-500 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+                <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-indigo-700 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
                   <Lightbulb className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-xl font-bold mb-6 text-gray-800">Interests</h3>
                 <div className="space-y-3">
                   {aboutMeData.interests.map((interest, index) => (
-                    <div key={index} className="p-3 rounded-lg bg-purple-50 hover:bg-purple-100 transition-colors">
-                      <span className="text-purple-700 font-medium">{interest}</span>
+                    <div key={index} className="p-3 rounded-lg bg-blue-50 hover:bg-blue-100 transition-colors">
+                      <span className="text-blue-700 font-medium">{interest}</span>
                     </div>
                   ))}
                 </div>
@@ -428,14 +428,14 @@ const Index = () => {
             {/* Favorite Songs */}
             <Card className="group hover:shadow-xl transition-all duration-300 hover:scale-105">
               <CardContent className="p-8 text-center">
-                <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-500 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+                <div className="w-16 h-16 bg-gradient-to-br from-sky-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
                   <Music className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-xl font-bold mb-6 text-gray-800">Favorite Songs</h3>
                 <div className="space-y-3">
                   {aboutMeData.favoriteSongs.map((song, index) => (
-                    <div key={index} className="p-3 rounded-lg bg-green-50 hover:bg-green-100 transition-colors">
-                      <span className="text-green-700 font-medium">{song}</span>
+                    <div key={index} className="p-3 rounded-lg bg-blue-50 hover:bg-blue-100 transition-colors">
+                      <span className="text-blue-700 font-medium">{song}</span>
                     </div>
                   ))}
                 </div>
