@@ -448,7 +448,7 @@ const Index = () => {
       {/* Education Section */}
       <section id="education" className="py-20 px-4">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
+          <h2 className="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
             Education
           </h2>
           <Card className="max-w-4xl mx-auto">
