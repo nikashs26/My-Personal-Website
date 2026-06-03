@@ -754,8 +754,8 @@ const Index = () => {
           
           {/* Profile Image Placeholder */}
           <div className="mb-8 flex justify-center">
-            <div className="w-32 h-32 bg-white rounded-full flex items-center justify-center border-4 border-blue-100 shadow-lg">
-              <img src="/ns-logo.png" alt="NS logo" className="w-20 h-20" />
+            <div className="w-32 h-32 bg-blue-50 rounded-full flex items-center justify-center border-4 border-blue-200 shadow-lg">
+              <User className="w-16 h-16 text-blue-600" />
             </div>
           </div>
           
