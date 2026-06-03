@@ -560,8 +560,8 @@ const Index = () => {
                   <div className="absolute top-4 right-4 z-10">
                     <Badge variant="default" className={`gap-1 font-semibold ${
                       project.award.includes("Winner") 
-                        ? "bg-green-500 hover:bg-green-600 text-white" 
-                        : "bg-yellow-500 hover:bg-yellow-600 text-yellow-900"
+                        ? "bg-blue-600 hover:bg-blue-700 text-white" 
+                        : "bg-blue-100 hover:bg-blue-200 text-blue-800 border border-blue-300"
                     }`}>
                       <Award className="w-3 h-3" />
                       {project.award.includes("Winner") ? "Winner" : "Finalist"}
