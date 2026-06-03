@@ -330,47 +330,53 @@ const Index = () => {
         </div>
       </nav>
 
-      {/* Hero Section with Custom Backdrop */}
-      <section className="relative min-h-screen flex items-center justify-center px-4 overflow-hidden pt-16">
-        {/* Custom Image Backdrop */}
-        <div className="absolute inset-0 z-0">
-          <img 
-            src="/lovable-uploads/63ac8832-661a-4ccc-ae0a-847202e073e9.png" 
-            alt="Beautiful cityscape backdrop"
-            className="w-full h-full object-cover"
-          />
-          {/* Increased overlay opacity for better readability */}
-          <div className="absolute inset-0 bg-black/50"></div>
+      {/* Hero Section */}
+      <section className="relative min-h-screen flex items-center justify-center px-4 overflow-hidden pt-16 bg-gradient-to-br from-slate-50 via-blue-50 to-white">
+        <div className="absolute inset-0 z-0 overflow-hidden pointer-events-none">
+          <div className="absolute -top-24 -left-24 w-96 h-96 bg-blue-200/40 rounded-full blur-3xl"></div>
+          <div className="absolute -bottom-24 -right-24 w-96 h-96 bg-indigo-200/40 rounded-full blur-3xl"></div>
+          <div
+            className="absolute inset-0 opacity-[0.04]"
+            style={{
+              backgroundImage:
+                "linear-gradient(to right, #1e3a8a 1px, transparent 1px), linear-gradient(to bottom, #1e3a8a 1px, transparent 1px)",
+              backgroundSize: "48px 48px",
+            }}
+          ></div>
         </div>
 
-        <div className="text-center max-w-4xl mx-auto relative z-10">
-          <div className="mb-8 backdrop-blur-md bg-white/20 rounded-3xl p-10 border border-white/30 shadow-2xl animate-fade-in">
-            <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-white via-blue-100 to-blue-200 bg-clip-text text-transparent mb-4 drop-shadow-2xl leading-tight py-4">
-              <span ref={nameRef}></span>
-            </h1>
-            <p className="text-xl md:text-2xl text-white mb-6 drop-shadow-lg font-semibold">
-              Web Design & Engineering Student
-            </p>
-            <p className="text-lg text-white/90 max-w-2xl mx-auto mb-8 drop-shadow-md font-medium leading-relaxed">
-              Passionate about creating user-friendly websites and applications by blending technical proficiency with creative design and aesthetics. Experienced in full-stack development, AI integration, and modern web technologies.
-            </p>
+        <div className="text-center max-w-4xl mx-auto relative z-10 animate-fade-in">
+          <div className="inline-flex items-center gap-2 px-4 py-1.5 mb-8 rounded-full bg-white border border-blue-100 shadow-sm">
+            <span className="w-2 h-2 rounded-full bg-green-500 animate-pulse"></span>
+            <span className="text-sm font-medium text-gray-700">Available for opportunities</span>
           </div>
-          
-          <div className="flex flex-wrap justify-center gap-4 mb-8">
-            <Button variant="outline" className="gap-3 bg-white/40 border-white/50 text-white hover:bg-white/50 backdrop-blur-sm shadow-lg text-base px-6 py-3 font-semibold hover:scale-105 transition-all duration-300">
-              <Mail className="w-5 h-5" />
-              ngshanbhag@scu.edu
+
+          <h1 className="text-5xl md:text-7xl font-bold tracking-tight text-gray-900 mb-6 leading-tight py-2">
+            <span ref={nameRef}></span>
+          </h1>
+
+          <p className="text-xl md:text-2xl text-blue-700 mb-6 font-semibold">
+            Web Design &amp; Engineering Student
+          </p>
+
+          <p className="text-base md:text-lg text-gray-600 max-w-2xl mx-auto mb-10 leading-relaxed">
+            Passionate about creating user-friendly websites and applications by blending technical proficiency with creative design and aesthetics. Experienced in full-stack development, AI integration, and modern web technologies.
+          </p>
+
+          <div className="flex flex-wrap justify-center gap-3">
+            <Button asChild className="gap-2 bg-blue-600 hover:bg-blue-700 text-white shadow-md hover:shadow-lg transition-all duration-300 px-6 py-3 text-base">
+              <a href="mailto:ngshanbhag@scu.edu">
+                <Mail className="w-5 h-5" />
+                Get in Touch
+              </a>
             </Button>
-          </div>
-          
-          <div className="flex justify-center gap-4">
-            <Button asChild className="gap-3 bg-gradient-to-r from-blue-600 to-blue-700 hover:from-blue-700 hover:to-blue-800 backdrop-blur-sm border border-white/20 shadow-lg text-base px-8 py-3 hover:scale-105 transition-all duration-300 hover:shadow-blue-500/25 hover:shadow-xl">
+            <Button asChild variant="outline" className="gap-2 border-gray-300 text-gray-800 hover:bg-gray-50 hover:border-blue-400 px-6 py-3 text-base">
               <a href="https://www.linkedin.com/in/nikash-shanbhag-a05931250/" target="_blank" rel="noopener noreferrer">
-                <Linkedin className="w-5 h-5" />
+                <Linkedin className="w-5 h-5 text-blue-600" />
                 LinkedIn
               </a>
             </Button>
-            <Button asChild className="gap-3 bg-white text-blue-700 hover:bg-blue-50 border border-white shadow-lg text-base px-8 py-3 hover:scale-105 transition-all duration-300 hover:shadow-blue-500/25 hover:shadow-xl">
+            <Button asChild variant="outline" className="gap-2 border-gray-300 text-gray-800 hover:bg-gray-50 hover:border-blue-400 px-6 py-3 text-base">
               <a href="https://github.com/nikashs26" target="_blank" rel="noopener noreferrer">
                 <Github className="w-5 h-5" />
                 GitHub
