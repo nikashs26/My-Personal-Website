@@ -288,11 +288,12 @@ const Index = () => {
       }`}>
         <div className="max-w-6xl mx-auto px-4 py-3">
           <div className="flex justify-between items-center">
-            <div className={`font-semibold transition-colors duration-300 ${
-              navbarScrolled ? 'text-gray-800' : 'text-white'
+            <a href="#" className={`flex items-center gap-2 font-semibold transition-colors duration-300 ${
+              navbarScrolled ? 'text-blue-700' : 'text-white'
             }`}>
-              Nikash Shanbhag
-            </div>
+              <img src="/ns-logo.png" alt="NS logo" className={`w-9 h-9 transition-all duration-300 ${navbarScrolled ? '' : 'brightness-0 invert'}`} />
+              <span>Nikash Shanbhag</span>
+            </a>
             <div className="hidden md:flex space-x-6">
               <a href="#about" className={`transition-colors duration-300 ${
                 activeSection === 'about' 
