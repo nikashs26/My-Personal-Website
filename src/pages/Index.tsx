@@ -238,22 +238,22 @@ const Index = () => {
     {
       title: "Languages & Frameworks",
       skills: ["Python", "Java", "C", "HTML", "CSS", "JavaScript", "Tailwind", "TypeScript", "Vite", "SQL", "React", "Flask"],
-      gradient: "from-blue-500 to-cyan-500"
+      gradient: "from-blue-500 to-blue-700"
     },
     {
       title: "Tools & Productivity",
       skills: ["GitHub", "Chrome DevTools", "VS Code", "PyCharm", "Pygame", "Netlify", "Railway", "Figma"],
-      gradient: "from-purple-500 to-pink-500"
+      gradient: "from-blue-400 to-blue-600"
     },
     {
       title: "AI Tools",
       skills: ["Lovable", "Bolt.new", "Cursor", "Claude", "WindSurf"],
-      gradient: "from-green-500 to-emerald-500"
+      gradient: "from-sky-500 to-blue-600"
     },
     {
       title: "Interests",
       skills: ["Full-stack Development", "Robotics", "Agentic Applications", "Game Design", "Human-Computer Interaction"],
-      gradient: "from-orange-500 to-red-500"
+      gradient: "from-blue-600 to-indigo-700"
     }
   ];
 
@@ -279,7 +279,7 @@ const Index = () => {
   };
 
   return (
-    <div className="min-h-screen bg-gradient-to-br from-slate-50 via-blue-50/30 to-indigo-50/40">
+    <div className="min-h-screen bg-gradient-to-br from-white via-blue-50/40 to-blue-100/30">
       {/* Sticky Navigation Bar with scroll effect */}
       <nav className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         navbarScrolled 
@@ -344,12 +344,10 @@ const Index = () => {
 
         <div className="text-center max-w-4xl mx-auto relative z-10">
           <div className="mb-8 backdrop-blur-md bg-white/20 rounded-3xl p-10 border border-white/30 shadow-2xl animate-fade-in">
-            <div className="flex items-center justify-center gap-2 mb-4">
-              <Sparkles className="w-6 h-6 text-yellow-300 animate-pulse" />
-              <span className="text-white/90 font-medium tracking-wide uppercase text-sm">Portfolio</span>
-              <Sparkles className="w-6 h-6 text-yellow-300 animate-pulse" />
+            <div className="flex items-center justify-center mb-6">
+              <img src="/ns-logo.png" alt="NS logo" className="w-20 h-20 drop-shadow-2xl" />
             </div>
-            <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-white via-blue-200 to-cyan-100 bg-clip-text text-transparent mb-4 drop-shadow-2xl leading-tight py-4">
+            <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-white via-blue-100 to-blue-200 bg-clip-text text-transparent mb-4 drop-shadow-2xl leading-tight py-4">
               <span ref={nameRef}></span>
             </h1>
             <p className="text-xl md:text-2xl text-white mb-6 drop-shadow-lg font-semibold">
@@ -385,9 +383,9 @@ const Index = () => {
       </section>
 
       {/* About Me Section */}
-      <section id="about" className="py-20 px-4 bg-gradient-to-br from-blue-50 to-indigo-100">
+      <section id="about" className="py-20 px-4 bg-gradient-to-br from-white to-blue-50">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-blue-600 to-purple-600 bg-clip-text text-transparent">
+          <h2 className="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
             About Me
           </h2>
           
@@ -395,13 +393,13 @@ const Index = () => {
             {/* Hobbies */}
             <Card className="group hover:shadow-xl transition-all duration-300 hover:scale-105">
               <CardContent className="p-8 text-center">
-                <div className="w-16 h-16 bg-gradient-to-br from-pink-500 to-rose-500 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+                <div className="w-16 h-16 bg-gradient-to-br from-blue-500 to-blue-700 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
                   <Heart className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-xl font-bold mb-6 text-gray-800">Hobbies</h3>
                 <div className="space-y-4">
                   {aboutMeData.hobbies.map((hobby, index) => (
-                    <div key={index} className="flex items-center gap-3 p-3 rounded-lg bg-gray-50 hover:bg-gray-100 transition-colors">
+                    <div key={index} className="flex items-center gap-3 p-3 rounded-lg bg-blue-50 hover:bg-blue-100 transition-colors">
                       <hobby.icon className="w-5 h-5 text-blue-600" />
                       <span className="text-gray-700 font-medium">{hobby.name}</span>
                     </div>
@@ -413,14 +411,14 @@ const Index = () => {
             {/* Interests */}
             <Card className="group hover:shadow-xl transition-all duration-300 hover:scale-105">
               <CardContent className="p-8 text-center">
-                <div className="w-16 h-16 bg-gradient-to-br from-purple-500 to-indigo-500 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+                <div className="w-16 h-16 bg-gradient-to-br from-blue-600 to-indigo-700 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
                   <Lightbulb className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-xl font-bold mb-6 text-gray-800">Interests</h3>
                 <div className="space-y-3">
                   {aboutMeData.interests.map((interest, index) => (
-                    <div key={index} className="p-3 rounded-lg bg-purple-50 hover:bg-purple-100 transition-colors">
-                      <span className="text-purple-700 font-medium">{interest}</span>
+                    <div key={index} className="p-3 rounded-lg bg-blue-50 hover:bg-blue-100 transition-colors">
+                      <span className="text-blue-700 font-medium">{interest}</span>
                     </div>
                   ))}
                 </div>
@@ -430,14 +428,14 @@ const Index = () => {
             {/* Favorite Songs */}
             <Card className="group hover:shadow-xl transition-all duration-300 hover:scale-105">
               <CardContent className="p-8 text-center">
-                <div className="w-16 h-16 bg-gradient-to-br from-green-500 to-emerald-500 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
+                <div className="w-16 h-16 bg-gradient-to-br from-sky-500 to-blue-600 rounded-full flex items-center justify-center mx-auto mb-6 group-hover:scale-110 transition-transform">
                   <Music className="w-8 h-8 text-white" />
                 </div>
                 <h3 className="text-xl font-bold mb-6 text-gray-800">Favorite Songs</h3>
                 <div className="space-y-3">
                   {aboutMeData.favoriteSongs.map((song, index) => (
-                    <div key={index} className="p-3 rounded-lg bg-green-50 hover:bg-green-100 transition-colors">
-                      <span className="text-green-700 font-medium">{song}</span>
+                    <div key={index} className="p-3 rounded-lg bg-blue-50 hover:bg-blue-100 transition-colors">
+                      <span className="text-blue-700 font-medium">{song}</span>
                     </div>
                   ))}
                 </div>
@@ -450,7 +448,7 @@ const Index = () => {
       {/* Education Section */}
       <section id="education" className="py-20 px-4">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-green-600 to-emerald-600 bg-clip-text text-transparent">
+          <h2 className="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
             Education
           </h2>
           <Card className="max-w-4xl mx-auto">
@@ -508,10 +506,10 @@ const Index = () => {
       </section>
 
       {/* Skills Section - Simplified */}
-      <section id="skills" className="py-20 px-4 bg-gray-50">
+      <section id="skills" className="py-20 px-4 bg-blue-50/40">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-6 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+            <h2 className="text-4xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
               Skills
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
@@ -564,7 +562,7 @@ const Index = () => {
         </div>
         
         <div className="max-w-6xl mx-auto relative z-10">
-          <h2 className="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-orange-400 to-red-500 bg-clip-text text-transparent">
+          <h2 className="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-blue-300 to-white bg-clip-text text-transparent">
             Featured Projects
           </h2>
           <div className="grid md:grid-cols-2 gap-8">
@@ -708,7 +706,7 @@ const Index = () => {
       {/* Experience Section */}
       <section id="experience" className="py-20 px-4 bg-white">
         <div className="max-w-6xl mx-auto">
-          <h2 className="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-indigo-600 to-blue-600 bg-clip-text text-transparent">
+          <h2 className="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
             Professional Experience
           </h2>
           <div className="space-y-8">
@@ -761,16 +759,16 @@ const Index = () => {
       </section>
 
       {/* Contact Section */}
-      <section id="contact" className="py-20 px-4">
+      <section id="contact" className="py-20 px-4 bg-gradient-to-br from-white to-blue-50">
         <div className="max-w-4xl mx-auto text-center">
-          <h2 className="text-4xl font-bold mb-8 bg-gradient-to-r from-teal-600 to-cyan-600 bg-clip-text text-transparent">
+          <h2 className="text-4xl font-bold mb-8 bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
             Let's Connect
           </h2>
           
           {/* Profile Image Placeholder */}
           <div className="mb-8 flex justify-center">
-            <div className="w-32 h-32 bg-gray-200 rounded-full flex items-center justify-center border-4 border-white shadow-lg">
-              <User className="w-16 h-16 text-gray-400" />
+            <div className="w-32 h-32 bg-white rounded-full flex items-center justify-center border-4 border-blue-100 shadow-lg">
+              <img src="/ns-logo.png" alt="NS logo" className="w-20 h-20" />
             </div>
           </div>
           
@@ -779,19 +777,19 @@ const Index = () => {
           </p>
           
           <div className="flex flex-wrap justify-center gap-4">
-            <Button asChild size="lg" className="gap-2 bg-black text-white hover:bg-gray-800">
+            <Button asChild size="lg" className="gap-2 bg-blue-600 text-white hover:bg-blue-700">
               <a href="mailto:ngshanbhag@scu.edu">
                 <Mail className="w-5 h-5" />
                 Email Me
               </a>
             </Button>
-            <Button asChild size="lg" className="gap-2 bg-black text-white hover:bg-gray-800">
+            <Button asChild size="lg" className="gap-2 bg-blue-600 text-white hover:bg-blue-700">
               <a href="https://www.linkedin.com/in/nikash-shanbhag-a05931250/" target="_blank" rel="noopener noreferrer">
                 <Linkedin className="w-5 h-5" />
                 LinkedIn
               </a>
             </Button>
-            <Button asChild size="lg" className="gap-2 bg-black text-white hover:bg-gray-800">
+            <Button asChild size="lg" className="gap-2 bg-blue-600 text-white hover:bg-blue-700">
               <a href="https://github.com/nikashs26" target="_blank" rel="noopener noreferrer">
                 <Github className="w-5 h-5" />
                 GitHub
