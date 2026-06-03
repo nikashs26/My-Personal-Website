@@ -344,12 +344,10 @@ const Index = () => {
 
         <div className="text-center max-w-4xl mx-auto relative z-10">
           <div className="mb-8 backdrop-blur-md bg-white/20 rounded-3xl p-10 border border-white/30 shadow-2xl animate-fade-in">
-            <div className="flex items-center justify-center gap-2 mb-4">
-              <Sparkles className="w-6 h-6 text-yellow-300 animate-pulse" />
-              <span className="text-white/90 font-medium tracking-wide uppercase text-sm">Portfolio</span>
-              <Sparkles className="w-6 h-6 text-yellow-300 animate-pulse" />
+            <div className="flex items-center justify-center mb-6">
+              <img src="/ns-logo.png" alt="NS logo" className="w-20 h-20 drop-shadow-2xl" />
             </div>
-            <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-white via-blue-200 to-cyan-100 bg-clip-text text-transparent mb-4 drop-shadow-2xl leading-tight py-4">
+            <h1 className="text-5xl md:text-7xl font-bold bg-gradient-to-r from-white via-blue-100 to-blue-200 bg-clip-text text-transparent mb-4 drop-shadow-2xl leading-tight py-4">
               <span ref={nameRef}></span>
             </h1>
             <p className="text-xl md:text-2xl text-white mb-6 drop-shadow-lg font-semibold">
