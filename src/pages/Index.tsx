@@ -547,20 +547,9 @@ const Index = () => {
       </section>
 
       {/* Projects Section */}
-      <section id="projects" className="py-20 px-4 relative overflow-hidden">
-        {/* Background Image */}
-        <div className="absolute inset-0 z-0">
-          <img 
-            src="https://images.unsplash.com/photo-1461749280684-dccba630e2f6?auto=format&fit=crop&w=2000&q=80" 
-            alt="Programming code background"
-            className="w-full h-full object-cover"
-          />
-          {/* Dark overlay for text readability */}
-          <div className="absolute inset-0 bg-black/60"></div>
-        </div>
-        
+      <section id="projects" className="py-20 px-4 relative overflow-hidden bg-gradient-to-br from-blue-700 via-blue-600 to-blue-800">
         <div className="max-w-6xl mx-auto relative z-10">
-          <h2 className="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-blue-300 to-white bg-clip-text text-transparent">
+          <h2 className="text-4xl font-bold text-center mb-16 text-white drop-shadow">
             Featured Projects
           </h2>
           <div className="grid md:grid-cols-2 gap-8">
