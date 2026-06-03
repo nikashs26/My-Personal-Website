@@ -370,7 +370,7 @@ const Index = () => {
                 LinkedIn
               </a>
             </Button>
-            <Button asChild className="gap-3 bg-gradient-to-r from-gray-800 to-gray-900 hover:from-gray-900 hover:to-black backdrop-blur-sm border border-white/20 shadow-lg text-base px-8 py-3 text-white hover:scale-105 transition-all duration-300 hover:shadow-gray-500/25 hover:shadow-xl">
+            <Button asChild className="gap-3 bg-white text-blue-700 hover:bg-blue-50 border border-white shadow-lg text-base px-8 py-3 hover:scale-105 transition-all duration-300 hover:shadow-blue-500/25 hover:shadow-xl">
               <a href="https://github.com/nikashs26" target="_blank" rel="noopener noreferrer">
                 <Github className="w-5 h-5" />
                 GitHub
