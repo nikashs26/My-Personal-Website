@@ -506,10 +506,10 @@ const Index = () => {
       </section>
 
       {/* Skills Section - Simplified */}
-      <section id="skills" className="py-20 px-4 bg-gray-50">
+      <section id="skills" className="py-20 px-4 bg-blue-50/40">
         <div className="max-w-6xl mx-auto">
           <div className="text-center mb-16">
-            <h2 className="text-4xl font-bold mb-6 bg-gradient-to-r from-purple-600 to-pink-600 bg-clip-text text-transparent">
+            <h2 className="text-4xl font-bold mb-6 bg-gradient-to-r from-blue-600 to-blue-800 bg-clip-text text-transparent">
               Skills
             </h2>
             <p className="text-xl text-gray-600 max-w-2xl mx-auto leading-relaxed">
