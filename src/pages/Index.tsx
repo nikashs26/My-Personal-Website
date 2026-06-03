@@ -562,7 +562,7 @@ const Index = () => {
         </div>
         
         <div className="max-w-6xl mx-auto relative z-10">
-          <h2 className="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-orange-400 to-red-500 bg-clip-text text-transparent">
+          <h2 className="text-4xl font-bold text-center mb-16 bg-gradient-to-r from-blue-300 to-white bg-clip-text text-transparent">
             Featured Projects
           </h2>
           <div className="grid md:grid-cols-2 gap-8">
